@@ -1,30 +1,40 @@
 @import "../../Styles/constant";
 @import "../../Styles/variables";
 
-
 .app__home {
-  height: 130vh;
-  width: 100%;
-
-  background-image: url("../../assets/CHOOSEN33.png");
-  padding: $ex-gap $md-gap;
-  @include flexDirection;
-  gap: 3rem;
+  width:100%;
+  height : 795px;
+  position: relative;
+  top:0px;
+  left:0px;
+  border:0;
+  background-image: url("../../assets/7103047.jpg");
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%;
-
-  
+  background-size: cover;
 
   .home__text {
-    text-align: center;
-
-    h1 {
-      @include textGradient;
-      font-size: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    padding-left: 5%;
+    
+    h4 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+  
+    p {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #666;
+      margin-bottom: 2rem;
     }
   }
-
+  
   .ticks__container {
     @include flexCenter;
     color: $secondary-color;
@@ -52,5 +62,25 @@
     button {
       background: $secondary-color;
     }
+  }
+}
+
+@media(max-width:1190px){
+  .app__home{
+    background-size: cover !important;
+    
+  }
+}
+
+@media(max-width:970px){
+  .app__home{
+    background-size: cover !important;
+  }
+}
+
+@media(max-width:600px){
+  .app__home{
+    height : 600px;
+    background-size: cover !important;
   }
 }

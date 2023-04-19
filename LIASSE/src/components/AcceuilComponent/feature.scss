@@ -2,7 +2,7 @@
 @import "../../Styles/variables";
 
 .app__feature {
-  padding: $md-gap $md-gap 20% $md-gap;
+  padding: $t-gap $md-gap $t-gap $md-gap;
   position: relative;
 
   .feature__container {
@@ -11,37 +11,82 @@
 
     .left__feature {
       flex: 1;
-
-      img {
-        width: 80%;
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
-    }
+
+      img {  
+        max-width: 80%;
+        @media screen and (max-width: 768px) {
+
+          align-items: center;
+        }}
+      }
+      @media screen and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }}
 
     .right__feature {
       flex: 1;
-      gap: $lg-gap;
       @include flexDirection;
 
       .right__text {
-        gap: $lg-gap;
+        gap: $sm-gap;
         @include flexDirection;
 
-        h1 {
-          font-size: 4rem;
-          color: $secondary-color;
-        }
+        h1{
+          margin-bottom: -2px;
+          font-size: 1rem;
+          line-height: 1.1;
+          font-weight: 600;
+          color: rgb(74, 190, 211);
+        
+          @media screen and (max-width: 768px) {
+            text-align: center;
+          }}
+        h3{
+          margin-bottom: 24px;
+          font-size: 3rem;
+          line-height: 1.1;
+          font-weight: 600;
+          color: #000000;
+        
+          @media screen and (max-width: 768px) {
+            text-align: center;
+          }}
 
         p {
-          font-size: 1.3rem;
+          max-width: 440px;
+          margin-bottom: 35px;
+          line-height: 24px;
           color: $neutral-color;
+          @media screen and (max-width: 768px) {
+            text-align: center;
+          }}
         }
       }
 
       .feature__content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
         gap: $lg-gap;
 
+        button{
+        @include button-Feature;
+        background: black;
+        color: $secondary-color;
+        max-width: 150px;
+      &.onebtn {
+        background: transparent;
+      }
+      @media screen and (max-width: 768px) {
+        align-items: center;
+      }
+    }
         .feature {
           @include flexRow;
           gap: $sm-gap;
@@ -64,7 +109,12 @@
             }
           }
         }
+        @media screen and (max-width: 768px) {
+          align-items: center;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        padding: 0px 0px 10% 0px;
       }
     }
-  }
-}
+  

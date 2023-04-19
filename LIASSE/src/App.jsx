@@ -1,7 +1,9 @@
 import React from "react";
 import "./app.scss";
+import "../node_modules/bootstrap";
 import HomePage from "./Pages/HomePage";
 import PostFormPage from "./Pages/PostFormPage";
+
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
 
 

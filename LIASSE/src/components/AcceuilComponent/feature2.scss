@@ -1,0 +1,131 @@
+@import "../../Styles/constant";
+@import "../../Styles/variables";
+
+.app__features {
+  padding: $t-gap $md-gap $lg-gap $md-gap;
+  position: relative;
+  background-color: black;
+
+  .feature__container {
+    @include flexAlign;
+    gap: $lg-gap;
+
+    .left__feature {
+      flex: 1;
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      img {  
+        max-width: 80%;
+        @media screen and (max-width: 768px) {
+
+          align-items: center;
+        }}
+      }
+      @media screen and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }}
+
+    .right__feature {
+      flex: 1;
+      margin-left: 80px;
+      order: -1;
+      @include flexDirection;
+
+      .right__text {
+        gap: $sm-gap;
+        @include flexDirection;
+
+        h1{
+          margin-bottom: -2px;
+          font-size: 1rem;
+          line-height: 1.1;
+          font-weight: 600;
+          color: rgb(74, 190, 211);
+        
+          @media screen and (max-width: 768px) {
+            text-align: center;
+          }}
+        h3{
+          margin-bottom: 24px;
+          font-size: 3rem;
+          line-height: 1.1;
+          font-weight: 600;
+          color: #FFFFFF;
+        
+          @media screen and (max-width: 768px) {
+            text-align: center;
+          }}
+
+        p {
+          max-width: 440px;
+          margin-bottom: 35px;
+          line-height: 24px;
+          color: $neutral-color;
+          @media screen and (max-width: 768px) {
+            text-align: center;
+          }}
+        }
+        @media screen and (max-width: 992px) {
+          margin-left: 40px;
+        }
+      @media screen and (max-width: 768px) {
+          margin-left: 0;
+          order: 0;
+        }
+      }
+
+      .feature__content {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: $lg-gap;
+        gap: $lg-gap;
+
+        button{
+        @include button-Feature;
+        background: $secondary-color;
+        color: $primary-color;
+        max-width: 150px;
+      &.onebtn {
+        background: transparent;
+      }
+      @media screen and (max-width: 768px) {
+        align-items: center;
+      }
+    }
+        .feature {
+          @include flexRow;
+          gap: $sm-gap;
+
+          svg {
+            height: 20px;
+            min-width: 20px;
+            border-radius: 5px;
+            background: $elementary-color;
+          }
+
+          .feature__text {
+            p {
+              color: $secondary-color;
+              font-weight: bold;
+            }
+
+            span {
+              color: $neutral-color;
+            }
+          }
+        }
+        @media screen and (max-width: 768px) {
+          align-items: center;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        padding: 0px 0px 10% 0px;
+      }
+    }
+  

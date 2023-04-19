@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-import { feature } from "../../assets";
-import { features } from "./dummy";
-import { TiTick } from "react-icons/ti";
+import { AIPic1 } from "../../assets";
 import "./feature.scss";
-import Control from "./Control";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -68,37 +65,23 @@ const Feature = () => {
         className="feature__container"
       >
         <motion.div variants={item1} className="left__feature">
-          <img src={feature} alt="" draggable={false} />
+          <img src={AIPic1} alt="" draggable={false} />
         </motion.div>
         <motion.div variants={item2} className="right__feature">
           <div className="right__text">
-            <h1>
-              Feature to help <br /> your team succeed
-            </h1>
+            <h1>Founded in 2020</h1>
+            <h3>
+              Bref intro to AI 
+            </h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-              modi alias dolorem non nulla corporis dolorum enim optio ducimus
-              nihil, sint fugit, praesentium consectetur illum minima cum,
-              libero nobis debitis.
+            Artificial intelligence is the simulation of human intelligence processes by machines, especially computer systems.
             </p>
           </div>
           <div className="feature__content">
-            {features.map((feature, index) => (
-              <div className="feature" key={index}>
-                <TiTick />
-                <div className="feature__text">
-                  <p>{feature}</p>
-                  <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Odio, eos.
-                  </span>
-                </div>
-              </div>
-            ))}
+            <button>Learn More</button>
           </div>
         </motion.div>
       </motion.div>
-      <Control />
     </div>
   );
 };

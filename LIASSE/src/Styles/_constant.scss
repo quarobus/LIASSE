@@ -34,6 +34,16 @@
   background: none;
   font-weight: bold;
 }
+@mixin button-Feature {
+  padding: 0 1rem;
+  border: none;
+  height: 40px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 20px;
+  background: none;
+  font-weight: bold;
+}
 
 @mixin routes {
   display: flex;

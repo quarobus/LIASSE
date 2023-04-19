@@ -1,4 +1,5 @@
 import { AiOutlineClockCircle, AiFillCloud } from "react-icons/ai";
+import { pic1,pic2,pic3 } from "../../assets";
 import { SiGooglepodcasts } from "react-icons/si";
 
 export const routes = [
@@ -42,17 +43,20 @@ export const features = [
   "Power up",
 ];
 
-export const controls = [
+export const controls = [ 
   {
-    name: "Structured Reports",
-    icon: SiGooglepodcasts,
+    name: "Innovative Projects",
+    icon: pic2,
+    description: "Discover and work on cutting-edge AI projects that tackle some of the biggest challenges facing society today.",
+  },  
+  {
+    name: "Real-World Impact",
+    icon: pic1,
+    description : "Work on AI projects that have the potential to make a tangible impact on society and tackle real-world challenges.",
   },
   {
-    name: "Cloud System",
-    icon: AiFillCloud,
-  },
-  {
-    name: "24/7 Support",
-    icon: AiOutlineClockCircle,
+    name: "Expert Guidance",
+    icon: pic3,
+    description: "Receive mentorship and guidance from skilled AI experts who are enthusiastic about helping you enhance your skills.",
   },
 ];

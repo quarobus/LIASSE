@@ -1,6 +1,5 @@
 import React from "react";
 import "./home.scss";
-import { TiTick } from "react-icons/ti";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
@@ -35,16 +34,10 @@ const Home = () => {
 
   return (
     <div className="app__home" id="home">
-      <motion.div
-        initial="hidden"
-        animate={control}
-        variants={list}
-        ref={ref}
-        className="home__text"
-      >
-        <motion.h1 variants={item}></motion.h1>
-        <motion.h1 variants={item}></motion.h1>
-      </motion.div>
+      <div className="home__text">
+      <h4>Artificial intelligence</h4>
+      <p>Undrestand AI behavior with LIASSE</p>
+    </div>
     </div>
   );
 };
