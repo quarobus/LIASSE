@@ -6,25 +6,29 @@ function BlogGenerale() {
 
     const [show, setShow] = useState(true);
     const [content, setContent] = useState("Make it public");
+  
     
-    const visButtonClicked = ()=>{
-        console.log('Clicked');
-        const button = document.querySelector('.visbutton-blog');
-    
-        if(button.style.backgroundColor == 'white'){
-            button.style.backgroundColor = 'red';
-            button.style.border= '1px solid white';
-            button.style.color = 'white';
-            setContent("Make it private");
-        }
-        else {
-           button.style.backgroundColor = 'white';
-           button.style.border= '1px solid red';
-           button.style.color = 'red';
-           setContent("Make it public");
-        }
+    function visButtonClicked(index) {
+        const buttons = document.querySelectorAll(".visbutton-blog");
+        const button = buttons[index];
         
-    }
+        if (button.classList.contains("active")) {
+          button.classList.remove("active");
+          button.style.backgroundColor = "";
+          button.style.border = "";
+          button.style.color = "";
+          button.textContent = "Make it public";
+          
+        } else {
+          button.classList.add("active");
+          button.style.backgroundColor = "red";
+          button.style.border = "1px solid white";
+          button.style.color = "white";
+          button.textContent = "Make it Private";
+          
+        }
+      }
+      
 
     const typeButtonClicked1 = ()=>{
         const button = document.querySelector('.typebutton-blog1');
@@ -117,8 +121,7 @@ function BlogGenerale() {
                     a id officia pariatur vitae odio natus quasi
                     obcaecati voluptatum consequuntur aperiam sed? <a href="https://www.kooora.com">know more</a>
                     {show && <div class="buttonContener-blog">
-                        <button class="visbutton-blog"
-                         onClick={visButtonClicked}>{content}</button>
+                    <button className="visbutton-blog" onClick={() => visButtonClicked(0)}>{content}</button>
                         </div>
                     }
                  </p>
@@ -131,8 +134,7 @@ function BlogGenerale() {
                     a id officia pariatur vitae odio natus quasi
                     obcaecati voluptatum consequuntur aperiam sed? <a href="https://www.kooora.com">know more</a>
                     {show && <div class="buttonContener-blog">
-                        <button class="visbutton-blog"
-                         onClick={visButtonClicked}>{content}</button>
+                    <button className="visbutton-blog" onClick={() => visButtonClicked(1)}>{content}</button>
                         </div>
                     }
                  </p>
@@ -145,8 +147,7 @@ function BlogGenerale() {
                     a id officia pariatur vitae odio natus quasi
                     obcaecati voluptatum consequuntur aperiam sed? <a href="https://www.kooora.com">know more</a>
                     {show && <div class="buttonContener-blog">
-                        <button class="visbutton-blog"
-                         onClick={visButtonClicked}>{content}</button>
+                    <button className="visbutton-blog" onClick={() => visButtonClicked(2)}>{content}</button>
                         </div>
                     }
                  </p>

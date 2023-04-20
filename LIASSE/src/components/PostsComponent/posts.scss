@@ -66,7 +66,7 @@ fieldset {
 }
 
 
-button[type="submit"] {
+.Post-btn {
   grid-column: 1 / -1;
   background-color: #000000;
   color: white;
@@ -94,7 +94,7 @@ button[type="submit"] {
   border-radius: 4px;
 }
 }
-button {
+.legend-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -108,30 +108,29 @@ button {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 1rem;
-  margin: 1rem;
 }
 
-button:hover {
+.legend-button:hover {
   background: #000;
   color: #fff;
 }
 
-button:disabled {
+.legend-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-button.active {
+.legend-button.active {
   background: #000;
   color: #fff;
 }
 
-button:active {
+.legend-button:active {
   background: #333;
   border: none;
 }
 
-button:focus {
+.legend-button:focus {
   outline: none;
   background: #000;
   color: #fff;
@@ -186,7 +185,7 @@ legend {
 
 
 
-form {
+.Post-form {
   display: none;
   margin: 20px 0;
   grid-template-columns: repeat(4, 1fr);
@@ -212,22 +211,22 @@ form {
     font-size: 2rem;
     color: #000000;
 
-  }.form -group {
+  }.Post-form -group {
     margin-bottom: 1rem;
     }
 
-    label{
+    .Post-label{
       padding-top: 10px;
     }
-label, input, textarea {
+.Post-label, .Post-input, .Abstract {
   display: block;
   margin-bottom: 10px;
   width: 100%;
   min-width: 135px;
 }
 
-input,
-textarea {
+.Post-input,
+.Abstract {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -263,7 +262,7 @@ textarea {
   .Postscard{
     margin-top: 260px;
   }
-  form {
+  .Post-form {
     display: none;
     margin: 20px 0;
     grid-template-columns: repeat(4, 1fr);
@@ -280,7 +279,7 @@ textarea {
       display: block;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }}
-    label, input, textarea {
+    .Post-label, .Post-input, .Abstract {
       min-width: 400px;
     }
   .Postslayer {
@@ -295,13 +294,13 @@ textarea {
   .Postscard{
     margin-top: 295px;
   }
-  label, input, textarea {
+  .Post-label, .Post-input, .Abstract {
     min-width: 300px;
   }}
   @media (max-width: 450px) {
     .Postscard{
       margin-top: 395px;
     }
-    label, input, textarea {
+    .Post-label, .Post-input, .Abstract {
       min-width: 200px;
     }}
