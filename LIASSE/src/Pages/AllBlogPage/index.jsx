@@ -20,7 +20,7 @@ function AllBlogPage() {
     return (
       <>
       {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
-      <Navbar toggle={toggle} />
+      <Navbar toggle={toggle} bgColors={"white"} />
       <BlogGenerale/>
       </>
     );

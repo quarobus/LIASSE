@@ -3,24 +3,32 @@ import { routes } from "../AcceuilComponent/dummy";
 import "./navbar.scss";
 import Sidebar from "../SideBarComponent/sidebar";
 
-function Navbar({ toggle }) {
+function Navbar({ toggle, bgColors }) {
   const [open, setOpen] = useState(false);
   const [bgColor, setBgColor] = useState(false);
   const [iconColor, setIconColor] = useState("white");
 
   function changeNavbarBackgroundColor() {
-    if (window.scrollY >= 70) {
+    if (window.scrollY >= 70 || bgColors === "white") {
       setBgColor(true);
     } else {
       setBgColor(false);
     }
   }
 
-  window.addEventListener("scroll", changeNavbarBackgroundColor);
-
   const handleToggleClick = useCallback(() => {
     setOpen((prevOpen) => !prevOpen);
   }, []);
+
+  useEffect(() => {
+    if (bgColors === "white") {
+      setBgColor(true);
+    }
+    window.addEventListener("scroll", changeNavbarBackgroundColor);
+    return () => {
+      window.removeEventListener("scroll", changeNavbarBackgroundColor);
+    };
+  }, [bgColors]);
 
   useEffect(() => {
     if (open) {

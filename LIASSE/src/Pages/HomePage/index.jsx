@@ -9,7 +9,7 @@ function HomePage() {
     };
   
     const styles = {
-      backgroundColor: "#ffffff" 
+      backgroundColor: "white" 
     };
     useEffect(() => {
       document.body.style.backgroundColor = "white !important"; 
