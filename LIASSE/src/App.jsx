@@ -4,6 +4,10 @@ import "../node_modules/bootstrap";
 import HomePage from "./Pages/HomePage";
 import PostFormPage from "./Pages/PostFormPage";
 import AllBlogPage from "./Pages/AllBlogPage";
+import MyBlogPage from "./Pages/MyBlogPage";
+import ProfileAdmPage from "./Pages/ProfileAdmPage";
+import ProfileDocPage from "./Pages/ProfileDocPage";
+import ProfileProfPage from "./Pages/ProfileProfPage";
 
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
 
@@ -13,9 +17,13 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
        <Routes>
-        <Route path="/" element={<HomePage/>} />
-        <Route path="/PostForm" element={<PostFormPage/>} />
-        <Route path="/Blogs" element={<AllBlogPage/>} />
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/PostForm" element={<PostFormPage/>}/>
+        <Route path="/Blogs" element={<AllBlogPage/>}/>
+        <Route path="/MyBlogs" element={<MyBlogPage/>}/>
+        <Route path="/PfAdm" element={<ProfileAdmPage/>}/>
+        <Route path="/PfDoc" element={<ProfileDocPage/>}/>
+        <Route path="/PfProf" element={<ProfileProfPage/>}/>
        </Routes>
       </BrowserRouter>
     </div>

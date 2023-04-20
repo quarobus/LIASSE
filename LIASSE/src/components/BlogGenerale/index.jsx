@@ -84,7 +84,7 @@ function BlogGenerale() {
     }
 
     return(
-        <div style={{marginTop:"50px"}}>
+        <div style={{marginTop:"120px"}}>
             <div class="container-blog">
         <div class="A-blog">
             <h1><center>ALL POST</center></h1>

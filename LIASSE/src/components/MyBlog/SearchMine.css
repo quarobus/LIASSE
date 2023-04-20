@@ -1,0 +1,103 @@
+.search-container {
+    position: relative;
+    margin: 20px;
+    max-width: 600px;
+  }
+
+  .type-container-blog{
+    margin: 10px;
+    font-size: 20px;
+  }
+
+  .buttons-blog{
+    margin-top: 30px;
+    /*display: flex;
+    align-items: center;
+    justify-content: space-between;*/
+  }
+
+  .typebutton-blog1 {
+    font-size: 15px;
+    padding: 6px 12px 6px 12px;
+    background-color:white;
+    color: #0077CC;
+    border: 1px solid #0077CC;
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  .typebutton-blog2 {
+    font-size: 15px;
+    padding: 6px 12px 6px 12px;
+    background-color:white;
+    color: #0077CC;
+    border: 1px solid #0077CC;
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  .typebutton-blog3 {
+    font-size: 15px;
+    padding: 6px 12px 6px 12px;
+    background-color:white;
+    color: #0077CC;
+    border: 1px solid #0077CC;
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  .typebutton-blog4 {
+    font-size: 15px;
+    padding: 6px 12px 6px 12px;
+    background-color:white;
+    color: #0077CC;
+    border: 1px solid #0077CC;
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+
+  
+  .form-blog{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #0077cc;
+    background-color: #fff;
+    border-radius: 10px 11px 11px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .input-blog[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    width: 350px;
+  }
+  
+  .button-blog[type="submit"] {
+    padding: 10px 20px;
+    background-color: #0077cc;
+    color: #fff;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .button-blog[type="submit"]:hover {
+    background-color: #005ea6;
+  }
+
+  .hr-blog{
+    border-color: #0077CC;
+    width: 75%;
+  }
+
+  @media screen and (max-width:800px){
+    .input-blog[type="text"] {
+      width: 50%;
+    }
+  }
+  

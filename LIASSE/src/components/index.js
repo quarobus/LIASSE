@@ -8,6 +8,10 @@ import Feature2 from "./AcceuilComponent/Feature2";
 import Services from "./Services/Services";
 import Service2 from "./AcceuilComponent/Service2";
 import BlogGenerale from "./BlogGenerale";
+import MyBlog from "./MyBlog";
+import ProfileAdm from "./ProfileAdm";
+import ProfileDoc from "./ProfileDoc";
+import ProfileProf from "./ProfileProf";
 
 
 export {
@@ -17,5 +21,8 @@ export {
   Posts,Sidebar,
   Feature2,Services,Service2,
   BlogGenerale,
-
+  MyBlog,
+  ProfileAdm,
+  ProfileProf,
+  ProfileDoc,
 };
