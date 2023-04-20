@@ -1,0 +1,25 @@
+@import url('BlogBannerGene.css');
+@import url('SearchGene.css');
+
+
+.container-blog {  
+  padding: 0px 0px 0px;
+    display: grid;
+    place-items: center;
+    align-items: center;
+  }
+  
+  .A-blog{ 
+    padding:10px;
+    margin-bottom: 10px;
+ }
+  
+  .B-blog { 
+    margin-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.hr-myblog{
+  margin-bottom: 50px;
+}

@@ -7,6 +7,7 @@ import Sidebar from "./SideBarComponent/sidebar";
 import Feature2 from "./AcceuilComponent/Feature2";
 import Services from "./Services/Services";
 import Service2 from "./AcceuilComponent/Service2";
+import BlogGenerale from "./BlogGenerale";
 
 
 export {
@@ -14,6 +15,7 @@ export {
   Navbar,
   Feature,
   Posts,Sidebar,
-  Feature2,Services,Service2
+  Feature2,Services,Service2,
+  BlogGenerale,
 
 };
