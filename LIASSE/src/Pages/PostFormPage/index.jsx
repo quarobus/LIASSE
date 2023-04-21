@@ -9,7 +9,7 @@ function PostFormPage() {
       setIsOpen((prev) => !prev);
     };
     useEffect(() => {
-      document.body.style.backgroundColor = "#000000"; // set body background color to black
+      document.body.style.backgroundColor = "#ffffff"; // set body background color to black
       return () => {
         document.body.style.backgroundColor = null; // reset body background color on unmount
       };
@@ -17,7 +17,7 @@ function PostFormPage() {
     return (
         <>
         {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
-        <Navbar toggle={toggle} />
+        <Navbar toggle={toggle} bgColors={"white"}/>
         <Posts />
 
 
