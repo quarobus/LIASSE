@@ -1,6 +1,6 @@
 import React from 'react';
 import profil from "../../assets/noprofile.jpg";
-import './Profile.css';
+import '../../components/ProfileDoc/Profile.css';
 
 function ProfileProf() {
     return(

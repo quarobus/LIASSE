@@ -5,51 +5,57 @@
   }
 
   .type-container-blog{
-    margin: 10px;
+    margin: 5px;
     font-size: 20px;
   }
 
   .buttons-blog{
     margin-top: 30px;
-    /*display: flex;
-    align-items: center;
-    justify-content: space-between;*/
+    
   }
 
   .typebutton-blog1 {
-    font-size: 15px;
-    padding: 6px 12px 6px 12px;
-    background-color:white;
-    color: #0077CC;
-    border: 1px solid #0077CC;
-    border-radius:10px;
+    font-size: 13px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 0.25rem 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
   .typebutton-blog2 {
-    font-size: 15px;
-    padding: 6px 12px 6px 12px;
-    background-color:white;
-    color: #0077CC;
-    border: 1px solid #0077CC;
-    border-radius:10px;
+    font-size: 13px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 0.25rem 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
   .typebutton-blog3 {
-    font-size: 15px;
-    padding: 6px 12px 6px 12px;
-    background-color:white;
-    color: #0077CC;
-    border: 1px solid #0077CC;
-    border-radius:10px;
+    font-size: 13px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 0.25rem 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
   .typebutton-blog4 {
-    font-size: 15px;
-    padding: 6px 12px 6px 12px;
-    background-color:white;
-    color: #0077CC;
-    border: 1px solid #0077CC;
-    border-radius:10px;
+    font-size: 13px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 0.25rem 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
 
@@ -58,7 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #0077cc;
+    border: 1px solid #000;
     background-color: #fff;
     border-radius: 10px 11px 11px 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -77,7 +83,7 @@
   
   .button-blog[type="submit"] {
     padding: 10px 20px;
-    background-color: #0077cc;
+    background-color: #000;
     color: #fff;
     border: none;
     border-radius: 0px 10px 10px 0px;
@@ -87,11 +93,11 @@
   }
   
   .button-blog[type="submit"]:hover {
-    background-color: #005ea6;
+    background-color: #000;
   }
 
   .hr-blog{
-    border-color: #0077CC;
+    border-color: #000;
     width: 75%;
   }
 

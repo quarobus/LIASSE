@@ -2,6 +2,64 @@ import React from 'react';
 import './BlogPageMine.css';
 
 function MyBlog() {
+
+    const typeButtonClicked1 = ()=>{
+        const button = document.querySelector('.typebutton-blog1');
+
+        if(button.style.backgroundColor == 'white'){
+            button.style.backgroundColor = '#000';
+            button.style.border= 'none';
+            button.style.color = 'white';
+        }
+        else {
+           button.style.backgroundColor = 'white';
+           button.style.border= '1px solid #000';
+           button.style.color = '#000';
+        }
+    }
+    const typeButtonClicked2 = ()=>{
+        const button = document.querySelector('.typebutton-blog2');
+
+        if(button.style.backgroundColor == 'white'){
+            button.style.backgroundColor = '#000';
+            button.style.border= 'none';
+            button.style.color = 'white';
+        }
+        else {
+           button.style.backgroundColor = 'white';
+           button.style.border= '1px solid #000';
+           button.style.color = '#000';
+        }
+    }
+    const typeButtonClicked3 = ()=>{
+        const button = document.querySelector('.typebutton-blog3');
+
+        if(button.style.backgroundColor == 'white'){
+            button.style.backgroundColor = '#000';
+            button.style.border= 'none';
+            button.style.color = 'white';
+        }
+        else {
+           button.style.backgroundColor = 'white';
+           button.style.border= '1px solid #000';
+           button.style.color = '#000';
+        }
+    }
+    const typeButtonClicked4 = ()=>{
+        const button = document.querySelector('.typebutton-blog4');
+        
+        if(button.style.backgroundColor == 'white'){
+            button.style.backgroundColor = '#000';
+            button.style.border= 'none';
+            button.style.color = 'white';
+        }
+        else {
+           button.style.backgroundColor = 'white';
+           button.style.border= '1px solid #000';
+           button.style.color = '#000';
+        }
+    }
+
     return(
         <div style={{marginTop:"120px"}}>
             <div class="container-blog">
@@ -18,10 +76,10 @@ function MyBlog() {
                 
                 <div class="buttons-blog">
                     <label for="Type">Filter by type: </label>
-                    <button class="typebutton-blog button-blog">Artical</button>
-                    <button class="typebutton-blog button-blog">These</button>
-                    <button class="typebutton-blog button-blog">type3</button>
-                    <button class="typebutton-blog button-blog">type4</button>
+                    <button class="typebutton-blog1" onClick={typeButtonClicked1}>Artical</button>
+                    <button class="typebutton-blog2" onClick={typeButtonClicked2}>These</button>
+                    <button class="typebutton-blog3" onClick={typeButtonClicked3}>type3</button>
+                    <button class="typebutton-blog4" onClick={typeButtonClicked4}>type4</button>
                 </div>
                   
             </div>

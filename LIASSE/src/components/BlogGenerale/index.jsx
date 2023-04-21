@@ -34,56 +34,56 @@ function BlogGenerale() {
         const button = document.querySelector('.typebutton-blog1');
 
         if(button.style.backgroundColor == 'white'){
-            button.style.backgroundColor = '#0077CC';
+            button.style.backgroundColor = '#000';
             button.style.border= 'none';
             button.style.color = 'white';
         }
         else {
            button.style.backgroundColor = 'white';
-           button.style.border= '1px solid #0077CC';
-           button.style.color = '#0077CC';
+           button.style.border= '1px solid #000';
+           button.style.color = '#000';
         }
     }
     const typeButtonClicked2 = ()=>{
         const button = document.querySelector('.typebutton-blog2');
 
         if(button.style.backgroundColor == 'white'){
-            button.style.backgroundColor = '#0077CC';
+            button.style.backgroundColor = '#000';
             button.style.border= 'none';
             button.style.color = 'white';
         }
         else {
            button.style.backgroundColor = 'white';
-           button.style.border= '1px solid #0077CC';
-           button.style.color = '#0077CC';
+           button.style.border= '1px solid #000';
+           button.style.color = '#000';
         }
     }
     const typeButtonClicked3 = ()=>{
         const button = document.querySelector('.typebutton-blog3');
 
         if(button.style.backgroundColor == 'white'){
-            button.style.backgroundColor = '#0077CC';
+            button.style.backgroundColor = '#000';
             button.style.border= 'none';
             button.style.color = 'white';
         }
         else {
            button.style.backgroundColor = 'white';
-           button.style.border= '1px solid #0077CC';
-           button.style.color = '#0077CC';
+           button.style.border= '1px solid #000';
+           button.style.color = '#000';
         }
     }
     const typeButtonClicked4 = ()=>{
         const button = document.querySelector('.typebutton-blog4');
 
         if(button.style.backgroundColor == 'white'){
-            button.style.backgroundColor = '#0077CC';
+            button.style.backgroundColor = '#000';
             button.style.border= 'none';
             button.style.color = 'white';
         }
         else {
            button.style.backgroundColor = 'white';
-           button.style.border= '1px solid #0077CC';
-           button.style.color = '#0077CC';
+           button.style.border= '1px solid #000';
+           button.style.color = '#000';
         }
     }
 
@@ -121,7 +121,8 @@ function BlogGenerale() {
                     a id officia pariatur vitae odio natus quasi
                     obcaecati voluptatum consequuntur aperiam sed? <a href="https://www.kooora.com">know more</a>
                     {show && <div class="buttonContener-blog">
-                    <button className="visbutton-blog" onClick={() => visButtonClicked(0)}>{content}</button>
+                    <button className="visbutton-blog"
+                     onClick={() => visButtonClicked(0)}>{content}</button>
                         </div>
                     }
                  </p>
