@@ -41,8 +41,8 @@ const Layer = () => {
         <input className="Post-input" type="text" id="volume" name="volume" placeholder="Volume..." />
         <label className="Post-label"htmlFor="pages">Pages:</label>
         <input className="Post-input" type="text" id="pages" name="pages" placeholder="Pages..." />
-        <label className="Post-label"htmlFor="issue">Issue:</label>
-        <input className="Post-input" type="text" id="issue" name="issue" placeholder="Issue..."  />
+        <label className="Post-label"htmlFor="issue">Image:</label>
+        <input className="Post-input" type="file" id="image" name="image" />
         <label className="Post-label"htmlFor="publisher">Publisher:</label>
         <input className="Post-input" type="text" id="publisher" name="publisher" placeholder="Publisher..." />
         <label className="Post-label"htmlFor="citations">Nombre total de citations:</label>
@@ -67,8 +67,8 @@ const Layer = () => {
         <input className="Post-input" type="text" id="name" name="name" placeholder="Volume..."/>
         <label className="Post-label"htmlFor="name">Pages:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Pages..."/>
-        <label className="Post-label"htmlFor="name">Issue:</label>
-        <input className="Post-input" type="text" id="name" name="name" placeholder="Issue..."/>
+        <label className="Post-label"htmlFor="issue">Image:</label>
+        <input className="Post-input" type="file" id="image" name="image" />
         <label className="Post-label"htmlFor="name">Publisher:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Publisher..."/>
         <label className="Post-label"htmlFor="name">Nombre total de citations:</label>
@@ -93,8 +93,8 @@ const Layer = () => {
         <input className="Post-input" type="text" id="name" name="name" placeholder="Volume..."/>
         <label className="Post-label"htmlFor="name">Pages:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Pages..."/>
-        <label className="Post-label"htmlFor="name">Issue:</label>
-        <input className="Post-input" type="text" id="name" name="name" placeholder="Issue..."/>
+        <label className="Post-label"htmlFor="issue">Image:</label>
+        <input className="Post-input" type="file" id="image" name="image" />
         <label className="Post-label"htmlFor="name">Publisher:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Publisher..."/>
         <label className="Post-label"htmlFor="name">Nombre total de citations:</label>
@@ -119,8 +119,8 @@ const Layer = () => {
         <input className="Post-input" type="text" id="name" name="name" placeholder="Volume..."/>
         <label className="Post-label"htmlFor="name">Pages:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Pages..."/>
-        <label className="Post-label"htmlFor="name">Issue:</label>
-        <input className="Post-input" type="text" id="name" name="name" placeholder="Issue..."/>
+        <label className="Post-label"htmlFor="issue">Image:</label>
+        <input className="Post-input" type="file" id="image" name="image" />
         <label className="Post-label"htmlFor="name">Publisher:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Publisher..."/>
         <label className="Post-label"htmlFor="name">Nombre total de citations:</label>
@@ -141,8 +141,8 @@ const Layer = () => {
         <input className="Post-input" type="date" id="publication-date" name="publication-date" />
         <label className="Post-label"htmlFor="name">Institution:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Institution..."/>
-        <label className="Post-label"htmlFor="name">Issue:</label>
-        <input className="Post-input" type="text" id="name" name="name" placeholder="Issue..."/>
+        <label className="Post-label"htmlFor="issue">Image:</label>
+        <input className="Post-input" type="file" id="image" name="image" />
         <label className="Post-label"htmlFor="name">Nombre total de citations:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Number of citations..."/>
         <label className="Post-label"htmlFor="name">Lien vers la these</label>
@@ -166,8 +166,8 @@ const Layer = () => {
         <input className="Post-input" type="text" id="name" name="name" placeholder="Volume..."/>
         <label className="Post-label"htmlFor="name">Pages:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Pages..." />
-        <label className="Post-label"htmlFor="name">Issue:</label>
-        <input className="Post-input" type="text" id="name" name="name" placeholder="Issue..."/>
+        <label className="Post-label"htmlFor="issue">Image:</label>
+        <input className="Post-input" type="file" id="image" name="image" />
         <label className="Post-label"htmlFor="name">Publisher:</label>
         <input className="Post-input" type="text" id="name" name="name" placeholder="Publisher..." />
         <label className="Post-label"htmlFor="name">Nombre total de citations:</label>
