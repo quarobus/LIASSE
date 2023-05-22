@@ -1,0 +1,123 @@
+/*
+.gestion-body {
+  align-items: center;
+  background-color: #f2f2f2;
+  display: flex;
+  font-family: "Merriweather", serif;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  margin-top: 150px;
+  margin-left: 10%;
+  margin-right: 10%;
+  min-width: 80%;
+  min-height: 80%;
+}
+.container {
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+*/
+/*
+.btn {
+  margin-right: 10px;
+}
+*/
+.contain-gestion-admin{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 6rem!important;
+  margin-bottom: 0.5rem;
+}
+
+.button-modif{
+    font-family: "Product Sans", sans-serif;
+    font-size: 14px;
+    line-height: normal;
+    text-align: center;
+    letter-spacing: normal;
+    color:#ffffff;
+    background-color: #0c1727;
+    box-shadow: #ffffff;
+    border-radius: 20px;
+    padding: 5px 20px 5px 20px;
+  }
+  .gestionadm{
+    margin-bottom: 0.5rem;
+    
+  }
+  .mk-black{
+    background: black!important;
+    border-color: black!important;
+  }
+  .table-gestion{
+    text-align: center;
+  }
+  .table-margin{
+       margin-top: 30px;
+  }
+  .custom-alert {
+    background-color: transparent !important;
+    border-color: #ffffff !important;
+    color: #dc3545 !important;
+    height: 20px !important;
+  }
+  
+  .custom-alert p {
+    margin: 0;
+  }
+  
+  .button-cont{
+    display: flex;
+    justify-content: center;
+  }
+  .modal-content{
+
+    margin-top: 5.5rem;
+  }
+  .card {
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .card-header {
+    background-color: #09407b;
+    color: #fff;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 15px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  .btn-group .btn {
+    margin-right: 10px;
+  }
+  
+  .btn-primary{
+    padding: 0.25rem 1.25rem 0.25rem 1.5rem;
+    border-radius: 20px;
+    font-size: 16px;
+  
+  }
+  
+  /*
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #042343;
+    border: none;
+  }
+  */
+  
+  
+   

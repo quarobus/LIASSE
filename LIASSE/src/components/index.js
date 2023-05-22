@@ -12,6 +12,9 @@ import MyBlog from "./MyBlog";
 import ProfileAdm from "./ProfileAdm";
 import ProfileDoc from "./ProfileDoc";
 import ProfileProf from "./ProfileProf";
+import Faculty from "./FacultyComponent/Faculty";
+import Footer from "./FooterComponent/Footer";
+import Gestionadmin from "./GestionAdminComponent/GestionAdmin";
 
 
 export {
@@ -25,4 +28,7 @@ export {
   ProfileAdm,
   ProfileProf,
   ProfileDoc,
+  Faculty,
+  Footer,
+  Gestionadmin,
 };

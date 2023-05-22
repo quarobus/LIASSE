@@ -8,6 +8,15 @@
   font-family: "Product Sans", sans-serif;
 }
 
+/* lastely added by adil*/
+.app{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* ------------------------*/
 body {
   overflow-x: hidden ;
   scroll-behavior: smooth;

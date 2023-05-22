@@ -8,6 +8,8 @@ import MyBlogPage from "./Pages/MyBlogPage";
 import ProfileAdmPage from "./Pages/ProfileAdmPage";
 import ProfileDocPage from "./Pages/ProfileDocPage";
 import ProfileProfPage from "./Pages/ProfileProfPage";
+import FacultyPage from "./Pages/FacultyPage";
+import GestionPage  from "./Pages/GestionAdminPage";
 
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
 
@@ -24,6 +26,8 @@ const App = () => {
         <Route path="/PfAdm" element={<ProfileAdmPage/>}/>
         <Route path="/PfDoc" element={<ProfileDocPage/>}/>
         <Route path="/PfProf" element={<ProfileProfPage/>}/>
+        <Route path="/Faculty" element={<FacultyPage/>}/>
+        <Route path="/GestionAdmin" element={<GestionPage/>}/>
        </Routes>
       </BrowserRouter>
     </div>
