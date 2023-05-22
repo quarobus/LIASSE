@@ -11,7 +11,7 @@ function ProfileDoc() {
             <div class="A-profil">
                 <div class="profilPic-profil">
                     <img class="img-profil" src={profil} height="120px" width="120px"/>
-                    <input className="Post-input" type="file" id="image" name="image" />
+                    <input className="Post-inputs" type="file" id="image" name="image" />
                     <label class="ImportImg-profil" for="image">Upload Picture</label>
                     <h2>Full Name</h2>
                     <center><hr class="hr-profil"/></center>

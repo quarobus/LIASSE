@@ -99,7 +99,7 @@ body{
     width: 80%;
 }
 
-input[type="file"]{
+.Post-inputs{
     display: none;
 }
 .ImportImg-profil{
