@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { Navbar , Posts , Sidebar} from '../../Components'
+import { Footer, Navbar , Posts , Sidebar} from '../../Components'
 
 
 function PostFormPage() {
@@ -19,7 +19,7 @@ function PostFormPage() {
         {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
         <Navbar toggle={toggle} bgColors={"white"}/>
         <Posts />
-
+        <Footer />
 
         </>
     )

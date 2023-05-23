@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Navbar, Home, Feature, Sidebar , Feature2 , Services, Service2 } from '../../Components';
+import { Navbar, Home, Feature, Sidebar , Feature2 , Services, Service2 , Footer} from '../../Components';
 
 function HomePage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +26,7 @@ function HomePage() {
       <Feature2 />
       <Services />
       <Service2 />
+      <Footer />
       </>
     );
   }
