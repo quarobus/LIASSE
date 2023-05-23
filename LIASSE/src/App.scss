@@ -10,6 +10,7 @@
 
 /* lastely added by adil*/
 .app{
+  overflow-x: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -117,9 +118,6 @@ a {
   }
 }
 
-body {
-  overflow-x: hidden;
-}
 
 @media screen and (max-width: 700px) {
   .section__padding {
