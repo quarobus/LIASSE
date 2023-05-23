@@ -20,7 +20,7 @@ function HomePage() {
     return (
       <>
       {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
-      <Navbar toggle={toggle} />
+      <Navbar toggle={toggle}  />
       <Home />
       <Feature />
       <Feature2 />

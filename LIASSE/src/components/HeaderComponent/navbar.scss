@@ -109,6 +109,7 @@
   /* Add padding to the body to avoid content being hidden behind the dropdown menu */
   body {
     padding-top: 60px;
+    overflow-x: hidden;
   }
 
 }
