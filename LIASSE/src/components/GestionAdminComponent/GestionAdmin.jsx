@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Alert,Modal,Card,Button,Form, Table } from 'react-bootstrap';
+import {Alert,Modal,Card,Button,Form,InputGroup} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./gestionadmin.scss";
 
@@ -18,6 +18,9 @@ function Gestionadmin() {
   const [showModalInfo, setShowModalInfo] = useState(false);
 
   const [showAlert, setShowAlert] = useState(false);
+  const [showAlertFname,setShowAlertFName] = useState(false);
+  const [showAlertLname,setShowAlertLName] = useState(false);
+
 
   // email pattern to verify email
   const emailPattern = /\S+@\S+\.\S+/;
@@ -31,6 +34,9 @@ function Gestionadmin() {
     setPhone('');
     setShowModal(false);
     setShowAlert(false);
+    setShowAlertFName(false);
+    setShowAlertLName(false);
+    setShowAlertName(false);
   }
   const handleShowAdd = () => {
     setModalTitle('Add Item');
@@ -41,7 +47,6 @@ function Gestionadmin() {
   const handleShowEdit = (index) => {
     setModalTitle('Edit Item');
     setEditIndex(index);
-    setShowAlert(false);
     setFirstName(items[index].FirstName);
     setLastName(items[index].LastName);
     setEmail(items[index].Email);
@@ -58,16 +63,45 @@ function Gestionadmin() {
 
   const handleSave = () => {
     if (editIndex !== null) {
+      
       const newItems = [...items];
       newItems[editIndex] = { FirstName, LastName, Email, Phone };
+      if(FirstName=='') 
+      {
+        setShowAlertFName(true);
+        return;
+      }
+      if(LastName=='') 
+      {
+        setShowAlertLName(true);
+        return;
+      }
+      if (!emailPattern.test(Email)){
+        setShowAlert(true);
+        return;
+      }
       setItems(newItems);
       setEditIndex(null);
     } else {
-      if (emailPattern.test(Email)) { // validate email format
-        setItems([...items, { FirstName, LastName, Email, Phone}]);
-      } else {
+ 
+      if (FirstName=='') 
+      {
+        setShowAlertFName(true);
+        return;
+      }
+      if (LastName=='') {
+        setShowAlertLName(true);
+        return;
+      }
+      
+      if (!emailPattern.test(Email)) { // validate email format
         setShowAlert(true);
         return;
+      } 
+      
+      if(FirstName!='' && LastName!='' && emailPattern.test(Email))
+      {
+        setItems([...items, { FirstName, LastName, Email, Phone}]);
       }
     }
     setFirstName('');
@@ -75,6 +109,9 @@ function Gestionadmin() {
     setEmail('');
     setPhone('');
     setShowModal(false);
+    setShowAlert(false);
+    setShowAlertFName(false);
+    setShowAlertLName(false);
   };
 
   const handleDelete = (index) => {
@@ -145,7 +182,7 @@ function Gestionadmin() {
             {/* Form 1 inputs */
                 <div>
                  
-                <Button className="btn btn-primary mk-black" onClick={handleShowAdd} >Add </Button>
+                <Button className="btn btn-primary mk-black add-btn" onClick={handleShowAdd} >Add </Button>
 
 
               
@@ -158,12 +195,20 @@ function Gestionadmin() {
                       <Form.Group className="form-group row">
                        <Form.Group className="form-group col-md-6" controlId="formFirstName">
                          <Form.Label >First name</Form.Label>
-                            <Form.Control className="col-sm-10" type="text" placeholder="Enter first name" value={FirstName} onChange={(e) => setFirstName(e.target.value)} />
+                            <Form.Control className="col-sm-10" type="text" placeholder="Enter first name" value={FirstName} required onChange={(e) => setFirstName(e.target.value)} />
+                            <Form.Text className="text-muted">
+                             {showAlertFname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter first name</p></Alert>}
+                            </Form.Text>
                        </Form.Group>
+                     
                        <Form.Group className="form-group col-md-6" controlId="formLastName">
                          <Form.Label >Last name</Form.Label>
-                            <Form.Control className="col-sm-10" type="text" placeholder="Enter last name" value={LastName} onChange={(e) => setLastName(e.target.value)} />
+                            <Form.Control className="col-sm-10" type="text" placeholder="Enter last name" value={LastName} required onChange={(e) => setLastName(e.target.value)} />
+                            <Form.Text className="text-muted">
+                              {showAlertLname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter last name</p></Alert>}
+                            </Form.Text>
                        </Form.Group>
+                       
                       </Form.Group>
 
                       <Form.Group controlId="formEmail">
@@ -191,12 +236,12 @@ function Gestionadmin() {
                   </Modal>
                  
          
-                 <Table className="table-margin" striped bordered hover size="sm">
+                 <table className="table100" size="sm">
                    <thead>
                      <tr>
-                       <th className="table-gestion">First Name</th>
-                       <th className="table-gestion">Last Name</th>
-                       <th className="table-gestion">Action</th>
+                       <th className="table100-head">First Name</th>
+                       <th className="table100-head">Last Name</th>
+                       <th className="table100-head">Action</th>
                      </tr>
                    </thead>
                    <tbody>
@@ -204,7 +249,7 @@ function Gestionadmin() {
                        <tr key={index}>
                          <td>{item.FirstName}</td>
                          <td>{item.LastName}</td>
-                         <td className="table-gestion">
+                         <td>
                            <Button className="btn btn-info btn-sm" onClick={() => handleShowInfo(item)}>Info</Button>
                            <Button className="btn btn-secondary btn-sm" onClick={() => handleShowEdit(index)}>Edit</Button>{' '}
                            <Button className="btn btn-danger btn-sm" onClick={() => handleDelete(index)}>Delete</Button>
@@ -212,7 +257,7 @@ function Gestionadmin() {
                        </tr>
                      ))}
                    </tbody>
-                 </Table>
+                 </table>
                  </div>
                
     
@@ -229,7 +274,7 @@ function Gestionadmin() {
           <Form>
             {/* Form 2 inputs */
                 <div>
-                    <Button className="btn btn-primary add mk-black"  onClick={handleShowAdd} >Add </Button>
+                    <Button className="btn btn-primary add mk-black add-btn"  onClick={handleShowAdd} >Add </Button>
 
                   <Modal show={showModal} size="lg">
                    <Modal.Header >
@@ -240,11 +285,18 @@ function Gestionadmin() {
                      <Form.Group className="form-group row">
                        <Form.Group className="form-group col-md-6" controlId="formFirstName">
                          <Form.Label >First name</Form.Label>
-                         <Form.Control className="col-sm-10" type="text" placeholder="Enter first name" value={FirstName} onChange={(e) => setFirstName(e.target.value)} />
+                           <Form.Control required className="col-sm-10" type="text" placeholder="Enter first name" value={FirstName}  onChange={(e) => setFirstName(e.target.value)} />
+                           <Form.Text className="text-muted">
+                              {showAlertFname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter first name</p></Alert>}
+                           </Form.Text>
                        </Form.Group>
+                      
                        <Form.Group className="form-group col-md-6" controlId="formLastName">
                          <Form.Label >Last name</Form.Label>
-                            <Form.Control className="col-sm-10" type="text" placeholder="Enter last name" value={LastName} onChange={(e) => setLastName(e.target.value)} />
+                            <Form.Control  required className="col-sm-10" type="text" placeholder="Enter last name" value={LastName} onChange={(e) => setLastName(e.target.value)} /> 
+                            <Form.Text className="text-muted">
+                              {showAlertLname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter last name</p></Alert>}
+                            </Form.Text>
                        </Form.Group>
                       </Form.Group>
 
@@ -272,14 +324,14 @@ function Gestionadmin() {
                    </Modal.Footer>
                   </Modal>
                  
-         
-                 <Table className="table-margin" striped bordered hover size="sm">
+              
+                 <table className="table100" size="sm">
                    <thead>
                      <tr>
-                       <th className="table-gestion">First Name</th>
-                       <th className="table-gestion">Last Name</th>
-                       <th className="table-gestion">Email</th>
-                       <th className="table-gestion">Action</th>
+                       <th className="table100-head">First Name</th>
+                       <th className="table100-head">Last Name</th>
+                       <th className="table100-head">Email</th>
+                       <th className="table100-head">Action</th>
                      </tr>
                    </thead>
                    <tbody>
@@ -288,7 +340,7 @@ function Gestionadmin() {
                          <td>{item.FirstName}</td>
                          <td>{item.LastName}</td>
                          <td>{item.Email}</td>
-                         <td className="table-gestion">
+                         <td>
                            <Button className="btn btn-info btn-sm" onClick={() => handleShowInfo(item)}>Info</Button>
                            <Button className="btn btn-secondary btn-sm" onClick={() => handleShowEdit(index)}>Edit</Button>{' '}
                            <Button className="btn btn-danger btn-sm" onClick={() => handleDelete(index)}>Delete</Button>
@@ -296,8 +348,8 @@ function Gestionadmin() {
                        </tr>
                      ))}
                    </tbody>
-                 </Table>
-                 </div>
+                 </table>
+              </div>
             }
             </Form>
           </Card.Body>
