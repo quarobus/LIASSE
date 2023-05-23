@@ -18,14 +18,21 @@ const Layer = () => {
             }
             break;
           }}
-
-  const handleFormChange = (formNumber) => {
-    const activeButton = document.querySelector('.legend-button.active');
-    if (activeButton) {
-      activeButton.classList.remove('active');
-    }
-    setActiveForm(formNumber);
-  };
+   const handleFormChange = (formNumber) => {
+            const activeButton = document.querySelector('.legend-button.active');
+            const clickedButton = document.querySelector(`.legend-button[data-form="${formNumber}"]`);
+            
+            if (activeButton) {
+              activeButton.classList.remove('active');
+            }
+            
+            if (clickedButton) {
+              clickedButton.classList.add('active');
+              setActiveForm(formNumber);
+            }
+          };
+          
+  
   function handleSubmit(){
     if(title !== "" ){
         setTitle("");
@@ -41,12 +48,12 @@ const Layer = () => {
     <div className="Postslayer">
       <fieldset>
         <legend>Select Form</legend>
-        <button  className="legend-button active" onClick={() => handleFormChange(1)}>Article</button>
-        <button className="legend-button" onClick={() => handleFormChange(2)}>Conference Paper</button>
-        <button className="legend-button" onClick={() => handleFormChange(3)}>Chapitre</button>
-        <button  className="legend-button" onClick={() => handleFormChange(4)}>Book</button>
-        <button className="legend-button" onClick={() => handleFormChange(5)}>Thesis</button>
-        <button className="legend-button" onClick={() => handleFormChange(6)}>Project</button>
+        <button  className="legend-button active" onClick={() => handleFormChange(1)} data-form="1">Article</button>
+        <button className="legend-button" onClick={() => handleFormChange(2)} data-form="2">Conference Paper</button>
+        <button className="legend-button" onClick={() => handleFormChange(3)} data-form="3">Chapitre</button>
+        <button  className="legend-button" onClick={() => handleFormChange(4)} data-form="4">Book</button>
+        <button className="legend-button" onClick={() => handleFormChange(5)} data-form="5">Thesis</button>
+        <button className="legend-button" onClick={() => handleFormChange(6)} data-form="6">Project</button>
       </fieldset>
       <form className={`Post-form ${activeForm === 1 ? 'active' : ''}`}>
        <h2>Article</h2>

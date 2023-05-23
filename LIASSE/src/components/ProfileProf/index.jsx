@@ -4,7 +4,7 @@ import '../../components/ProfileDoc/Profile.css';
 
 function ProfileProf() {
     return(
-        <div style={{marginTop:"120px"}}>
+      <div style={{marginTop:"120px" , marginBottom:"40px"}}>
       <div class="bigContainer-profil">
         <div class="container-profil">
 
@@ -83,7 +83,7 @@ function ProfileProf() {
                     <tr>
                       <td>CV</td>
                       <td>
-                      <input className="Post-input" type="file" id="cv" name="cv" />
+                      <input className="Post-inputs" type="file" id="cv" name="cv" />
                     <label class="ImportImg-cv" for="cv">Upload cv</label>
                     </td>
                     </tr>

@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Navbar, Home, Feature, Sidebar , Feature2 , Services, Service2,MyBlog,ProfileAdm,ProfileDoc,ProfileProf} from '../../Components';
+import { Navbar, Home, Feature, Sidebar , Feature2 , Services, Service2,MyBlog,ProfileAdm,ProfileDoc,ProfileProf, Footer} from '../../Components';
 
 function ProfileProfPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +22,7 @@ function ProfileProfPage() {
       {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
       <Navbar toggle={toggle} bgColors={"white"}/>
       <ProfileProf/>
+      <Footer />
       </>
     );
   }
