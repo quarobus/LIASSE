@@ -2,12 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { routes } from "../AcceuilComponent/dummy";
 import "./navbar.scss";
 import Sidebar from "../SideBarComponent/sidebar";
+import Modal from "./Modal";
 
 function Navbar({ toggle, bgColors }) {
   const [open, setOpen] = useState(false);
   const [bgColor, setBgColor] = useState(false);
   const [iconColor, setIconColor] = useState("white");
-
+  const [showModal, setShowModal] = useState(false);
   function changeNavbarBackgroundColor() {
     if (window.scrollY >= 70 || bgColors === "white") {
       setBgColor(true);
@@ -19,6 +20,8 @@ function Navbar({ toggle, bgColors }) {
   const handleToggleClick = useCallback(() => {
     setOpen((prevOpen) => !prevOpen);
   }, []);
+
+  
 
   useEffect(() => {
     if (bgColors === "white") {
@@ -40,6 +43,9 @@ function Navbar({ toggle, bgColors }) {
     }
   }, [open, bgColor]);
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
   return (
     <div className={bgColor ? "app__navbar active" : "app__navbar"}>
       <div className="navbar__logo">
@@ -56,11 +62,13 @@ function Navbar({ toggle, bgColors }) {
           style={{
             color: bgColor ? "white" : "black",
             background: bgColor ? "black" : "white",
-          }}
+          }} onClick={toggleModal}
         >
           Login
         </button>
-      </div>
+        </div>
+        {showModal && <Modal />}
+      
       <div className="toggle_btn" onClick={handleToggleClick}>
         <i
           className={`fa-solid ${open ? "fa-xmark" : "fa-bars"}`}

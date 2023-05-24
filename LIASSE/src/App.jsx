@@ -10,6 +10,8 @@ import ProfileDocPage from "./Pages/ProfileDocPage";
 import ProfileProfPage from "./Pages/ProfileProfPage";
 import FacultyPage from "./Pages/FacultyPage";
 import GestionPage  from "./Pages/GestionAdminPage";
+import FormPostLogin from "./Pages/FormPostLogin";
+import EventPage from "./Pages/Eventpage";
 
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
 
@@ -28,6 +30,8 @@ const App = () => {
         <Route path="/PfProf" element={<ProfileProfPage/>}/>
         <Route path="/Faculty" element={<FacultyPage/>}/>
         <Route path="/GestionAdmin" element={<GestionPage/>}/>
+        <Route path="/CompleteProfil" element={<FormPostLogin/>}/>
+        <Route path="/event" element={<EventPage/>}/>
        </Routes>
       </BrowserRouter>
     </div>

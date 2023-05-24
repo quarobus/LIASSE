@@ -15,6 +15,10 @@ import ProfileProf from "./ProfileProf";
 import Faculty from "./FacultyComponent/Faculty";
 import Footer from "./FooterComponent/Footer";
 import Gestionadmin from "./GestionAdminComponent/GestionAdmin";
+import FormUser from "./FormComponent/FormUser";
+import CoutainerEvent from "./coutainerEvent/coutainerEvent";
+import Event from "./EventComponent/event";
+import Modal from "./HeaderComponent/Modal";
 
 
 export {
@@ -31,4 +35,8 @@ export {
   Faculty,
   Footer,
   Gestionadmin,
+  FormUser,
+  CoutainerEvent,
+  Event,
+  Modal,
 };
