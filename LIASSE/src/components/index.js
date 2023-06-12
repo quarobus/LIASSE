@@ -19,6 +19,7 @@ import FormUser from "./FormComponent/FormUser";
 import CoutainerEvent from "./coutainerEvent/coutainerEvent";
 import Event from "./EventComponent/event";
 import Modal from "./HeaderComponent/Modal";
+import CreateEvent from "./CreateEvent/createEvent";
 
 
 export {
@@ -39,4 +40,5 @@ export {
   CoutainerEvent,
   Event,
   Modal,
+  CreateEvent,
 };

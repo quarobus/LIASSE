@@ -12,9 +12,8 @@ import FacultyPage from "./Pages/FacultyPage";
 import GestionPage  from "./Pages/GestionAdminPage";
 import FormPostLogin from "./Pages/FormPostLogin";
 import EventPage from "./Pages/Eventpage";
-
+import Create_Event from "./Pages/CreateEventPage";
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
-
 
 const App = () => {
   return (
@@ -32,6 +31,7 @@ const App = () => {
         <Route path="/GestionAdmin" element={<GestionPage/>}/>
         <Route path="/CompleteProfil" element={<FormPostLogin/>}/>
         <Route path="/event" element={<EventPage/>}/>
+        <Route path="/create-event" element={<Create_Event/>}/>
        </Routes>
       </BrowserRouter>
     </div>

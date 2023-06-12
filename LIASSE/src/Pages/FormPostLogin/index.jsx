@@ -9,8 +9,10 @@ function FormPostLogin() {
       setIsOpen((prev) => !prev);
     };
     useEffect(() => {
+      document.title = "Ajouter votre informations";
       document.body.style.backgroundColor = "#ffffff"; // set body background color to black
       return () => {
+        document.title = "LIASSE";
         document.body.style.backgroundColor = null; // reset body background color on unmount
       };
     }, []);
