@@ -148,7 +148,7 @@
   padding: 33px 30px
 }
 
-table {
+.table100 {
   border-spacing: 1;
   border-collapse: collapse;
   background: #fff;
@@ -159,42 +159,42 @@ table {
   position: relative
 }
 
-table * {
+.table100 * {
   position: relative
 }
 
-table td,table th {
+.table100 td,table th {
   padding-left: 8px
 }
 
-table thead tr {
+.table100 thead tr {
   align-items: center;
   color:#fff;
   height: 60px;
   background: #2a253b
 }
 
-table tbody tr {
+.table100 tbody tr {
   height: 50px
 }
 
-table tbody tr:last-child {
+.table100 tbody tr:last-child {
   border: 0
 }
 
-table td,table th {
+.table100 td,table th {
   text-align: left
 }
 
-table td.l,table th.l {
+.table100 td.l,table th.l {
   text-align: right
 }
 
-table td.c,table th.c {
+.table100 td.c,table th.c {
   text-align: center
 }
 
-table td.r,table th.r {
+.table100 td.r,table th.r {
   text-align: center
 }
 
@@ -254,33 +254,33 @@ tbody tr:hover {
 }
 
 @media screen and (max-width: 992px) {
-  table {
+  .table100 {
       display:block
   }
 
-  table>*,table tr,table td,table th {
+  .table100>*,.table100 tr,.table100 td,.table100 th {
       display: block
   }
 
-  table thead {
+  .table100 thead {
       display: none
   }
 
-  table tbody tr {
+  .table100 tbody tr {
       height: auto;
       padding: 37px 0
   }
 
-  table tbody tr td {
+  .table100 tbody tr td {
       padding-left: 40%!important;
       margin-bottom: 24px
   }
 
-  table tbody tr td:last-child {
+  .table100 tbody tr td:last-child {
       margin-bottom: 0
   }
 
-  table tbody tr td:before {
+  .table100 tbody tr td:before {
       font-family: OpenSans-Regular;
       font-size: 14px;
       color: #999;
@@ -292,27 +292,27 @@ tbody tr:hover {
       top: 0
   }
 
-  table tbody tr td:nth-child(1):before {
+  .table100 tbody tr td:nth-child(1):before {
       content: "First Name"
   }
 
-  table tbody tr td:nth-child(2):before {
+  .table100 tbody tr td:nth-child(2):before {
       content: "Last Name"
   }
 
-  table tbody tr td:nth-child(3):before {
+  .table100 tbody tr td:nth-child(3):before {
       content: "Action"
   }
 
-  table tbody tr td:nth-child(4):before {
+  .table100 tbody tr td:nth-child(4):before {
       content: "unk"
   }
 
-  table tbody tr td:nth-child(5):before {
+  .table100 tbody tr td:nth-child(5):before {
       content: "unk"
   }
 
-  table tbody tr td:nth-child(6):before {
+  .table100 tbody tr td:nth-child(6):before {
       content: "unk"
   }
 

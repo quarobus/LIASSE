@@ -21,6 +21,11 @@ import ADMNavbar from "./ADMHeaderComp/Navbar";
 import DocSidebar from "./DocSideBar/sidebar";
 import ProfSidebar from "./ProfSideBar/sidebar";
 import ADMSidebar from "./ADMsideBar/sidebar";
+import FormUser from "./FormComponent/FormUser";
+import CoutainerEvent from "./coutainerEvent/coutainerEvent";
+import Event from "./EventComponent/event";
+import Modal from "./HeaderComponent/Modal";
+import CreateEvent from "./CreateEvent/createEvent";
 
 
 export {
@@ -43,4 +48,9 @@ export {
   Faculty,
   Footer,
   Gestionadmin,
+  FormUser,
+  CoutainerEvent,
+  Event,
+  Modal,
+  CreateEvent,
 };
