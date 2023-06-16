@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { Navbar,Gestionadmin,Footer } from '../../Components';
+import { ADMNavbar,Gestionadmin,Footer } from '../../Components';
 import '../../app.scss';
 
 function GestionPage() {
@@ -20,10 +20,10 @@ function GestionPage() {
     }, []);
     return (
         <>
-        {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
+        {isOpen && <ADMSidebar isOpen={isOpen} toggle={toggle} />}
         {/* if there is any problme with footer position add app to make the footer at the bottom */}
         <div className="app">
-        <Navbar  toggle={toggle} bgColors={"white"} />
+        <ADMNavbar  toggle={toggle} bgColors={"white"} />
         <Gestionadmin/>
         <Footer />
         </div>

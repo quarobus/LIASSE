@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { routes } from "../AcceuilComponent/dummy";
 import "./navbar.scss";
+import profil from "../../assets/noprofile.jpg";
 import Sidebar from "../SideBarComponent/sidebar";
 
-function Navbar({ toggle, bgColors }) {
+function DocNavbar({ toggle, bgColors }) {
   const [open, setOpen] = useState(false);
   const [bgColor, setBgColor] = useState(false);
   const [iconColor, setIconColor] = useState("white");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   function changeNavbarBackgroundColor() {
     if (window.scrollY >= 70 || bgColors === "white") {
@@ -19,6 +21,11 @@ function Navbar({ toggle, bgColors }) {
 
   const handleToggleClick = useCallback(() => {
     setOpen((prevOpen) => !prevOpen);
+  }, []);
+
+  const handleDropdownToggle = useCallback(() => {
+    console.log("Dropdown toggled");
+    setDropdownOpen((prevOpen) => !prevOpen);
   }, []);
 
   useEffect(() => {
@@ -47,21 +54,28 @@ function Navbar({ toggle, bgColors }) {
         <p>LIASSE</p>
       </div>
       <ul className="navbar__routes">
-        <li>Acceuil</li>
-        <li>Blog</li>
-        <li>Event</li>
-        <li>Faculty</li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/">Home</Link></li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Blogs">Blogs</Link></li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Events">Events</Link></li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Faculty">Faculty</Link></li>
       </ul>
       <div className="navbar__buttons">
-        <button
-          style={{
-            color: bgColor ? "white" : "black",
-            background: bgColor ? "black" : "white",
-          }}
-        >
-          Login
-        </button>
-      </div>
+          <img style={{cursor : "pointer"}}
+            className="img-profil"
+            src={profil}
+            height="60px"
+            width="60px"
+            onClick={handleDropdownToggle}
+          />
+          {dropdownOpen && (
+            <div className="dropdown-menu open"> {/* Add the 'open' class */}
+              <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/PfDoc">Profile</Link></button>
+              <button className="dropdown-menu__button">Logout</button>
+            </div>
+          )}
+        </div>
+
+
       <div className="toggle_btn" onClick={handleToggleClick}>
         <i
           className={`fa-solid ${open ? "fa-xmark" : "fa-bars"}`}
@@ -75,4 +89,5 @@ function Navbar({ toggle, bgColors }) {
   );
 }
 
-export default Navbar;
+export default DocNavbar;
+

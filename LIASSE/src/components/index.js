@@ -15,11 +15,23 @@ import ProfileProf from "./ProfileProf";
 import Faculty from "./FacultyComponent/Faculty";
 import Footer from "./FooterComponent/Footer";
 import Gestionadmin from "./GestionAdminComponent/GestionAdmin";
+import ProfNavbar from "./ProfHeaderComp/Navbar";
+import DocNavbar from "./DocHeaderComp/Navbar";
+import ADMNavbar from "./ADMHeaderComp/Navbar";
+import DocSidebar from "./DocSideBar/sidebar";
+import ProfSidebar from "./ProfSideBar/sidebar";
+import ADMSidebar from "./ADMsideBar/sidebar";
 
 
 export {
   Home,
   Navbar,
+  ProfNavbar,
+  DocSidebar,
+  ProfSidebar,
+  ADMSidebar,
+  DocNavbar,
+  ADMNavbar,
   Feature,
   Posts,Sidebar,
   Feature2,Services,Service2,

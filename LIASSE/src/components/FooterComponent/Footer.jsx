@@ -14,10 +14,10 @@ return (
                 <h5>LIASSE</h5>
               </div>
               <div className="textwidget-footer">
-                <i className="fa fa-caret-right" aria-hidden="true"></i> <a href="#">Home</a><br/>
-                <i className="fa fa-caret-right" aria-hidden="true"></i> <a href="#">Blog</a><br/>
-                <i className="fa fa-caret-right" aria-hidden="true"></i> <a href="#">Event</a><br/>
-                <i className="fa fa-caret-right" aria-hidden="true"></i> <a href="#">Faculty</a><br/>
+                <i className="fa fa-caret-right" aria-hidden="true"></i> <a className='FooterLink' href="#">Home</a><br/>
+                <i className="fa fa-caret-right" aria-hidden="true"></i> <a className='FooterLink' href="#">Blog</a><br/>
+                <i className="fa fa-caret-right" aria-hidden="true"></i> <a className='FooterLink' href="#">Event</a><br/>
+                <i className="fa fa-caret-right" aria-hidden="true"></i> <a className='FooterLink' href="#">Faculty</a><br/>
               
               </div>
             </aside>
@@ -40,12 +40,12 @@ return (
                 <h5>Contact</h5>
               </div>
               <div className="textwidget-footer">
-                E-mail: <a href="#"><span className="__cf_email__" data-cfemail="e39486818e8290978691a3868d908285cd8280cd8e82">[email&#160;protected]</span></a> <br/>
+                E-mail: <a className='FooterLink' href="#" ><span className="__cf_email__" data-cfemail="e39486818e8290978691a3868d908285cd8280cd8e82">[email&#160;protected]</span></a> <br/>
                 Phone: +212535600403 <br/>
                 Fax: +212535600386 <br/>
               
               </div>
-              <div className="tagcloud"><a className="m-t-20" href="#">Nous contacter</a></div>
+              <div className="tagcloud"><a className='FooterLink' href="#">Nous contacter</a></div>
             </aside>
           </div>
           

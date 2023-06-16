@@ -6,6 +6,40 @@
   padding: 0;
   margin: 0;
 }
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 5px); // Update this line to add a small gap between the icon and menu
+  left: 50%; // Add this line
+  transform: translateX(-50%); // Add this line
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none; // Hide the dropdown menu by default
+  z-index: 999; // Ensure the dropdown appears above other elements
+
+  .dropdown-menu__button {
+    padding: 8px;
+    margin-bottom: 8px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    width: 100%; // Set the width to fill the container
+    text-align: left; // Align the button text to the left
+  }
+}
+
+.dropdown-menu.open {
+  display: grid; // Show the dropdown menu when open
+}
+
+
+.navbar__buttons {
+  display: flex;
+  align-items: center;
+  gap: $lg-gap;
+  position: relative; // Add this line
+}
 
 .app__navbar {
   @include flexBetween;
@@ -27,6 +61,7 @@
     color: $primary-color;
   }
 
+  
   p{
     margin-top: 14px;
     font-size: 1.6rem;
@@ -48,6 +83,10 @@
     margin-top: 14px;
   }
 
+  .navbar__routes li a {
+    text-decoration: none;
+  }
+
   .navbar__buttons {
     @include flexAlign;
     gap: $lg-gap;
@@ -56,6 +95,7 @@
       @include button;
       background: $secondary-color;
       color: $primary-color;
+      text-align: center;
 
       &.onebtn {
         background: transparent;
@@ -90,6 +130,7 @@
       right: 1rem;
       margin: 1rem;
     }
+  
 
     .navbar__routes,
     .navbar__buttons {
