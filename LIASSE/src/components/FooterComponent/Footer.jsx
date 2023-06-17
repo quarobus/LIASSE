@@ -14,10 +14,10 @@ return (
                 <h5>LIASSE</h5>
               </div>
               <div className="textwidget-footer">
-                <i className="fa fa-caret-right" aria-hidden="true"></i> <a href="#">Home</a><br/>
-                <i className="fa fa-caret-right" aria-hidden="true"></i> <a href="#">Blog</a><br/>
-                <i className="fa fa-caret-right" aria-hidden="true"></i> <a href="#">Event</a><br/>
-                <i className="fa fa-caret-right" aria-hidden="true"></i> <a href="#">Faculty</a><br/>
+                <i className="fa fa-caret-right" aria-hidden="true"></i> <a className='FooterLink' href="#">Home</a><br/>
+                <i className="fa fa-caret-right" aria-hidden="true"></i> <a className='FooterLink' href="#">Blog</a><br/>
+                <i className="fa fa-caret-right" aria-hidden="true"></i> <a className='FooterLink' href="#">Event</a><br/>
+                <i className="fa fa-caret-right" aria-hidden="true"></i> <a className='FooterLink' href="#">Faculty</a><br/>
               
               </div>
             </aside>
@@ -40,10 +40,9 @@ return (
                 <h5>Contact</h5>
               </div>
               <div className="textwidget-footer">
-               
-              
+                
               </div>
-              <div className="tagcloud"><a className="m-t-20" href="#">Nous contacter</a></div>
+              <div className="tagcloud"><a className='FooterLink' href="#">Nous contacter</a></div>
             </aside>
           </div>
           

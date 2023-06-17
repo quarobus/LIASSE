@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { Navbar,Faculty,Footer } from '../../Components';
+import { ADMNavbar,Faculty,Footer } from '../../Components';
 
 function FacultyPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,8 +19,8 @@ function FacultyPage() {
     }, []);
     return (
         <>
-        {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
-        <Navbar toggle={toggle} bgColors={"white"}/>
+        {isOpen && <ADMSidebar isOpen={isOpen} toggle={toggle} />}
+        <ADMNavbar toggle={toggle} bgColors={"white"}/>
         <Faculty />
         <Footer />
         </>

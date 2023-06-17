@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Navbar, Home, Feature, Sidebar , Feature2 , Services, Service2,BlogGenerale, Footer } from '../../Components';
+import { ADMNavbar, Home, Feature, ADMSidebar , Feature2 , Services, Service2,BlogGenerale, Footer } from '../../Components';
 
 function AllBlogPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,8 +19,8 @@ function AllBlogPage() {
     }, []);
     return (
       <>
-      {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
-      <Navbar toggle={toggle} bgColors={"white"} />
+      {isOpen && <ADMSidebar isOpen={isOpen} toggle={toggle} />}
+      <ADMNavbar toggle={toggle} bgColors={"white"} />
       <BlogGenerale/>
       <Footer />
       </>

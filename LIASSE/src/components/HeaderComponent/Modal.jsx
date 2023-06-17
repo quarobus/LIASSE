@@ -1,48 +1,103 @@
 import React, { useState } from "react";
 import styles from "./Popup.module.scss";
+import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
+import CryptoJS from 'crypto-js';
 
 const Modal = () => {
+  const navigateTo = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [modal, setModal] = useState(true);
 
-  const [modal, setModal] = useState(false);
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  function encryptData(data, key) {
+    const textToEncrypt = JSON.stringify(data);
+    const encryptedData = CryptoJS.AES.encrypt(textToEncrypt, key).toString();
+    return encryptedData;
+  }
+
+  function setWithExpiry(key, value, expirationMs) {
+    const item = {
+      value: encryptData(value, "LiasseEncryptionKey"),
+      expiry: Date.now() + expirationMs
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const url = "http://localhost:8080/pfa1/YoussefAPI/login.php";
+    const data = new FormData();
+    data.append("email", email);
+    data.append("password", password);
+    console.log(Object.fromEntries(data));
+
+    try {
+      const response = await axios.post(url, Object.fromEntries(data), {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (response.data.includes("logged in")) {
+        const expirationMs = 5 * 60 * 60 * 1000; // 5 hours
+        // Set email encrypted with expiry date:
+        setWithExpiry("email", email, expirationMs);
+        // send to page X:
+        const nav = response.data.includes("form");
+        const path_1 = nav ? '/CompleteProfil' : '/Blogs';
+        navigateTo(path_1);
+      } else {
+        alert(response.data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
-      {open && (<form className={styles.modal}>
+      {modal && (
+        <form className={styles.modal} onSubmit={handleSubmit}>
           <div onClick={toggleModal} className={styles.overlay_pop}></div>
           <div className={styles.modal_Cot}>
             <h2>Se connecter</h2>
             <div className={styles.upload_pop}>
-                    <input
-                        className={styles.input_pop}
-                        type="Email"
-                        placeholder="Email"
-                        autoComplete="on"
-                        maxLength={80}
-                        id="email"
-                    />
-                    <input
-                        className={styles.input_pop}
-                        type="password"
-                        placeholder="Mot de passe"
-                        autoComplete="on"
-                        maxLength={50}
-                        id="password"  
-                    />
-                </div>
-                <div className={styles.container_pop}>
-                <button className={styles.btn_pop} type='submit'>Se connecter</button>
+              <input
+                className={styles.input_pop}
+                type="Email"
+                placeholder="Email"
+                autoComplete="on"
+                maxLength={120}
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                className={styles.input_pop}
+                type="password"
+                placeholder="Mot de passe"
+                autoComplete="on"
+                maxLength={50}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <button className={styles.close_icon} onClick={toggleModal}>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <line x1="18" y1="6" x2="6" y2="18" />
-  <line x1="6" y1="6" x2="18" y2="18" />
-</svg>
-            </button>
+            <div className={styles.container_pop}>
+              <button className={styles.btn_pop} type="submit">
+                Se connecter
+              </button>
+            </div>
           </div>
-    </form>)}
+        </form>
+      )}
+
+      
     </>
   );
 };
