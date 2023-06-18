@@ -32,26 +32,6 @@ function Gestionprof() {
   const emailPattern = /\S+@\S+\.\S+/;
 
 
-  
-  useEffect(() => {
-    getDocs();
-
-  },[]);
-  
-
-
-  // --------------- get Docs --------------------------------
-  
-  function getDocs() {
-
-    axios.get('http://localhost/gestionadmin/doc.php').then(function(response){
-      console.log(response.data);
-      setItemsDoct(response.data);
-    })
-  }
-  
-
-  // -------------- get email of connected person ----------
 function decryptData(encryptedData, key) {
   const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
   const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -139,7 +119,6 @@ console.log(email);
       try {
         await axios.put(url, Object.fromEntries(data));
         alert('Data updated successfully');
-        console.log(data);
       } catch (error) {
         console.error(error);
         alert('Something went wrong');
@@ -175,7 +154,6 @@ console.log(email);
       if(FirstNameDoc!='' && LastNameDoc!='' && emailPattern.test(EmailDoc))
       {
         
-        setItemsDoct([...itemDocts, { FirstNameDoc, LastNameDoc, EmailDoc, PasswordDoc}]);
 
         const url = 'http://localhost/gestionadmin/doc.php';
         event.preventDefault();

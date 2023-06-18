@@ -59,7 +59,6 @@ function Gestionadmin() {
       setItemsProf(response.data);
     })
   }
-// ----------------edit prof -----------------
 
   // --------------- get Docs --------------------------------
   
@@ -125,7 +124,6 @@ console.log(email);
     setShowAlertFName(false);
     setShowAlertLName(false);
     setShowAlertPassword(false);
-
   }
 
   
@@ -182,15 +180,10 @@ console.log(email);
           setShowSelectType(true);
           return;
       }
-
-       const updatedItem = itemProfs[editIndex];
        // Accessing `profId` from `updatedItem`
-       const profId = updatedItem.profId;
-       console.log(profId);
 
         const url = `http://localhost/gestionadmin/prof.php`;
         const data = new FormData();
-        data.append('profId',profId);
         data.append('FirstNameProf', FirstNameProf);
         data.append('LastNameProf', LastNameProf);
         data.append('EmailProf', EmailProf);
@@ -351,8 +344,6 @@ console.log(email);
       if(FirstNameDoc!='' && LastNameDoc!='' && emailPattern.test(EmailDoc))
       {
         
-        setItemsDoct([...itemDocts, { FirstNameDoc, LastNameDoc, EmailDoc, PasswordDoc}]);
-
         const url = 'http://localhost/gestionadmin/doc.php';
         event.preventDefault();
         const data = new FormData();
