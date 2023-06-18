@@ -85,7 +85,7 @@ const FormUser = () => {
         // Make an API request to check if grade input should be shown
         const fetchData = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/pfa1/YoussefAPI/getRole.php?email=${encodeURIComponent(email)}`);
+            const response = await axios.get(`http://localhost:80/api/getRole.php?email=${encodeURIComponent(email)}`);
             const result = response.data;
             if (result === 'Prof' || result === 'Admin') setShowGradeInput(true);
             else if(result === 'Doc') setShowGradeInput(false);
@@ -106,7 +106,7 @@ const FormUser = () => {
       };
 
       const handleSubmit = async (event) => {
-        const url = 'http://localhost:8080/pfa1/YoussefAPI/postApi.php';
+        const url = 'http://localhost:80/api/postApi.php';
         event.preventDefault();
         const data = new FormData();
         data.append('nom', nom);
