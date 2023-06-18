@@ -75,6 +75,7 @@ const Modal = () => {
                 maxLength={120}
                 id="email"
                 value={email}
+                required
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
@@ -85,6 +86,7 @@ const Modal = () => {
                 maxLength={50}
                 id="password"
                 value={password}
+                required
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>

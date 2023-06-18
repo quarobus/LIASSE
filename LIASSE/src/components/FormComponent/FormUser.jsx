@@ -4,7 +4,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 
+
 const FormUser = () => {
+    
     const navigateTo = useNavigate();
     const [nom,setNom] = useState('');
     const [prenom,setPrenom] = useState('');
@@ -21,6 +23,19 @@ const FormUser = () => {
     const [ConfirmPass, setConfirmPass] = useState(null);
     const [showPassAlert, setShowPassAlert] = useState(false);
 
+    useEffect(() => {
+        // Make an API request to check if grade input should be shown
+        const fetchSp = async () => {
+          try {
+            const response = await axios.get(`http://localhost:8080/pfa1/YoussefAPI/UserCheck.php?email=${encodeURIComponent(email)}`);
+            const result = response.data;
+            if (result === 'not empty' || result === 'You are not Connected') navigateTo('/');
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchSp();
+  }, []);
 
     // Check if the image is of image type (jpg, jpeg, png, gif)
     const allowedImageTypes = ["image/jpeg", "image/png", "image/gif", "image/jpg"];
@@ -64,12 +79,7 @@ const FormUser = () => {
     if (cv && !allowedCVTypes.includes(cv.type)) {
         alert("Please upload a document file (pdf, docx, doc).");
     }
-    // Encrypt password :
-    function encryptData(data,key) {
-        const textToEncrypt = JSON.stringify(data);
-        const encryptedData = CryptoJS.AES.encrypt(textToEncrypt, key).toString();
-        return encryptedData;
-      }
+    
     const [showGradeInput, setShowGradeInput] = useState(false);
     useEffect(() => {
         // Make an API request to check if grade input should be shown
@@ -77,7 +87,7 @@ const FormUser = () => {
           try {
             const response = await axios.get(`http://localhost:8080/pfa1/YoussefAPI/getRole.php?email=${encodeURIComponent(email)}`);
             const result = response.data;
-            if (result === 'Prof') setShowGradeInput(true);
+            if (result === 'Prof' || result === 'Admin') setShowGradeInput(true);
             else if(result === 'Doc') setShowGradeInput(false);
             else navigateTo('/');
           } catch (error) {
