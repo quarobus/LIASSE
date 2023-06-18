@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
+import { useEffect } from 'react';
+
 
 const CreateEvent = () => {
-
     const [nom,setNom] = useState('');
     const [date,setDate] = useState('');
     const [description,setDescription] = useState('');
@@ -33,6 +34,19 @@ const CreateEvent = () => {
       const IsEmailNull = getWithExpiry("email") === null ;
       const email = !IsEmailNull ? getWithExpiry("email").replace(/"/g, '') : "";
 
+      useEffect(() => {
+        // Make an API request to check if grade input should be shown
+        const fetchData = async () => {
+          try {
+            const response = await axios.get(`http://localhost:8080/pfa1/YoussefAPI/getRole.php?email=${encodeURIComponent(email)}`);
+            const result = response.data;
+            if(result === 'Doc' || result === 'You are not Connected') navigateTo('/');
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchData();
+  }, []);
 
       const handleSubmit = async (event) => {
         const url = 'http://localhost:80/api/createEventApi.php';
