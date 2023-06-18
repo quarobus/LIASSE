@@ -49,8 +49,9 @@ const Modal = () => {
         setWithExpiry("email", email, expirationMs);
         // send to page X:
         const nav = response.data.includes("form");
-        const path_1 = nav ? '/CompleteProfil' : '/Blogs';
-        navigateTo(path_1);
+        const path_1 = nav ? '/CompleteProfil' : '/';
+        if(window.location.pathname == '/') window.location.reload();
+        else navigateTo(path_1);
       } else {
         alert(response.data);
       }
