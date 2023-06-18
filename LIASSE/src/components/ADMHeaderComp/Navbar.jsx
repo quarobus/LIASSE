@@ -18,7 +18,10 @@ function ADMNavbar({ toggle, bgColors }) {
       setBgColor(false);
     }
   }
-
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem("email");
+    window.location.href = "/"; // Replace "/login" with the actual login page URL
+  }, []);
 
   const handleToggleClick = useCallback(() => {
     setOpen((prevOpen) => !prevOpen);
@@ -57,7 +60,7 @@ function ADMNavbar({ toggle, bgColors }) {
       <ul className="navbar__routes">
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/">Home</Link></li>
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Blogs">Blogs</Link></li>
-        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Events">Events</Link></li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Event">Events</Link></li>
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Faculty">Faculty</Link></li>
       </ul>
       <div className="navbar__buttons">
@@ -70,12 +73,12 @@ function ADMNavbar({ toggle, bgColors }) {
           />
           {dropdownOpen && (
             <div className="dropdown-menu open"> {/* Add the 'open' class */}
-              <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/PfAdm">Profile</Link></button>
+              <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/pfADM">Profile</Link></button>
               <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none"  }} to="/MyBlogs">MyBlogs</Link></button>
               <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/PostForm">PostForm</Link></button>
-              <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/">PostEvent</Link></button>
+              <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/create-event">PostEvent</Link></button>
               <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/GestionAdmin">ManageProfs</Link></button>
-              <button className="dropdown-menu__button">Logout</button>
+              <button className="dropdown-menu__button" onClick={handleLogout}>Logout</button>
             </div>
           )}
         </div>

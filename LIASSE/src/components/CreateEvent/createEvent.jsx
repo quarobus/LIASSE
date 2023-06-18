@@ -35,7 +35,7 @@ const CreateEvent = () => {
 
 
       const handleSubmit = async (event) => {
-        const url = 'http://localhost:8080/pfa1/YoussefAPI/createEventApi.php';
+        const url = 'http://localhost:80/api/createEventApi.php';
         event.preventDefault();
         const data = new FormData();
         data.append('nom', nom);

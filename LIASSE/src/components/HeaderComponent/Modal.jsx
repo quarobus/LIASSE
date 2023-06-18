@@ -30,7 +30,7 @@ const Modal = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const url = "http://localhost:8080/pfa1/YoussefAPI/login.php";
+    const url = "http://localhost:80/api/login.php";
     const data = new FormData();
     data.append("email", email);
     data.append("password", password);
