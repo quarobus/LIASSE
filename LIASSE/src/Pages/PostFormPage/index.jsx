@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import CryptoJS from "crypto-js";
-import { Footer, Navbar , Posts , Sidebar , ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar} from '../../Components'
+import { Footer, Navbar , Posts , Sidebar , ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar} from '../../components'
 
 
 function PostFormPage() {
@@ -94,7 +94,6 @@ function PostFormPage() {
       {renderNavbar()}
         <Posts />
         <Footer />
-
         </>
     )
 }

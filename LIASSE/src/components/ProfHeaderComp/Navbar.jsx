@@ -3,13 +3,60 @@ import { routes } from "../AcceuilComponent/dummy";
 import "./navbar.scss";
 import profil from "../../assets/noprofile.jpg";
 import ProfSidebar from "../ProfSideBar/sidebar";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import CryptoJS from "crypto-js";
 
 function ProfNavbar({ toggle, bgColors }) {
   const [open, setOpen] = useState(false);
   const [bgColor, setBgColor] = useState(false);
   const [iconColor, setIconColor] = useState("white");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const [users, setUsers] = useState([]);
+
+  function decryptData(encryptedData, key) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
+    const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedText;
+  }
+
+  function getWithExpiry(key) {
+    const itemString = localStorage.getItem(key);
+    if (!itemString) {
+      return null;
+    }
+    const item = JSON.parse(itemString);
+    if (Date.now() > item.expiry) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return decryptData(item.value, "LiasseEncryptionKey");
+  }
+  //GET email :
+  const IsEmailNull = getWithExpiry("email") === null ;
+  const email = !IsEmailNull ? getWithExpiry("email").replace(/"/g, '') : "";
+  console.log(email);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:80/api/navbar.php?email=${encodeURIComponent(email)}`);
+        console.log(email);
+        if(IsEmailNull){
+          console.log("no email present")
+        }
+        const result = response.data;
+        if(email){
+          console.log("hey");
+        setUsers(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [email]);
 
   function changeNavbarBackgroundColor() {
     if (window.scrollY >= 70 || bgColors === "white") {
@@ -63,10 +110,11 @@ function ProfNavbar({ toggle, bgColors }) {
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Event">Events</Link></li>
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Faculty">Faculty</Link></li>
       </ul>
-      <div className="navbar__buttons">
+      {users.map((user, index) => (
+  <div className="navbar__buttons" key={index}>
           <img style={{cursor : "pointer"}}
             className="img-profil"
-            src={profil}
+            src={user.imageProfile}
             height="60px"
             width="60px"
             onClick={handleDropdownToggle}
@@ -82,7 +130,7 @@ function ProfNavbar({ toggle, bgColors }) {
             </div>
           )}
         </div>
-
+      ))}
 
       <div className="toggle_btn" onClick={handleToggleClick}>
         <i

@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import CryptoJS from "crypto-js";
-import { Navbar,Faculty,Footer,Sidebar,  ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar } from '../../Components';
+import { Navbar,Faculty,Footer,Sidebar,  ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar } from '../../components';
 
 function FacultyPage() {
     const [isOpen, setIsOpen] = useState(false);

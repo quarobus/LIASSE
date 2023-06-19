@@ -14,16 +14,10 @@ import GestionProfPage from "./Pages/GestionProfPage";
 import FormPostLogin from "./Pages/FormPostLogin";
 import EventPage from "./Pages/Eventpage";
 import Create_Event from "./Pages/CreateEventPage";
-<<<<<<< HEAD
-
-
-import { BrowserRouter , Routes , Route } from 'react-router-dom';
-=======
 import { BrowserRouter , Routes , Route, Navigate } from 'react-router-dom';
 import CryptoJS from "crypto-js";
 import axios from "axios";
 
->>>>>>> d2768672bbca73c5aa9f7b744dbe3aace83f311a
 
 const App = () => {
   const [showGradeInput, setShowGradeInput] = useState(false);
@@ -74,25 +68,8 @@ function getWithExpiry(key) {
   }, [email]);
 
   return (
-    <div className="app">
       <BrowserRouter>
-       <Routes>
-<<<<<<< HEAD
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/PostForm" element={<PostFormPage/>}/>
-        <Route path="/Blogs" element={<AllBlogPage/>}/>
-        <Route path="/MyBlogs" element={<MyBlogPage/>}/>
-        <Route path="/PfAdm" element={<ProfileAdmPage/>}/>
-        <Route path="/PfDoc" element={<ProfileDocPage/>}/>
-        <Route path="/PfProf" element={<ProfileProfPage/>}/>
-        <Route path="/Faculty" element={<FacultyPage/>}/>
-        <Route path="/GestionAdmin" element={<GestionAdminPage/>}/>
-        <Route path="/GestionProf" element={<GestionProfPage/>}/>
-        <Route path="/CompleteProfil" element={<FormPostLogin/>}/>
-        <Route path="/event" element={<EventPage/>}/>
-        <Route path="/create-event" element={<Create_Event/>}/>
-       </Routes>
-=======
+      <Routes>
        <Route path="/" element={<HomePage />} />
           <Route path="/Blogs" element={<AllBlogPage />} />
           <Route path="/Faculty" element={<FacultyPage />} />
@@ -103,7 +80,7 @@ function getWithExpiry(key) {
               <Route path="/PostForm" element={<PostFormPage />} />
               <Route path="/MyBlogs" element={<MyBlogPage />} />
               <Route path="/PfProf" element={<ProfileProfPage />} />
-              <Route path="/GestionAdmin" element={<GestionPage />} />
+              <Route path="/GestionAdmin" element={<GestionProfPage />} />
               <Route path="/CompleteProfil" element={<FormPostLogin />} />
               <Route path="/create-event" element={<Create_Event />} />
             </>
@@ -114,7 +91,7 @@ function getWithExpiry(key) {
               <Route path="/PostForm" element={<PostFormPage />} />
               <Route path="/MyBlogs" element={<MyBlogPage />} />
               <Route path="/PfAdm" element={<ProfileAdmPage />} />
-              <Route path="/GestionAdmin" element={<GestionPage />} />
+              <Route path="/GestionAdmin" element={<GestionAdminPage />} />
               <Route path="/CompleteProfil" element={<FormPostLogin />} />
               <Route path="/create-event" element={<Create_Event />} />
             </>
@@ -131,9 +108,7 @@ function getWithExpiry(key) {
             <Route path="*" element={<Navigate to="/" />} />
           )}
         </Routes>
->>>>>>> d2768672bbca73c5aa9f7b744dbe3aace83f311a
       </BrowserRouter>
-    </div>
   );
 };
 

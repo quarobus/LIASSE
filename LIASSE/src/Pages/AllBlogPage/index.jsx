@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import CryptoJS from "crypto-js";
-import { Navbar, Sidebar ,BlogGenerale, Footer ,ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar } from '../../Components';
+import { Navbar, Sidebar ,BlogGenerale, Footer ,ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar } from '../../components';
 
 function AllBlogPage() {
     const [isOpen, setIsOpen] = useState(false);

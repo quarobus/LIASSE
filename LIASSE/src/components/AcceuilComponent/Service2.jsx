@@ -30,6 +30,7 @@ function Service2() {
             <h4><span>Latest</span> Articles</h4>
           </div>
           {articles.map((article) => {
+            const link = article.link.startsWith("http") ? article.link : `http://${article.link}`;
             return (
               <div className="col-lg-4 col-sm-6" key={article.id}>
                 <div className="item2">
@@ -45,8 +46,7 @@ function Service2() {
                   <h5 className="fw-bold">{article.title}</h5>
                   <p style={{ wordWrap: "break-word", marginLeft: "0.5rem", marginRight: "0.5rem" }}>{truncateText(article.abstract)}</p>
                   <div className="d-flex align-items-center justify-content-between mt-3 pb-3">
-                    <a href="#" className="admin" style={{ paddingTop: "15px", paddingLeft: "5px", borderTop: "1px solid #E3E3E3", fontSize: "0.875rem" }}>Read More</a>
-                    <h6 className="admin" style={{ paddingTop: "16px", paddingRight: "5px", fontSize: "0.875rem" }}>Admin</h6>
+                    <a href={link} target="_blank" className="admin" style={{ paddingTop: "15px", paddingLeft: "5px", borderTop: "1px solid #E3E3E3", fontSize: "0.875rem" }}>Read More</a>
                   </div>
                 </div>
               </div>

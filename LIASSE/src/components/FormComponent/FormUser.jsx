@@ -27,7 +27,7 @@ const FormUser = () => {
         // Make an API request to check if grade input should be shown
         const fetchSp = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/pfa1/YoussefAPI/UserCheck.php?email=${encodeURIComponent(email)}`);
+            const response = await axios.get(`http://localhost:80/api/UserCheck.php?email=${encodeURIComponent(email)}`);
             const result = response.data;
             if (result === 'not empty' || result === 'You are not Connected') navigateTo('/');
           } catch (error) {

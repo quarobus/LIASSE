@@ -269,8 +269,27 @@ function getWithExpiry(key) {
       clickedButton.classList.add('active');
       setActiveForm(formNumber);
       setErrors({});
+      setValues({
+        form_type: '',
+        title: '',
+        authors: '',
+        link: '',
+        publication_date: '',
+        journal: '',
+        volume: '',
+        pages: '',
+        citations: '',
+        publisher: '',
+        image: '',
+        abstract: '',
+        conference: '',
+        book: '',
+        isbn: '',
+        institution: ''
+      });
     }
   };
+  
 
   return (
     <div style={{background: "black !important"}}>

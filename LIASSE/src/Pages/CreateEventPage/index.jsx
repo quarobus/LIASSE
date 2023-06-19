@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import CryptoJS from "crypto-js";
-import { Footer, Navbar , CreateEvent , Sidebar , ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar} from '../../Components';
+import { Footer, Navbar , CreateEvent , Sidebar , ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar} from '../../components';
 
 
 function Create_Event() {

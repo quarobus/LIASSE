@@ -9,6 +9,10 @@ export default function Validation(values){
     if(values.authors === ""){
         errors.authors = "Authors is Required"
     }
+    
+  if (values.image === "") {
+    errors.image = "Image is Required";
+  }
     if (values.abstract === "") {
         errors.abstract = "Description is Required";
       } else if (values.abstract.length < 100) {
