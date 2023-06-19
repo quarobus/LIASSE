@@ -1,0 +1,96 @@
+@import "../../Styles/constant";
+@import "../../Styles/variables";
+
+$primary-color: #1EA4CE;
+$secondary-color: #FFFFFF;
+$background-color: #000000;
+
+// Style the body
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.toggle_btn{
+    display: block;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 1.5rem;
+    flex: 1;
+    position: absolute;
+    z-index: 999;
+    text-align: right;
+    right: 1rem;
+    margin: 1rem;
+  }
+
+// Style the dropdown menu
+.dropdown_menu {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $background-color;
+  color: $secondary-color;
+  transition: opacity 0.3s ease-in-out;
+
+  // Style the menu items
+  ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    list-style: none;
+    display: flex;
+    flex-direction: column; // add this
+    align-items: center; 
+
+    li {
+      padding: 10px;
+      font-size: 22px;
+      transition: color 0.3s ease-in-out;
+      margin-bottom: 10px;
+      align-items: center;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    // Style the action button
+    .action_btn {
+      margin-top: 20px;
+      transition: transform 0.3s ease-in-out;
+      display: flex;
+      justify-content: space-between;
+      max-width: 300px;
+      align-items: center;
+
+      button {
+        font-size: 16px;
+        font-weight: bold;
+        color: $background-color;
+        background-color: $secondary-color;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+
+      }
+    }
+  }
+
+  // Style the open and closed states
+  &.open {
+    opacity: 1;
+  }
+
+  &.closed {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

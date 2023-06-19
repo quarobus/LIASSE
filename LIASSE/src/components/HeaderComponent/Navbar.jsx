@@ -3,12 +3,14 @@ import { routes } from "../AcceuilComponent/dummy";
 import "./navbar.scss";
 import Sidebar from "../SideBarComponent/sidebar";
 import Modal from "./Modal";
+import { Link } from "react-router-dom";
 
 function Navbar({ toggle, bgColors }) {
   const [open, setOpen] = useState(false);
   const [bgColor, setBgColor] = useState(false);
   const [iconColor, setIconColor] = useState("white");
   const [showModal, setShowModal] = useState(false);
+
   function changeNavbarBackgroundColor() {
     if (window.scrollY >= 70 || bgColors === "white") {
       setBgColor(true);
@@ -16,12 +18,15 @@ function Navbar({ toggle, bgColors }) {
       setBgColor(false);
     }
   }
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem("email");
+    window.location.href = "/"; // Replace "/login" with the actual login page URL
+  }, []);
 
   const handleToggleClick = useCallback(() => {
     setOpen((prevOpen) => !prevOpen);
   }, []);
 
-  
 
   useEffect(() => {
     if (bgColors === "white") {
@@ -52,10 +57,10 @@ function Navbar({ toggle, bgColors }) {
         <p>LIASSE</p>
       </div>
       <ul className="navbar__routes">
-        <li>Acceuil</li>
-        <li>Blog</li>
-        <li>Event</li>
-        <li>Faculty</li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/">Home</Link></li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Blogs">Blogs</Link></li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Event">Events</Link></li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Faculty">Faculty</Link></li>
       </ul>
       <div className="navbar__buttons">
         <button

@@ -1,0 +1,159 @@
+@import "../../Styles/constant";
+@import "../../Styles/variables";
+
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 5px); // Update this line to add a small gap between the icon and menu
+  left: 50%; // Add this line
+  transform: translateX(-50%); // Add this line
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none; // Hide the dropdown menu by default
+  z-index: 999; // Ensure the dropdown appears above other elements
+
+  .dropdown-menu__button {
+    padding: 8px;
+    margin-bottom: 8px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    width: 100%; // Set the width to fill the container
+    text-align: left; // Align the button text to the left
+  }
+}
+
+.dropdown-menu.open {
+  display: grid; // Show the dropdown menu when open
+}
+
+
+.navbar__buttons {
+  display: flex;
+  align-items: center;
+  gap: $lg-gap;
+  position: relative; // Add this line
+}
+
+.app__navbar {
+  @include flexBetween;
+  box-sizing: border-box;
+  height: 65px;
+  padding: 40px $md-gap;
+  position: fixed;
+  bottom: 4rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: $trans;
+  color: $secondary-color;
+  z-index: 9999;
+
+  &.active {
+    background: #fff;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+    color: $primary-color;
+  }
+
+  p{
+    margin-top: 14px;
+    font-size: 1.6rem;
+  }
+  .toggle_btn{
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+  }
+
+  .navbar__logo {
+    @include logo;
+  }
+
+  .navbar__routes {
+    @include routes;
+    font-size: 1.1 rem;
+    margin-top: 14px;
+  }
+
+  .navbar__routes li a {
+    text-decoration: none;
+  }
+
+  .navbar__buttons {
+    @include flexAlign;
+    gap: $lg-gap;
+
+    button {
+      @include button;
+      background: $secondary-color;
+      color: $primary-color;
+      text-align: center;
+
+      &.onebtn {
+        background: transparent;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .app__navbar {
+    background-color: black;
+    padding: 0px $sm-gap !important;
+    .navbar__logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      margin-left: 1.5rem;
+      flex: 1;
+      left: 0;
+      margin-top: 14px;
+    }
+
+    .toggle_btn {
+      display: block;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-right: 1.5rem;
+      flex: 1;
+      position: absolute;
+      z-index: 9999;
+      text-align: right;
+      right: 1rem;
+      margin: 1rem;
+    }
+  
+
+    .navbar__routes,
+    .navbar__buttons {
+      display: none;
+    }
+
+
+  }
+  /* Media query for screens under 992px */
+@media only screen and (max-width: 992px) {
+
+  /* Set height of body and html to 100% */
+  body, html {
+    height: 100%;
+  }
+
+
+  /* Add padding to the body to avoid content being hidden behind the dropdown menu */
+  body {
+    padding-top: 60px;
+    overflow-x: hidden;
+  }
+
+}
+
+}

@@ -4,8 +4,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 
-const CreateEvent = () => {
 
+const CreateEvent = () => {
     const [nom,setNom] = useState('');
     const [date,setDate] = useState('');
     const [description,setDescription] = useState('');

@@ -18,6 +18,13 @@ import ProfileDocShow from "./ProfileDocShow";
 import Faculty from "./FacultyComponent/Faculty";
 import Footer from "./FooterComponent/Footer";
 import Gestionadmin from "./GestionAdminComponent/GestionAdmin";
+import Gestionprof from "./GestionProfComponent/GestionProf";
+import ProfNavbar from "./ProfHeaderComp/Navbar";
+import DocNavbar from "./DocHeaderComp/Navbar";
+import ADMNavbar from "./ADMHeaderComp/Navbar";
+import DocSidebar from "./DocSideBar/sidebar";
+import ProfSidebar from "./ProfSideBar/sidebar";
+import ADMSidebar from "./ADMsideBar/sidebar";
 import FormUser from "./FormComponent/FormUser";
 import CoutainerEvent from "./coutainerEvent/coutainerEvent";
 import Event from "./EventComponent/event";
@@ -27,6 +34,12 @@ import CreateEvent from "./CreateEvent/createEvent";
 export {
   Home,
   Navbar,
+  ProfNavbar,
+  DocSidebar,
+  ProfSidebar,
+  ADMSidebar,
+  DocNavbar,
+  ADMNavbar,
   Feature,
   Posts,Sidebar,
   Feature2,Services,Service2,
@@ -41,6 +54,7 @@ export {
   Faculty,
   Footer,
   Gestionadmin,
+  Gestionprof,
   FormUser,
   CoutainerEvent,
   Event,

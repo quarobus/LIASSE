@@ -1,0 +1,540 @@
+/*
+.gestion-body {
+  align-items: center;
+  background-color: #f2f2f2;
+  display: flex;
+  font-family: "Merriweather", serif;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  margin-top: 150px;
+  margin-left: 10%;
+  margin-right: 10%;
+  min-width: 80%;
+  min-height: 80%;
+}
+.container {
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+*/
+/*
+.btn {
+  margin-right: 10px;
+}
+*/
+@media(max-width: 576px) {
+    .contain-gestion-admin{
+      margin-left: 5%!important;
+      margin-right: 5%!important;
+    }
+    .add-btn {
+      height: 30px!important;
+      padding: 0 1rem!important;
+    }
+    
+  }
+  .contain-gestion-admin{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 6rem!important;
+    margin-bottom: 0.5rem;
+  }
+  
+  .button-modif{
+      font-family: "Product Sans", sans-serif;
+      font-size: 14px;
+      line-height: normal;
+      text-align: center;
+      letter-spacing: normal;
+      color:#ffffff;
+      background-color: #0c1727;
+      box-shadow: #ffffff;
+      border-radius: 20px;
+      padding: 5px 20px 5px 20px;
+    }
+    .gestionadm{
+      margin-bottom: 0.5rem;
+      
+    }
+    .mk-black{
+      background: black!important;
+      border-color: black!important;
+    }
+   
+    .custom-alert {
+      background-color: transparent !important;
+      border-color: #ffffff !important;
+      color: #dc3545 !important;
+      height: 20px !important;
+    }
+    
+    .custom-alert p {
+      margin: 0;
+    }
+    
+    .modal-pass-body-scrollable{
+        overflow-y: auto;
+    }
+    
+    .modal-pass-text-wrap {
+        word-wrap: break-word;
+    }
+
+
+    .button-cont{
+      display: flex;
+      justify-content: center;
+    }
+    .modal-content{
+  
+      margin-top: 5.5rem;
+    }
+    .card {
+      border: 3px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    
+    .card-header {
+      background-color: #09407b;
+      color: #fff;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 15px;
+    }
+  
+    .add-btn{
+      margin-bottom: 1em;
+      margin-left: 30px;
+      height: 40px;
+      padding: 0 2rem!important;
+      border-radius: 20px!important;
+    }
+    
+    .card-body {
+      padding: 20px;
+    }
+    .btn-group .btn {
+      margin-right: 10px;
+    }
+    
+    .btn-primary{
+      padding: 0.25rem 1.25rem 0.25rem 1.5rem;
+      border-radius: 20px;
+      font-size: 16px;
+    
+    }
+   /*
+    .table-gestion{
+      text-align: center;
+    }
+    .table-margin{
+         margin-top: 30px;
+    }
+   */ 
+  /* ------------------------------- */
+  
+  .container-table-adm {
+    width: 100%;
+    min-height: 100vh;
+    background: #c850c0;
+    background: -webkit-linear-gradient(45deg,#4158d0,#c850c0);
+    background: -o-linear-gradient(45deg,#4158d0,#c850c0);
+    background: -moz-linear-gradient(45deg,#4158d0,#c850c0);
+    background: linear-gradient(45deg,#4158d0,#c850c0);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 33px 30px
+  }
+  
+  .table100 {
+    border-spacing: 1;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    position: relative
+  }
+  
+  .table100 * {
+    position: relative
+  }
+  
+  .table100 td,table th {
+    padding-left: 8px
+  }
+  
+  .table100 thead tr {
+    align-items: center;
+    color:#fff;
+    height: 60px;
+    background: #2a253b
+  }
+  
+  .table100 tbody tr {
+    height: 50px
+  }
+  
+  .table100 tbody tr:last-child {
+    border: 0
+  }
+  
+  .table100 td,table th {
+    text-align: left
+  }
+  
+  .table100 td.l,table th.l {
+    text-align: right
+  }
+  
+  .table100 td.c,table th.c {
+    text-align: center
+  }
+  
+  .table100 td.r,table th.r {
+    text-align: center
+  }
+  
+  .table100-head th {
+    font-family: OpenSans-Regular;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.2;
+    font-weight: unset
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f5f5f5
+  }
+  
+  tbody tr {
+    font-family: OpenSans-Regular;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    line-height: 1.2;
+    font-weight: unset
+  }
+  
+  tbody tr:hover {
+    color: #555;
+    background-color: #f5f5f5;
+    cursor: pointer
+  }
+  
+  .column1 {
+    width: 260px;
+    padding-left: 40px
+  }
+  
+  .column2 {
+    width: 160px
+  }
+  
+  .column3 {
+    width: 245px
+  }
+  
+  .column4 {
+    width: 110px;
+    text-align: right
+  }
+  
+  .column5 {
+    width: 170px;
+    text-align: right
+  }
+  
+  .column6 {
+    width: 222px;
+    text-align: right;
+    padding-right: 62px
+  }
+  
+  @media screen and (max-width: 992px) {
+    .table100 {
+        display:block
+    }
+  
+    .table100>*,.table100 tr,.table100 td,.table100 th {
+        display: block
+    }
+  
+    .table100 thead {
+        display: none
+    }
+  
+    .table100 tbody tr {
+        height: auto;
+        padding: 37px 0
+    }
+  
+    .table100 tbody tr td {
+        padding-left: 40%!important;
+        margin-bottom: 24px
+    }
+  
+    .table100 tbody tr td:last-child {
+        margin-bottom: 0
+    }
+  
+    .table100 tbody tr td:before {
+        font-family: OpenSans-Regular;
+        font-size: 14px;
+        color: #999;
+        line-height: 1.2;
+        font-weight: unset;
+        position: absolute;
+        width: 40%;
+        left: 30px;
+        top: 0
+    }
+  
+    .table100 tbody tr td:nth-child(1):before {
+        content: "First Name"
+    }
+  
+    .table100 tbody tr td:nth-child(2):before {
+        content: "Last Name"
+    }
+  
+    .table100 tbody tr td:nth-child(3):before {
+        content: "Email"
+    }
+  
+  
+    .table100 tbody tr td:nth-child(4):before {
+      content: "Action"
+  }
+  
+    
+    .column4,.column5,.column6 {
+        text-align: left
+    }
+  
+    .column4,.column5,.column6,.column1,.column2,.column3 {
+        width: 100%
+    }
+  
+    tbody tr {
+        font-size: 14px
+    }
+  }
+  
+  @media(max-width: 576px) {
+    .container-table100 {
+        padding-left:15px;
+        padding-right: 15px
+    }
+  }
+
+  // table for docs
+
+  .table200 {
+    border-spacing: 1;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    position: relative
+  }
+  
+  .table200 * {
+    position: relative
+  }
+  
+  .table200 td,table th {
+    padding-left: 8px
+  }
+  
+  .table200 thead tr {
+    align-items: center;
+    color:#fff;
+    height: 60px;
+    background: #2a253b
+  }
+  
+  .table200 tbody tr {
+    height: 50px
+  }
+  
+  .table200 tbody tr:last-child {
+    border: 0
+  }
+  
+  .table200 td,table th {
+    text-align: left
+  }
+  
+  .table200 td.l,table th.l {
+    text-align: right
+  }
+  
+  .table200 td.c,table th.c {
+    text-align: center
+  }
+  
+  .table200 td.r,table th.r {
+    text-align: center
+  }
+  
+  .table200-head th {
+    font-family: OpenSans-Regular;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.2;
+    font-weight: unset
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f5f5f5
+  }
+  
+  tbody tr {
+    font-family: OpenSans-Regular;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    line-height: 1.2;
+    font-weight: unset
+  }
+  
+  tbody tr:hover {
+    color: #555;
+    background-color: #f5f5f5;
+    cursor: pointer
+  }
+  
+  .column1 {
+    width: 260px;
+    padding-left: 40px
+  }
+  
+  .column2 {
+    width: 160px
+  }
+  
+  .column3 {
+    width: 245px
+  }
+  
+  .column4 {
+    width: 110px;
+    text-align: right
+  }
+  
+  .column5 {
+    width: 170px;
+    text-align: right
+  }
+  
+  .column6 {
+    width: 222px;
+    text-align: right;
+    padding-right: 62px
+  }
+  
+  @media screen and (max-width: 992px) {
+    .table200 {
+        display:block
+    }
+  
+    .table200>*,.table200 tr,.table200 td,.table200 th {
+        display: block
+    }
+  
+    .table200 thead {
+        display: none
+    }
+  
+    .table200 tbody tr {
+        height: auto;
+        padding: 37px 0
+    }
+  
+    .table200 tbody tr td {
+        padding-left: 40%!important;
+        margin-bottom: 24px
+    }
+  
+    .table200 tbody tr td:last-child {
+        margin-bottom: 0
+    }
+  
+    .table200 tbody tr td:before {
+        font-family: OpenSans-Regular;
+        font-size: 14px;
+        color: #999;
+        line-height: 1.2;
+        font-weight: unset;
+        position: absolute;
+        width: 40%;
+        left: 30px;
+        top: 0
+    }
+  
+    .table200 tbody tr td:nth-child(1):before {
+        content: "First Name"
+    }
+  
+    .table200 tbody tr td:nth-child(2):before {
+        content: "Last Name"
+    }
+  
+    .table200 tbody tr td:nth-child(3):before {
+        content: "Email"
+    }
+  
+  
+    .table200 tbody tr td:nth-child(4):before {
+      content: "Action"
+  }
+  
+    
+    .column4,.column5,.column6 {
+        text-align: left
+    }
+  
+    .column4,.column5,.column6,.column1,.column2,.column3 {
+        width: 100%
+    }
+  
+    tbody tr {
+        font-size: 14px
+    }
+  }
+  
+  @media(max-width: 576px) {
+    .container-table200 {
+        padding-left:15px;
+        padding-right: 15px
+    }
+  }
+  
+    
+    /*
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background-color: #042343;
+      border: none;
+    }
+    */
+  
+     

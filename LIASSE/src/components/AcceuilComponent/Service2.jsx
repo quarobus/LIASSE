@@ -1,36 +1,60 @@
-import React from "react";
-import Sdata from "./Sdata";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./Service2.scss";
 
 function Service2() {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    // Fetch articles from the backend
+    axios.get("http://localhost/api/latest.php").then((response) => {
+      console.log(response.data)
+      setArticles(response.data.slice(0, 6));
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
+  const truncateText = (text) => {
+    if (text.length > 100) {
+      return text.slice(0, 150) + "...";
+    }
+    return text;
+  };
+
   return (
-    <div class="pt-5 pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="section-head col-sm-12">
-          <h4><span>Latest</span> Articles</h4>
-        </div>
-        {Sdata.map((val, ind) => (
-        <div class="col-lg-4 col-sm-6">
-          <div key={ind} class="item2"> <div class="pic">
-        <img src={val.imgsrc} />
-        <div class="date">
-          <span class="day">26</span>
-          <span class="month">June</span>
-          <span class="year">2023</span>
-        </div></div>
-            <h5 className="fw-bold">{val.title}</h5>
-            <p>Receive mentorship and guidance from skilled AI experts who are enthusiastic about helping you enhance your skills.</p>
-            <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
-            <NavLink to="#" class="btn btn-primary" style={{ color:"rgb(74, 190, 211)", paddingTop: "15px",paddingLeft:"5px", borderTop: "1px solid #E3E3E3", fontSize : "0.875rem" }}>Read More</NavLink>
-            <h6 class="admin" style={{ color:"rgb(74, 190, 211)", paddingTop: "16px",paddingRight:"5px",  fontSize : "0.875rem" }}>Admin</h6>
-            </div>
+    <div className="pt-5 pb-5">
+      <div className="container">
+        <div className="row">
+          <div className="section-head col-sm-12">
+            <h4><span>Latest</span> Articles</h4>
           </div>
-        </div>))}
+          {articles.map((article) => {
+            const link = article.link.startsWith("http") ? article.link : `http://${article.link}`;
+            return (
+              <div className="col-lg-4 col-sm-6" key={article.id}>
+                <div className="item2">
+                  <div className="pic">
+                    <img src={article.image} alt="Article" />
+
+                    <div className="date">
+                      <span className="day">{new Date(article.created_at).toLocaleDateString("en-US", { day: "numeric" })}</span>
+                      <span className="month">{new Date(article.created_at).toLocaleDateString("en-US", { month: "short" })}</span>
+                      <span className="year">{new Date(article.created_at).toLocaleDateString("en-US", { year: "numeric" })}</span>
+                    </div>
+                  </div>
+                  <h5 className="fw-bold">{article.title}</h5>
+                  <p style={{ wordWrap: "break-word", marginLeft: "0.5rem", marginRight: "0.5rem" }}>{truncateText(article.abstract)}</p>
+                  <div className="d-flex align-items-center justify-content-between mt-3 pb-3">
+                    <a href={link} target="_blank" className="admin" style={{ paddingTop: "15px", paddingLeft: "5px", borderTop: "1px solid #E3E3E3", fontSize: "0.875rem" }}>Read More</a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
-</div>
   );
 }
 
