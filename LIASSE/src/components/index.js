@@ -15,6 +15,7 @@ import ProfileProf from "./ProfileProf";
 import Faculty from "./FacultyComponent/Faculty";
 import Footer from "./FooterComponent/Footer";
 import Gestionadmin from "./GestionAdminComponent/GestionAdmin";
+import Gestionprof from "./GestionProfComponent/GestionProf";
 import ProfNavbar from "./ProfHeaderComp/Navbar";
 import DocNavbar from "./DocHeaderComp/Navbar";
 import ADMNavbar from "./ADMHeaderComp/Navbar";
@@ -48,6 +49,7 @@ export {
   Faculty,
   Footer,
   Gestionadmin,
+  Gestionprof,
   FormUser,
   CoutainerEvent,
   Event,

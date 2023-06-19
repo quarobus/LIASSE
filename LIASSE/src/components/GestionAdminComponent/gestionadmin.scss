@@ -33,6 +33,9 @@
     height: 30px!important;
     padding: 0 1rem!important;
   }
+  .checkradioP{
+    margin:10px 20px 5px 0px!important;
+  }
 }
 .contain-gestion-admin{
   margin-left: 15%;
@@ -53,15 +56,40 @@
     border-radius: 20px;
     padding: 5px 20px 5px 20px;
   }
+
   .gestionadm{
     margin-bottom: 0.5rem;
     
   }
+
+ 
+  .select-dropdown option:hover {
+    background-color: #3f2c9b; /* Background color on hover */
+  }
+
+  .custom-dropdown {
+    max-height: 50px;
+    overflow: auto;
+  }
+  
+
   .mk-black{
     background: black!important;
     border-color: black!important;
   }
+
+  .modal-pass-body-scrollable{
+    overflow-y: auto;
+  }
+
+  .modal-pass-text-wrap {
+    word-wrap: break-word;
+  }
  
+  .checkradioP{
+
+    margin:20px 50px 50px 0px;
+  }
   .custom-alert {
     background-color: transparent !important;
     border-color: #ffffff !important;
@@ -148,7 +176,7 @@
   padding: 33px 30px
 }
 
-.table100 {
+.table100adm {
   border-spacing: 1;
   border-collapse: collapse;
   background: #fff;
@@ -159,46 +187,46 @@
   position: relative
 }
 
-.table100 * {
+.table100adm * {
   position: relative
 }
 
-.table100 td,table th {
+.table100adm td,table th {
   padding-left: 8px
 }
 
-.table100 thead tr {
+.table100adm thead tr {
   align-items: center;
   color:#fff;
   height: 60px;
   background: #2a253b
 }
 
-.table100 tbody tr {
+.table100adm tbody tr {
   height: 50px
 }
 
-.table100 tbody tr:last-child {
+.table100adm tbody tr:last-child {
   border: 0
 }
 
-.table100 td,table th {
+.table100adm td,table th {
   text-align: left
 }
 
-.table100 td.l,table th.l {
+.table100adm td.l,table th.l {
   text-align: right
 }
 
-.table100 td.c,table th.c {
+.table100adm td.c,table th.c {
   text-align: center
 }
 
-.table100 td.r,table th.r {
+.table100adm td.r,table th.r {
   text-align: center
 }
 
-.table100-head th {
+.table100adm-head th {
   font-family: OpenSans-Regular;
   font-size: 18px;
   color: #fff;
@@ -254,33 +282,33 @@ tbody tr:hover {
 }
 
 @media screen and (max-width: 992px) {
-  .table100 {
+  .table100adm {
       display:block
   }
 
-  .table100>*,.table100 tr,.table100 td,.table100 th {
+  .table100adm>*,.table100adm tr,.table100adm td,.table100adm th {
       display: block
   }
 
-  .table100 thead {
+  .table100adm thead {
       display: none
   }
 
-  .table100 tbody tr {
+  .table100adm tbody tr {
       height: auto;
       padding: 37px 0
   }
 
-  .table100 tbody tr td {
+  .table100adm tbody tr td {
       padding-left: 40%!important;
       margin-bottom: 24px
   }
 
-  .table100 tbody tr td:last-child {
+  .table100adm tbody tr td:last-child {
       margin-bottom: 0
   }
 
-  .table100 tbody tr td:before {
+  .table100adm tbody tr td:before {
       font-family: OpenSans-Regular;
       font-size: 14px;
       color: #999;
@@ -292,30 +320,27 @@ tbody tr:hover {
       top: 0
   }
 
-  .table100 tbody tr td:nth-child(1):before {
+  .table100adm tbody tr td:nth-child(1):before {
       content: "First Name"
   }
 
-  .table100 tbody tr td:nth-child(2):before {
+  .table100adm tbody tr td:nth-child(2):before {
       content: "Last Name"
   }
 
-  .table100 tbody tr td:nth-child(3):before {
-      content: "Action"
+  .table100adm tbody tr td:nth-child(3):before {
+      content: "Professor Type"
   }
 
-  .table100 tbody tr td:nth-child(4):before {
-      content: "unk"
+  .table100adm tbody tr td:nth-child(4):before {
+      content: "Email"
   }
 
-  .table100 tbody tr td:nth-child(5):before {
-      content: "unk"
-  }
+  .table100adm tbody tr td:nth-child(5):before {
+    content: "Action"
+}
 
-  .table100 tbody tr td:nth-child(6):before {
-      content: "unk"
-  }
-
+  
   .column4,.column5,.column6 {
       text-align: left
   }
@@ -330,11 +355,196 @@ tbody tr:hover {
 }
 
 @media(max-width: 576px) {
-  .container-table100 {
+  .container-table100adm {
       padding-left:15px;
       padding-right: 15px
   }
 }
+
+// table for docs
+
+.table200adm {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative
+}
+
+.table200adm * {
+  position: relative
+}
+
+.table200adm td,table th {
+  padding-left: 8px
+}
+
+.table200adm thead tr {
+  align-items: center;
+  color:#fff;
+  height: 60px;
+  background: #2a253b
+}
+
+.table200adm tbody tr {
+  height: 50px
+}
+
+.table200adm tbody tr:last-child {
+  border: 0
+}
+
+.table200adm td,table th {
+  text-align: left
+}
+
+.table200adm td.l,table th.l {
+  text-align: right
+}
+
+.table200adm td.c,table th.c {
+  text-align: center
+}
+
+.table200adm td.r,table th.r {
+  text-align: center
+}
+
+.table200adm-head th {
+  font-family: OpenSans-Regular;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f5f5f5
+}
+
+tbody tr {
+  font-family: OpenSans-Regular;
+  font-size: 15px;
+  color: rgb(0, 0, 0.1);
+  line-height: 1.2;
+  font-weight: unset
+}
+
+tbody tr:hover {
+  color: #555;
+  background-color: #f5f5f5;
+  cursor: pointer
+}
+
+.column1 {
+  width: 260px;
+  padding-left: 40px
+}
+
+.column2 {
+  width: 160px
+}
+
+.column3 {
+  width: 245px
+}
+
+.column4 {
+  width: 110px;
+  text-align: right
+}
+
+.column5 {
+  width: 170px;
+  text-align: right
+}
+
+.column6 {
+  width: 222px;
+  text-align: right;
+  padding-right: 62px
+}
+
+@media screen and (max-width: 992px) {
+  .table200adm {
+      display:block
+  }
+
+  .table200adm>*,.table200adm tr,.table200adm td,.table200adm th {
+      display: block
+  }
+
+  .table200adm thead {
+      display: none
+  }
+
+  .table200adm tbody tr {
+      height: auto;
+      padding: 37px 0
+  }
+
+  .table200adm tbody tr td {
+      padding-left: 40%!important;
+      margin-bottom: 24px
+  }
+
+  .table200adm tbody tr td:last-child {
+      margin-bottom: 0
+  }
+
+  .table200adm tbody tr td:before {
+      font-family: OpenSans-Regular;
+      font-size: 14px;
+      color: #999;
+      line-height: 1.2;
+      font-weight: unset;
+      position: absolute;
+      width: 40%;
+      left: 30px;
+      top: 0
+  }
+
+  .table200adm tbody tr td:nth-child(1):before {
+      content: "First Name"
+  }
+
+  .table200adm tbody tr td:nth-child(2):before {
+      content: "Last Name"
+  }
+
+  .table200adm tbody tr td:nth-child(3):before {
+      content: "Email"
+  }
+
+
+  .table200adm tbody tr td:nth-child(4):before {
+    content: "Action"
+}
+
+  
+  .column4,.column5,.column6 {
+      text-align: left
+  }
+
+  .column4,.column5,.column6,.column1,.column2,.column3 {
+      width: 100%
+  }
+
+  tbody tr {
+      font-size: 14px
+  }
+}
+
+@media(max-width: 576px) {
+  .container-table200adm {
+      padding-left:15px;
+      padding-right: 15px
+  }
+}
+
 
   /*
   .btn-primary {

@@ -1,7 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
+<<<<<<< HEAD
+import { Navbar, Home, Feature, Sidebar , Feature2 , Services, Service2 , Footer} from '../../Components';
+=======
 import axios from 'axios';
 import CryptoJS from "crypto-js";
 import { Navbar, Home, Feature, Sidebar, Feature2, Services, Service2, Footer, ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar } from '../../Components';
+>>>>>>> d2768672bbca73c5aa9f7b744dbe3aace83f311a
 
 function HomePage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -96,8 +100,13 @@ function HomePage() {
 
     return (
       <>
+<<<<<<< HEAD
+      {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
+      <Navbar toggle={toggle} />
+=======
       {renderSidebar()}
       {renderNavbar()}
+>>>>>>> d2768672bbca73c5aa9f7b744dbe3aace83f311a
       <Home />
       <Feature />
       <Feature2 />

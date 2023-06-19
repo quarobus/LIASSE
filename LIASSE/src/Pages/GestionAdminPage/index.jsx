@@ -1,10 +1,14 @@
 import React,{useState,useEffect} from 'react';
+<<<<<<< HEAD
+import { ADMNavbar,ADMSidebar,Gestionadmin,Footer } from '../../Components';
+=======
 import axios from 'axios';
 import CryptoJS from "crypto-js";
 import { Navbar,Gestionadmin,Footer,Sidebar, ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar} from '../../Components';
+>>>>>>> d2768672bbca73c5aa9f7b744dbe3aace83f311a
 import '../../app.scss';
 
-function GestionPage() {
+function GestionAdminPage() {
     const [isOpen, setIsOpen] = useState(false);
   
     const toggle = () => {
@@ -105,4 +109,4 @@ function GestionPage() {
     )
 }
 
-export default GestionPage
+export default GestionAdminPage

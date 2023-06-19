@@ -40,10 +40,7 @@ return (
                 <h5>Contact</h5>
               </div>
               <div className="textwidget-footer">
-                E-mail: <a className='FooterLink' href="#" ><span className="__cf_email__" data-cfemail="e39486818e8290978691a3868d908285cd8280cd8e82">[email&#160;protected]</span></a> <br/>
-                Phone: +212535600403 <br/>
-                Fax: +212535600386 <br/>
-              
+                
               </div>
               <div className="tagcloud"><a className='FooterLink' href="#">Nous contacter</a></div>
             </aside>
