@@ -52,6 +52,7 @@ const Modal = () => {
         const path_1 = nav ? '/CompleteProfil' : '/';
         if(path_1 == '/'){
             if(window.location.pathname == '/') window.location.reload();
+            else navigateTo(path_1);
         }
         
         else navigateTo(path_1);
