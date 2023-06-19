@@ -3,19 +3,19 @@ import {Alert,Modal,Card,Button,Form, FormGroup} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./gestionprof.scss";
 import axios from 'axios';
-import CryptoJS from 'react';
+import CryptoJS from 'crypto-js';
 
 
 function Gestionprof() {
 
-  
+  //const emailprof="test4@test.ma";
   const [showModalDoc, setShowModalDoc] = useState(false);
   
   const [itemDocts, setItemsDoct] = useState([]);
-  const [FirstNameDoc, setFirstNameDoc] = useState('');
-  const [LastNameDoc, setLastNameDoc] = useState('');
-  const [EmailDoc, setEmailDoc] = useState('');
-  const [PasswordDoc,setPasswordDoc] = useState('');
+  const [Prenom, setPrenom] = useState('');
+  const [Nom, setNom] = useState('');
+  const [email, setEmail] = useState('');
+  const [password,setPassword] = useState('');
 
   const [editIndex, setEditIndex] = useState(null);
   const [modalTitle, setModalTitle] = useState('');
@@ -31,7 +31,8 @@ function Gestionprof() {
   // email pattern to verify email
   const emailPattern = /\S+@\S+\.\S+/;
 
-
+  // -------------- ---------------------- ----------
+  
 function decryptData(encryptedData, key) {
   const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
   const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -52,20 +53,39 @@ function getWithExpiry(key) {
 }
 //GET email :
 const IsEmailNull = getWithExpiry("email") === null ;
-const email = !IsEmailNull ? getWithExpiry("email").replace(/"/g, '') : "";
-console.log(email);
+const emailprof = !IsEmailNull ? getWithExpiry("email").replace(/"/g, '') : "";
+console.log(emailprof);
 
 // ----------------------------------------------
 
+
+  
+  useEffect(() => {
+    getDocs();
+
+  },[]);
+  
+
+
+  // --------------- get Docs --------------------------------
+  
+  function getDocs() {
+
+    axios.get(`http://localhost/gestionprof/doc.php/${emailprof}`).then(function(response){
+      //console.log(response.data);
+      setItemsDoct(response.data);
+    })
+  }
+  
 
 
 
   const handleCloseDoc = () => 
   {
-    setFirstNameDoc('');
-    setLastNameDoc('');
-    setEmailDoc('');
-    setPasswordDoc('');
+    setPrenom('');
+    setNom('');
+    setEmail('');
+    setPassword('');
     setShowModalDoc(false);
     setShowAlert(false);
     setShowAlertFName(false);
@@ -84,40 +104,40 @@ console.log(email);
     if (editIndex !== null) {
       
       const newItems = [...itemDocts];
-      newItems[editIndex] = { FirstNameDoc, LastNameDoc, EmailDoc, PasswordDoc };
-      if(FirstNameDoc=='') 
+      newItems[editIndex] = { Prenom, Nom, email, password };
+      if(Prenom=='') 
       {
         setShowAlertFName(true);
         return;
       }
-      if(LastNameDoc=='') 
+      if(Nom=='') 
       {
         setShowAlertLName(true);
         return;
       }
-      if (!emailPattern.test(EmailDoc)){
+      if (!emailPattern.test(email)){
         setShowAlert(true);
         return;
       }
 
        const updatedItem2 = itemDocts[editIndex];
-       // Accessing `profId` from `updatedItem`
-       const doctorId = updatedItem2.doctorId;
-       console.log(doctorId);
+       // Accessing `DocID` from `updatedItem`
+       const DocID = updatedItem2.DocID;
+       //console.log(DocID);
 
         
-        const url = `http://localhost/gestionadmin/doc.php`;
+        const url = `http://localhost/gestionprof/doc.php/${DocID}`;
       //  event.preventDefault();
         const data = new FormData();
-        data.append('doctorId',doctorId);
-        data.append('FirstNameDoc', FirstNameDoc);
-        data.append('LastNameDoc', LastNameDoc);
-        data.append('EmailDoc', EmailDoc);
-        data.append('PasswordDoc', PasswordDoc);
+        data.append('Prenom', Prenom);
+        data.append('Nom', Nom);
+        data.append('email', email);
+        data.append('password', password);
       
       
       try {
         await axios.put(url, Object.fromEntries(data));
+        setItemsDoct(newItems);
         alert('Data updated successfully');
       } catch (error) {
         console.error(error);
@@ -125,49 +145,48 @@ console.log(email);
       }
 
       setEditIndex(null);
-      setItemsDoct(newItems);
+      
       
     } else {
  
-      if (FirstNameDoc=='') 
+      if (Prenom=='') 
       {
         setShowAlertFName(true);
         return;
       }
-      if (LastNameDoc=='') {
+      if (Nom=='') {
         setShowAlertLName(true);
         return;
       }
       
-      if (!emailPattern.test(EmailDoc)) { // validate email format
+      if (!emailPattern.test(email)) { // validate email format
         setShowAlert(true);
         return;
       } 
 
-      if (PasswordDoc=='')
+      if (password=='')
       {
         setShowAlertPassword(true);
         return;
       }
 
       
-      if(FirstNameDoc!='' && LastNameDoc!='' && emailPattern.test(EmailDoc))
+      if(Prenom!='' && Nom!='' && emailPattern.test(email))
       {
-        
-
-        const url = 'http://localhost/gestionadmin/doc.php';
+        const url = `http://localhost/gestionprof/doc.php/${emailprof}`;
         event.preventDefault();
         const data = new FormData();
-        data.append('FirstNameDoc', FirstNameDoc);
-        data.append('LastNameDoc', LastNameDoc);
-        data.append('EmailDoc', EmailDoc);
-        data.append('PasswordDoc', PasswordDoc);
+        data.append('Prenom', Prenom);
+        data.append('Nom', Nom);
+        data.append('email', email);
+        data.append('password', password);
         
         try {
           await axios.post(url, Object.fromEntries(data));
             alert('Data saved successfully');
-            console.log(Object.fromEntries(data),{
-            headers: { 'Content-Type': 'multipart/form-data' },});
+            /*console.log(Object.fromEntries(data),{
+            headers: { 'Content-Type': 'multipart/form-data' },});*/
+            setItemsDoct([...itemDocts, { Prenom, Nom, email, password}]);
          } catch (error) {
           console.error(error);
           alert('Something went wrong');
@@ -175,10 +194,10 @@ console.log(email);
       }
     }
 
-    setFirstNameDoc('');
-    setLastNameDoc('');
-    setEmailDoc('');
-    setPasswordDoc('');
+    setPrenom('');
+    setNom('');
+    setEmail('');
+    setPassword('');
     setShowModalDoc(false);
     setShowAlert(false);
     setShowAlertFName(false);
@@ -196,8 +215,8 @@ const handleDeleteDoc = async (index) => {
     if (result) {
 
       const deleteItem = itemDocts[index];
-      const doctorId = deleteItem.doctorId;
-      const url = `http://localhost/gestionadmin/doc.php/${doctorId}`;
+      const DocID = deleteItem.DocID;
+      const url = `http://localhost/gestionprof/doc.php/${DocID}`;
        
 
       try {
@@ -227,10 +246,10 @@ const handleDeleteDoc = async (index) => {
   const handleShowEditDoc = (index) => {
     setModalTitle('Edit PhD student');
     setEditIndex(index);
-    setFirstNameDoc(itemDocts[index].FirstNameDoc);
-    setLastNameDoc(itemDocts[index].LastNameDoc);
-    setEmailDoc(itemDocts[index].EmailDoc);
-    setPasswordDoc(itemDocts[index].PasswordDoc);
+    setPrenom(itemDocts[index].Prenom);
+    setNom(itemDocts[index].Nom);
+    setEmail(itemDocts[index].email);
+    setPassword(itemDocts[index].password);
     setShowModalDoc(true);
     
   };
@@ -253,10 +272,10 @@ const handleDeleteDoc = async (index) => {
                     <Modal.Title>{modalTitle}</Modal.Title>
                   </Modal.Header>
                   <Modal.Body className="modal-pass-body-scrollable">
-                     <p><strong>First Name :</strong>{selectedRow?.FirstNameDoc}</p>
-                     <p><strong>Last Name Name :</strong>{selectedRow?.LastNameDoc}</p>
-                     <p><strong>Email :</strong>{selectedRow?.EmailDoc}</p>
-                     <p><strong className="modal-pass-text-wrap" >Password :</strong>{selectedRow?.PasswordDoc}</p>
+                     <p><strong>First Name :</strong>{selectedRow?.Prenom}</p>
+                     <p><strong>Last Name Name :</strong>{selectedRow?.Nom}</p>
+                     <p><strong>Email :</strong>{selectedRow?.email}</p>
+                     <p><strong className="modal-pass-text-wrap" >Password :</strong>{selectedRow?.password}</p>
                   </Modal.Body>
                   <Modal.Footer>
                      <Button variant="secondary" className="mk-black" onClick={() => setShowModalDocInfo(false)}>
@@ -281,33 +300,33 @@ const handleDeleteDoc = async (index) => {
                    <Modal.Body>
                      <Form>
                      <Form.Group className="form-group row">
-                       <Form.Group className="form-group col-md-6" controlId="formFirstNameDoc">
+                       <Form.Group className="form-group col-md-6" controlId="formPrenom">
                          <Form.Label >First name</Form.Label>
-                           <Form.Control className="col-sm-10" type="text" placeholder="Enter first name" value={FirstNameDoc}  onChange={(e) => setFirstNameDoc(e.target.value)} />
+                           <Form.Control className="col-sm-10" type="text" placeholder="Enter first name" value={Prenom}  onChange={(e) => setPrenom(e.target.value)} />
                            <Form.Text className="text-muted">
                               {showAlertFname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter first name</p></Alert>}
                            </Form.Text>
                        </Form.Group>
                       
-                       <Form.Group className="form-group col-md-6" controlId="formLastNameDoc">
+                       <Form.Group className="form-group col-md-6" controlId="formNom">
                          <Form.Label >Last name</Form.Label>
-                            <Form.Control   className="col-sm-10" type="text" placeholder="Enter last name" value={LastNameDoc} onChange={(e) => setLastNameDoc(e.target.value)} /> 
+                            <Form.Control   className="col-sm-10" type="text" placeholder="Enter last name" value={Nom} onChange={(e) => setNom(e.target.value)} /> 
                             <Form.Text className="text-muted">
                               {showAlertLname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter last name</p></Alert>}
                             </Form.Text>
                        </Form.Group>
                       </Form.Group>
 
-                      <Form.Group controlId="formEmailDoc">
+                      <Form.Group controlId="formemail">
                          <Form.Label >Email</Form.Label>
-                            <Form.Control type="text" className="col-sm-10" placeholder="Enter email" value={EmailDoc} onChange={(e) => setEmailDoc(e.target.value)} />
+                            <Form.Control type="text" className="col-sm-10" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
                        </Form.Group>
                        <Form.Text className="text-muted">
                           {showAlert && <Alert key="danger" variant="danger" className="custom-alert" ><p>Invalid email address</p></Alert>}
                        </Form.Text>
-                       <Form.Group className="form-group col-md-6" controlId="formpasswordDoc">
+                       <Form.Group className="form-group col-md-6" controlId="formpassword">
                          <Form.Label >Password</Form.Label>
-                         <Form.Control className="col-sm-10" type="text" placeholder="Enter password" value={PasswordDoc} onChange={(e) => setPasswordDoc(e.target.value)} />
+                         <Form.Control className="col-sm-10" type="text" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
                        </Form.Group>
                        <Form.Text className="text-muted">
                           {showAlertPassword && <Alert key="danger" variant="danger" className="custom-alert" ><p>Enter password</p></Alert>}
@@ -342,9 +361,9 @@ const handleDeleteDoc = async (index) => {
                    <tbody>
                      {itemDocts && itemDocts.map((itemDoct,key) => (
                        <tr key={key}>
-                         <td>{itemDoct.FirstNameDoc}</td>
-                         <td>{itemDoct.LastNameDoc}</td>
-                         <td>{itemDoct.EmailDoc}</td>
+                         <td>{itemDoct.Prenom}</td>
+                         <td>{itemDoct.Nom}</td>
+                         <td>{itemDoct.email}</td>
                          <td>
                            <Button className="btn btn-info btn-sm" onClick={() => handleShowInfoDoc(itemDoct)}>Info</Button>
                            <Button className="btn btn-secondary btn-sm" onClick={() => handleShowEditDoc(key)}>Edit</Button>{' '}

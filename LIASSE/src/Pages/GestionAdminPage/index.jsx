@@ -1,9 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import { Navbar,Gestionadmin,Footer } from '../../components';
-import { ADMSidebar,Gestionadmin,Footer } from '../../Components';
+import { ADMNavbar,ADMSidebar,Gestionadmin,Footer } from '../../Components';
 import '../../app.scss';
 
-function GestionPage() {
+function GestionAdminPage() {
     const [isOpen, setIsOpen] = useState(false);
   
     const toggle = () => {
@@ -32,4 +31,4 @@ function GestionPage() {
     )
 }
 
-export default GestionPage
+export default GestionAdminPage

@@ -56,10 +56,23 @@
     border-radius: 20px;
     padding: 5px 20px 5px 20px;
   }
+
   .gestionadm{
     margin-bottom: 0.5rem;
     
   }
+
+ 
+  .select-dropdown option:hover {
+    background-color: #3f2c9b; /* Background color on hover */
+  }
+
+  .custom-dropdown {
+    max-height: 50px;
+    overflow: auto;
+  }
+  
+
   .mk-black{
     background: black!important;
     border-color: black!important;
@@ -163,7 +176,7 @@
   padding: 33px 30px
 }
 
-.table100 {
+.table100adm {
   border-spacing: 1;
   border-collapse: collapse;
   background: #fff;
@@ -174,46 +187,46 @@
   position: relative
 }
 
-.table100 * {
+.table100adm * {
   position: relative
 }
 
-.table100 td,table th {
+.table100adm td,table th {
   padding-left: 8px
 }
 
-.table100 thead tr {
+.table100adm thead tr {
   align-items: center;
   color:#fff;
   height: 60px;
   background: #2a253b
 }
 
-.table100 tbody tr {
+.table100adm tbody tr {
   height: 50px
 }
 
-.table100 tbody tr:last-child {
+.table100adm tbody tr:last-child {
   border: 0
 }
 
-.table100 td,table th {
+.table100adm td,table th {
   text-align: left
 }
 
-.table100 td.l,table th.l {
+.table100adm td.l,table th.l {
   text-align: right
 }
 
-.table100 td.c,table th.c {
+.table100adm td.c,table th.c {
   text-align: center
 }
 
-.table100 td.r,table th.r {
+.table100adm td.r,table th.r {
   text-align: center
 }
 
-.table100-head th {
+.table100adm-head th {
   font-family: OpenSans-Regular;
   font-size: 18px;
   color: #fff;
@@ -269,33 +282,33 @@ tbody tr:hover {
 }
 
 @media screen and (max-width: 992px) {
-  .table100 {
+  .table100adm {
       display:block
   }
 
-  .table100>*,.table100 tr,.table100 td,.table100 th {
+  .table100adm>*,.table100adm tr,.table100adm td,.table100adm th {
       display: block
   }
 
-  .table100 thead {
+  .table100adm thead {
       display: none
   }
 
-  .table100 tbody tr {
+  .table100adm tbody tr {
       height: auto;
       padding: 37px 0
   }
 
-  .table100 tbody tr td {
+  .table100adm tbody tr td {
       padding-left: 40%!important;
       margin-bottom: 24px
   }
 
-  .table100 tbody tr td:last-child {
+  .table100adm tbody tr td:last-child {
       margin-bottom: 0
   }
 
-  .table100 tbody tr td:before {
+  .table100adm tbody tr td:before {
       font-family: OpenSans-Regular;
       font-size: 14px;
       color: #999;
@@ -307,23 +320,23 @@ tbody tr:hover {
       top: 0
   }
 
-  .table100 tbody tr td:nth-child(1):before {
+  .table100adm tbody tr td:nth-child(1):before {
       content: "First Name"
   }
 
-  .table100 tbody tr td:nth-child(2):before {
+  .table100adm tbody tr td:nth-child(2):before {
       content: "Last Name"
   }
 
-  .table100 tbody tr td:nth-child(3):before {
-      content: "Email"
-  }
-
-  .table100 tbody tr td:nth-child(4):before {
+  .table100adm tbody tr td:nth-child(3):before {
       content: "Professor Type"
   }
 
-  .table100 tbody tr td:nth-child(5):before {
+  .table100adm tbody tr td:nth-child(4):before {
+      content: "Email"
+  }
+
+  .table100adm tbody tr td:nth-child(5):before {
     content: "Action"
 }
 
@@ -342,7 +355,7 @@ tbody tr:hover {
 }
 
 @media(max-width: 576px) {
-  .container-table100 {
+  .container-table100adm {
       padding-left:15px;
       padding-right: 15px
   }
@@ -350,7 +363,7 @@ tbody tr:hover {
 
 // table for docs
 
-.table200 {
+.table200adm {
   border-spacing: 1;
   border-collapse: collapse;
   background: #fff;
@@ -361,46 +374,46 @@ tbody tr:hover {
   position: relative
 }
 
-.table200 * {
+.table200adm * {
   position: relative
 }
 
-.table200 td,table th {
+.table200adm td,table th {
   padding-left: 8px
 }
 
-.table200 thead tr {
+.table200adm thead tr {
   align-items: center;
   color:#fff;
   height: 60px;
   background: #2a253b
 }
 
-.table200 tbody tr {
+.table200adm tbody tr {
   height: 50px
 }
 
-.table200 tbody tr:last-child {
+.table200adm tbody tr:last-child {
   border: 0
 }
 
-.table200 td,table th {
+.table200adm td,table th {
   text-align: left
 }
 
-.table200 td.l,table th.l {
+.table200adm td.l,table th.l {
   text-align: right
 }
 
-.table200 td.c,table th.c {
+.table200adm td.c,table th.c {
   text-align: center
 }
 
-.table200 td.r,table th.r {
+.table200adm td.r,table th.r {
   text-align: center
 }
 
-.table200-head th {
+.table200adm-head th {
   font-family: OpenSans-Regular;
   font-size: 18px;
   color: #fff;
@@ -456,33 +469,33 @@ tbody tr:hover {
 }
 
 @media screen and (max-width: 992px) {
-  .table200 {
+  .table200adm {
       display:block
   }
 
-  .table200>*,.table200 tr,.table200 td,.table200 th {
+  .table200adm>*,.table200adm tr,.table200adm td,.table200adm th {
       display: block
   }
 
-  .table200 thead {
+  .table200adm thead {
       display: none
   }
 
-  .table200 tbody tr {
+  .table200adm tbody tr {
       height: auto;
       padding: 37px 0
   }
 
-  .table200 tbody tr td {
+  .table200adm tbody tr td {
       padding-left: 40%!important;
       margin-bottom: 24px
   }
 
-  .table200 tbody tr td:last-child {
+  .table200adm tbody tr td:last-child {
       margin-bottom: 0
   }
 
-  .table200 tbody tr td:before {
+  .table200adm tbody tr td:before {
       font-family: OpenSans-Regular;
       font-size: 14px;
       color: #999;
@@ -494,20 +507,20 @@ tbody tr:hover {
       top: 0
   }
 
-  .table200 tbody tr td:nth-child(1):before {
+  .table200adm tbody tr td:nth-child(1):before {
       content: "First Name"
   }
 
-  .table200 tbody tr td:nth-child(2):before {
+  .table200adm tbody tr td:nth-child(2):before {
       content: "Last Name"
   }
 
-  .table200 tbody tr td:nth-child(3):before {
+  .table200adm tbody tr td:nth-child(3):before {
       content: "Email"
   }
 
 
-  .table200 tbody tr td:nth-child(4):before {
+  .table200adm tbody tr td:nth-child(4):before {
     content: "Action"
 }
 
@@ -526,7 +539,7 @@ tbody tr:hover {
 }
 
 @media(max-width: 576px) {
-  .container-table200 {
+  .container-table200adm {
       padding-left:15px;
       padding-right: 15px
   }

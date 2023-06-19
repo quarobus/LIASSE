@@ -5,7 +5,7 @@ import "./gestionadmin.scss";
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { event } from 'jquery';
-import CryptoJS from 'react';
+import CryptoJS from 'crypto-js';
 
 
 function Gestionadmin() {
@@ -15,16 +15,29 @@ function Gestionadmin() {
   const [showModalDoc, setShowModalDoc] = useState(false);
 
   const [itemProfs, setItemsProf] = useState([]);
-  const [FirstNameProf, setFirstNameProf] = useState('');
-  const [LastNameProf, setLastNameProf] = useState('');
-  const [EmailProf, setEmailProf] = useState('');
-  const [PasswordProf,setPasswordProf] = useState('');
+  
   
   const [itemDocts, setItemsDoct] = useState([]);
-  const [FirstNameDoc, setFirstNameDoc] = useState('');
-  const [LastNameDoc, setLastNameDoc] = useState('');
+  /*
+  const [Prenom, setPrenom] = useState('');
+  const [Nom, setNom] = useState('');
   const [EmailDoc, setEmailDoc] = useState('');
   const [PasswordDoc,setPasswordDoc] = useState('');
+  
+  const [Prenom, setPrenom] = useState('');
+  const [Nom, setNom] = useState('');
+  const [email, setemail] = useState('');
+  const [password,setpassword] = useState('');
+  const [typeP, settypeP] = useState('');
+  */
+
+  const [Prenom, setPrenom] = useState('');
+  const [Nom, setNom]= useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [typeprof,setTypeProf] = useState('');
+  
+
 
   const [editIndex, setEditIndex] = useState(null);
   const [modalTitle, setModalTitle] = useState('');
@@ -38,14 +51,23 @@ function Gestionadmin() {
   const [showAlertLname,setShowAlertLName] = useState(false);
   const [showSelectType,setShowSelectType] = useState(false);
   const [showAlertPassword,setShowAlertPassword] = useState(false);
+  const [showAlertSelectProf,setShowAlertSelectProf] = useState(false);
 
-  const [typeP, settypeP] = useState('');
+  // for drop down --------
+  const [ProfId, setProfId] = useState(0);
+  const [dropdownData, setDropdownData] = useState([]);
+
+  
   // email pattern to verify email
   const emailPattern = /\S+@\S+\.\S+/;
 
 
   
   useEffect(() => {
+
+    // for drop down 
+    //fetchDataForDropdown();
+   // to get profs and docs
     getProfs();
     getDocs();
 
@@ -55,8 +77,9 @@ function Gestionadmin() {
   function getProfs() {
 
     axios.get('http://localhost/gestionadmin/prof.php').then(function(response){
-      console.log(response.data);
+      //console.log(response.data);
       setItemsProf(response.data);
+      setDropdownData(response.data);
     })
   }
 
@@ -65,12 +88,19 @@ function Gestionadmin() {
   function getDocs() {
 
     axios.get('http://localhost/gestionadmin/doc.php').then(function(response){
-      console.log(response.data);
+      //console.log(response.data);
       setItemsDoct(response.data);
     })
   }
 
+
+  function getSupervisorName(ProfId) {
+    const supervisor = itemProfs.find(item => item.ProfId === ProfId);
+    return supervisor ? `${supervisor.Prenom} ${supervisor.Nom}` : '';
+   }
+
 // -------------- get email of connected person ----------
+/*
 function decryptData(encryptedData, key) {
   const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
   const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -93,32 +123,33 @@ function getWithExpiry(key) {
 const IsEmailNull = getWithExpiry("email") === null ;
 const email = !IsEmailNull ? getWithExpiry("email").replace(/"/g, '') : "";
 console.log(email);
-
+*/
 // ----------------------------------------------
 
   
 
   const handleCloseProf = () => 
   {
-    setFirstNameProf('');
-    setLastNameProf('');
-    setEmailProf('');
-    setPasswordProf('');
+    setPrenom('');
+    setNom('');
+    setEmail('');
+    setPassword('');
+    setTypeProf('');
     setShowModalProf(false);
     setShowAlert(false);
     setShowAlertFName(false);
     setShowAlertLName(false);
     setShowAlertPassword(false);
-    settypeP('');
+    setShowSelectType(false);
 
   }
 
   const handleCloseDoc = () => 
   {
-    setFirstNameDoc('');
-    setLastNameDoc('');
-    setEmailDoc('');
-    setPasswordDoc('');
+    setPrenom('');
+    setNom('');
+    setEmail('');
+    setPassword('');
     setShowModalDoc(false);
     setShowAlert(false);
     setShowAlertFName(false);
@@ -132,10 +163,10 @@ console.log(email);
 /*  const url = `http://localhost/adminprof/user/update/${profId}`;
       event.preventDefault();
       const data = new FormData();
-        data.append('FirstNameProf', FirstNameProf);
-        data.append('LastNameProf', LastNameProf);
-        data.append('EmailProf', EmailProf);
-        data.append('PasswordProf', PasswordProf);
+        data.append('Prenom', Prenom);
+        data.append('Nom', Nom);
+        data.append('email', email);
+        data.append('password', password);
         data.append('typeP',typeP);
       
       try {
@@ -153,98 +184,116 @@ console.log(email);
 */
 
 
+//  function  used to return all profs it will been used for docs
+/*
+const fetchDataForDropdown = () => {
+  // call all profs
+  axios.get('http://localhost/gestionadmin/allprofs.php').then(function(response){
+    console.log(response.data);
+    setDropdownData(response.data);
+  })
+  
+  
+};
+*/
   const handleSubmitProf = async (event) => {
     event.preventDefault();
+   
+
+   
     if (editIndex !== null) {
-      
+      const updatedItem = itemProfs[editIndex];
+      const ProfId = updatedItem.ProfId;  
       const newItems = [...itemProfs];
-      newItems[editIndex] = { FirstNameProf, LastNameProf, EmailProf, PasswordProf ,typeP};
+      newItems[editIndex] = { ProfId,Prenom, Nom, email, password ,typeprof};
 
 
-      if(FirstNameProf=='') 
+      if(Prenom=='') 
       {
         setShowAlertFName(true);
         return;
       }
-      if(LastNameProf=='') 
+      if(Nom=='') 
       {
         setShowAlertLName(true);
         return;
       }
-      if (!emailPattern.test(EmailProf)){
+      if (!emailPattern.test(email)){
         setShowAlert(true);
         return;
       }
-      if (!typeP)
+      if (!typeprof)
       {
           setShowSelectType(true);
           return;
       }
        // Accessing `profId` from `updatedItem`
 
-        const url = `http://localhost/gestionadmin/prof.php`;
+        const url = `http://localhost/gestionadmin/prof.php/${ProfId}`;
         const data = new FormData();
-        data.append('FirstNameProf', FirstNameProf);
-        data.append('LastNameProf', LastNameProf);
-        data.append('EmailProf', EmailProf);
-        data.append('PasswordProf', PasswordProf);
-        data.append('typeP',typeP);
+        data.append('Prenom', Prenom);
+        data.append('Nom', Nom);
+        data.append('email', email);
+        data.append('password', password);
+        data.append('typeprof',typeprof);
       
       try {
         await axios.put(url,Object.fromEntries(data));
         alert('Data updated successfully');
-        console.log(data);
+       // console.log(Object.fromEntries(data));
+        setItemsProf(newItems);
       } catch (error) {
         console.error(error);
         alert('Something went wrong');
       }
 
       setEditIndex(null);
-      setItemsProf(newItems);
+      
     } else {
  
-      if (FirstNameProf=='') 
+      if (Prenom=='') 
       {
         setShowAlertFName(true);
         return;
       }
-      if (LastNameProf=='') {
+      if (Nom=='') {
         setShowAlertLName(true);
         return;
       }
       
-      if (!emailPattern.test(EmailProf)) { // validate email format
+      if (!emailPattern.test(email)) { // validate email format
         setShowAlert(true);
         return;
       } 
-      if (PasswordProf=='')
+      if (password=='')
       {
         setShowAlertPassword(true);
         return;
       }
 
-      if (!typeP)
+      if (!typeprof)
       {
           setShowSelectType(true);
           return;
       }
       
-      if(FirstNameProf!='' && LastNameProf!='' && emailPattern.test(EmailProf) && typeP)
+      if(Prenom!='' && Nom!='' && emailPattern.test(email) && typeprof)
       {
-        setItemsProf([...itemProfs, { FirstNameProf, LastNameProf, EmailProf, PasswordProf,typeP}]);
+         
         const url = 'http://localhost/gestionadmin/prof.php';
         event.preventDefault();
         const data = new FormData();
-        data.append('FirstNameProf', FirstNameProf);
-        data.append('LastNameProf', LastNameProf);
-        data.append('EmailProf', EmailProf);
-        data.append('PasswordProf', PasswordProf);
-        data.append('typeP', typeP);
+        data.append('Prenom', Prenom);
+        data.append('Nom', Nom);
+        data.append('email', email);
+        data.append('password', password);
+        data.append('typeprof', typeprof);
         try {
             await axios.post(url, Object.fromEntries(data));
             alert('Data saved successfully');
-            console.log(Object.fromEntries(data),{
-            headers: { 'Content-Type': 'multipart/form-data' },});
+            /*console.log(Object.fromEntries(data),{
+            headers: { 'Content-Type': 'multipart/form-data' },});*/
+            setItemsProf([...itemProfs, { Prenom, Nom, email, password ,typeprof}]);
           } catch (error) {
             console.error(error);
             alert('Something went wrong');
@@ -253,110 +302,131 @@ console.log(email);
     }
     
 
-    setFirstNameProf('');
-    setLastNameProf('');
-    setEmailProf('');
-    setPasswordProf('');
+    setPrenom('');
+    setNom('');
+    setEmail('');
+    setPassword('');
+    setTypeProf('');
     setShowModalProf(false);
     setShowAlert(false);
     setShowAlertFName(false);
     setShowAlertLName(false);
     setShowSelectType(false);
     setShowAlertPassword(false);
-    settypeP('');
+    
     };
     
    
     
   const handleSubmitDoc = async (event) => {
     event.preventDefault();
+
     if (editIndex !== null) {
       
       const newItems = [...itemDocts];
-      newItems[editIndex] = { FirstNameDoc, LastNameDoc, EmailDoc, PasswordDoc };
-      if(FirstNameDoc=='') 
+      newItems[editIndex] = { Prenom, Nom, email, password,ProfId};
+      if(Prenom=='') 
       {
         setShowAlertFName(true);
         return;
       }
-      if(LastNameDoc=='') 
+      if(Nom=='') 
       {
         setShowAlertLName(true);
         return;
       }
-      if (!emailPattern.test(EmailDoc)){
+      if (!emailPattern.test(email)){
         setShowAlert(true);
         return;
       }
 
-       const updatedItem2 = itemDocts[editIndex];
-       // Accessing `profId` from `updatedItem`
-       const doctorId = updatedItem2.doctorId;
-       console.log(doctorId);
+      if (password=='')
+      {
+        setShowAlertPassword(true);
+        return;
+      }
 
-        
+      if(ProfId==0)
+      {
+        setShowAlertSelectProf(true);
+        return;
+      }
+
+       const updatedItem = itemDocts[editIndex];
+       // Accessing `profId` from `updatedItem`
+       const DocID = updatedItem.DocID;
+       //console.log(DocID);
+
         const url = `http://localhost/gestionadmin/doc.php`;
       //  event.preventDefault();
         const data = new FormData();
-        data.append('doctorId',doctorId);
-        data.append('FirstNameDoc', FirstNameDoc);
-        data.append('LastNameDoc', LastNameDoc);
-        data.append('EmailDoc', EmailDoc);
-        data.append('PasswordDoc', PasswordDoc);
-      
+        data.append('DocID',DocID);
+        data.append('Prenom', Prenom);
+        data.append('Nom', Nom);
+        data.append('email', email);
+        data.append('password', password);
+        data.append('ProfId', ProfId);
+        
       
       try {
         await axios.put(url, Object.fromEntries(data));
         alert('Data updated successfully');
-        console.log(data);
+        setItemsDoct(newItems);
       } catch (error) {
         console.error(error);
         alert('Something went wrong');
       }
 
       setEditIndex(null);
-      setItemsDoct(newItems);
+     
       
     } else {
  
-      if (FirstNameDoc=='') 
+      if (Prenom=='') 
       {
         setShowAlertFName(true);
         return;
       }
-      if (LastNameDoc=='') {
+      if (Nom=='') {
         setShowAlertLName(true);
         return;
       }
       
-      if (!emailPattern.test(EmailDoc)) { // validate email format
+      if (!emailPattern.test(email)) { // validate email format
         setShowAlert(true);
         return;
       } 
 
-      if (PasswordDoc=='')
+      if (password=='')
       {
         setShowAlertPassword(true);
         return;
       }
+      if(ProfId==0)
+      {
+        setShowAlertSelectProf(true);
+        return;
+      }
 
       
-      if(FirstNameDoc!='' && LastNameDoc!='' && emailPattern.test(EmailDoc))
+      if(Prenom!='' && Nom!='' && emailPattern.test(email))
       {
         
         const url = 'http://localhost/gestionadmin/doc.php';
         event.preventDefault();
         const data = new FormData();
-        data.append('FirstNameDoc', FirstNameDoc);
-        data.append('LastNameDoc', LastNameDoc);
-        data.append('EmailDoc', EmailDoc);
-        data.append('PasswordDoc', PasswordDoc);
+        data.append('Prenom', Prenom);
+        data.append('Nom', Nom);
+        data.append('email', email);
+        data.append('password', password);
+        data.append('ProfId',ProfId);
         
         try {
           await axios.post(url, Object.fromEntries(data));
             alert('Data saved successfully');
-            console.log(Object.fromEntries(data),{
-            headers: { 'Content-Type': 'multipart/form-data' },});
+           /* console.log(Object.fromEntries(data),{
+            headers: { 'Content-Type': 'multipart/form-data' },});*/
+            setItemsDoct([...itemDocts, { Prenom, Nom, email, password,ProfId}]);
          } catch (error) {
           console.error(error);
           alert('Something went wrong');
@@ -364,10 +434,10 @@ console.log(email);
       }
     }
 
-    setFirstNameDoc('');
-    setLastNameDoc('');
-    setEmailDoc('');
-    setPasswordDoc('');
+    setPrenom('');
+    setNom('');
+    setEmail('');
+    setPassword('');
     setShowModalDoc(false);
     setShowAlert(false);
     setShowAlertFName(false);
@@ -381,8 +451,8 @@ const handleDeleteProf = async (index) => {
     if (result) {
       
        const deleteItem = itemProfs[index];
-       const profId = deleteItem.profId;
-       const url = `http://localhost/gestionadmin/prof.php/${profId}`;
+       const ProfId = deleteItem.ProfId;
+       const url = `http://localhost/gestionadmin/prof.php/${ProfId}`;
        
       try {
            await axios.delete(url);
@@ -407,7 +477,7 @@ const handleDeleteDoc = async (index) => {
     if (result) {
 
       const deleteItem = itemDocts[index];
-      const doctorId = deleteItem.doctorId;
+      const doctorId = deleteItem.DocID;
       const url = `http://localhost/gestionadmin/doc.php/${doctorId}`;
        
 
@@ -427,6 +497,9 @@ const handleDeleteDoc = async (index) => {
 // ---------------------------------------------------------------------
 
 
+
+ 
+
 const handleShowAddProf = () => {
   setModalTitle('Add Professor');
   setShowModalProf(true);
@@ -443,11 +516,11 @@ const handleShowAddProf = () => {
   const handleShowEditProf = (index) => {
     setModalTitle('Edit Professor');
     setEditIndex(index);
-    setFirstNameProf(itemProfs[index].FirstNameProf);
-    setLastNameProf(itemProfs[index].LastNameProf);
-    setEmailProf(itemProfs[index].EmailProf);
-    setPasswordProf(itemProfs[index].PasswordProf);
-    settypeP(itemProfs[index].typeP);
+    setPrenom(itemProfs[index].Prenom);
+    setNom(itemProfs[index].Nom);
+    setEmail(itemProfs[index].email);
+    setPassword(itemProfs[index].password);
+    setTypeProf(itemProfs[index].typeprof);
     setShowModalProf(true);
     
   };
@@ -455,10 +528,11 @@ const handleShowAddProf = () => {
   const handleShowEditDoc = (index) => {
     setModalTitle('Edit PhD student');
     setEditIndex(index);
-    setFirstNameDoc(itemDocts[index].FirstNameDoc);
-    setLastNameDoc(itemDocts[index].LastNameDoc);
-    setEmailDoc(itemDocts[index].EmailDoc);
-    setPasswordDoc(itemDocts[index].PasswordDoc);
+    setPrenom(itemDocts[index].Prenom);
+    setNom(itemDocts[index].Nom);
+    setEmail(itemDocts[index].email);
+    setPassword(itemDocts[index].password);
+    setProfId(itemDocts[index].ProfId);
     setShowModalDoc(true);
     
   };
@@ -466,7 +540,7 @@ const handleShowAddProf = () => {
   const handleShowInfoProf = (itemProf) => {
     setModalTitle('Info Professor');
     setSelectedRow(itemProf);
-    console.log(itemProf.typeP); // set the selected row data
+   /* console.log(itemProf.typeprof); // set the selected row data*/
     setShowModalProfInfo(true);
   }; 
 
@@ -495,6 +569,8 @@ const handleShowAddProf = () => {
   }
 
 
+
+
   return (
     <div className="contain-gestion-admin">
 
@@ -518,11 +594,11 @@ const handleShowAddProf = () => {
                     <Modal.Title>{modalTitle}</Modal.Title>
                   </Modal.Header>
                   <Modal.Body className="modal-pass-body-scrollable">
-                     <p><strong>First Name :</strong>{selectedRow?.FirstNameProf}</p>
-                     <p><strong>Last Name Name :</strong>{selectedRow?.LastNameProf}</p>
-                     <p><strong>Professor type:</strong>{selectedRow?.typeP}</p>
-                     <p><strong>Email :</strong>{selectedRow?.EmailProf}</p>
-                     <p className="modal-pass-text-wrap"><strong>Password :</strong>{selectedRow?.PasswordProf}</p>
+                     <p><strong>First Name :</strong>{selectedRow?.Prenom}</p>
+                     <p><strong>Last Name Name :</strong>{selectedRow?.Nom}</p>
+                     <p><strong>Professor type:</strong>{selectedRow?.typeprof}</p>
+                     <p><strong>Email :</strong>{selectedRow?.email}</p>
+                     <p className="modal-pass-text-wrap"><strong>Password :</strong>{selectedRow?.password}</p>
                      
                      
                   </Modal.Body>
@@ -538,10 +614,12 @@ const handleShowAddProf = () => {
                     <Modal.Title>{modalTitle}</Modal.Title>
                   </Modal.Header>
                   <Modal.Body className="modal-pass-body-scrollable">
-                     <p><strong>First Name :</strong>{selectedRow?.FirstNameDoc}</p>
-                     <p><strong>Last Name Name :</strong>{selectedRow?.LastNameDoc}</p>
-                     <p><strong>Email :</strong>{selectedRow?.EmailDoc}</p>
-                     <p><strong className="modal-pass-text-wrap">Password :</strong>{selectedRow?.PasswordDoc}</p>
+                     <p><strong>First Name :</strong>{selectedRow?.Prenom}</p>
+                     <p><strong>Last Name Name :</strong>{selectedRow?.Nom}</p>
+                     <p><strong>Email :</strong>{selectedRow?.email}</p>
+                     <p><strong className="modal-pass-text-wrap">Password :</strong>{selectedRow?.password}</p>
+                     <p><strong>Supervised by :</strong>{getSupervisorName(selectedRow?.ProfId)}</p>
+
                   </Modal.Body>
                   <Modal.Footer>
                      <Button variant="secondary" className="mk-black" onClick={() => setShowModalDocInfo(false)}>
@@ -570,17 +648,17 @@ const handleShowAddProf = () => {
                    <Modal.Body>
                      <Form >
                       <Form.Group className="form-group row">
-                       <Form.Group className="form-group col-md-6" controlId="formFirstNameProf">
+                       <Form.Group className="form-group col-md-6" controlId="formPrenom">
                          <Form.Label >First name</Form.Label>
-                            <Form.Control className="col-sm-10" type="text" placeholder="Enter first name" value={FirstNameProf} onChange={(e) => setFirstNameProf(e.target.value)} />
+                            <Form.Control className="col-sm-10" type="text" placeholder="Enter first name" value={Prenom} onChange={(e) => setPrenom(e.target.value)} />
                             <Form.Text className="text-muted">
                              {showAlertFname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter first name</p></Alert>}
                             </Form.Text>
                        </Form.Group>
                      
-                       <Form.Group className="form-group col-md-6" controlId="formLastNameProf">
+                       <Form.Group className="form-group col-md-6" controlId="formNom">
                          <Form.Label >Last name</Form.Label>
-                            <Form.Control className="col-sm-10" type="text" placeholder="Enter last name" value={LastNameProf}  onChange={(e) => setLastNameProf(e.target.value)} />
+                            <Form.Control className="col-sm-10" type="text" placeholder="Enter last name" value={Nom}  onChange={(e) => setNom(e.target.value)} />
                             <Form.Text className="text-muted">
                               {showAlertLname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter last name</p></Alert>}
                             </Form.Text>
@@ -588,24 +666,24 @@ const handleShowAddProf = () => {
                        
                       </Form.Group>
 
-                      <Form.Group controlId="formEmailProf">
+                      <Form.Group controlId="formemail">
                          <Form.Label >Email</Form.Label>
-                         <Form.Control className="col-sm-10"  type="text" placeholder="Enter email" value={EmailProf}  onChange={(e) => setEmailProf(e.target.value)} />
+                         <Form.Control className="col-sm-10"  type="text" placeholder="Enter email" value={email}  onChange={(e) => setEmail(e.target.value)} />
                        </Form.Group>
                        <Form.Text className="text-muted">
                           {showAlert && <Alert key="danger" variant="danger" className="custom-alert" ><p>Invalid email address</p></Alert>}
                        </Form.Text>
-                       <Form.Group controlId="formpasswordProf">
+                       <Form.Group controlId="formpassword">
                          <Form.Label >Password</Form.Label>
-                         <Form.Control className="col-sm-10" type="text" placeholder="Enter password" value={PasswordProf} onChange={(e) => setPasswordProf(e.target.value)} />
+                         <Form.Control className="col-sm-10" type="text" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
                        </Form.Group>
                        <Form.Text className="text-muted">
                           {showAlertPassword && <Alert key="danger" variant="danger" className="custom-alert" ><p>Enter password</p></Alert>}
                        </Form.Text>
                        <Form.Group controlId="radiocheck">
                          <Form.Label className="checkradioP">Type Prof :</Form.Label>
-                         <Form.Check inline label=" permanent" name="radioGroup" type="radio" id="radio-1" checked={typeP === 'permanent'} onChange={() => settypeP('permanent')} />
-                         <Form.Check inline label=" associate" name="radioGroup" type="radio" id="radio-2" checked={typeP === 'associate'} onChange={() => settypeP('associate')} />
+                         <Form.Check inline label=" permanent" name="radioGroup" type="radio" id="radio-1" checked={typeprof === 'permanent'} onChange={() => setTypeProf('permanent')} />
+                         <Form.Check inline label=" associe" name="radioGroup" type="radio" id="radio-2" checked={typeprof === 'associe'} onChange={() => setTypeProf('associe')} />
                             <Form.Text className="text-muted">
                              {showSelectType && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please chose type</p></Alert>}
                             </Form.Text>
@@ -627,23 +705,23 @@ const handleShowAddProf = () => {
                   </Modal>
                  
 
-                 <table className="table100" size="sm">
+                 <table className="table100adm" size="sm">
                    <thead>
                      <tr>
-                       <th className="table100-head">First Name</th>
-                       <th className="table100-head">Last Name</th>
-                       <th className="table100-head">Professor Type</th>
-                       <th className="table100-head">Email</th>
-                       <th className="table100-head">Action</th>
+                       <th className="table100adm-head">First Name</th>
+                       <th className="table100adm-head">Last Name</th>
+                       <th className="table100adm-head">Professor Type</th>
+                       <th className="table100adm-head">Email</th>
+                       <th className="table100adm-head">Action</th>
                      </tr>
                    </thead>
                    <tbody>
                      {itemProfs && itemProfs.map((itemProf,key) => (
                        <tr key={key}>
-                         <td>{itemProf.FirstNameProf}</td>
-                         <td>{itemProf.LastNameProf}</td>
-                         <td>{itemProf.typeP}</td>
-                         <td>{itemProf.EmailProf}</td>
+                         <td>{itemProf.Prenom}</td>
+                         <td>{itemProf.Nom}</td>
+                         <td>{itemProf.typeprof}</td>
+                         <td>{itemProf.email}</td>
                          <td>
                            <Button className="btn btn-info btn-sm" onClick={() => handleShowInfoProf(itemProf)}>Info</Button>
                            <Button className="btn btn-secondary btn-sm" onClick={() => handleShowEditProf(key)}>Edit</Button>{' '}
@@ -678,17 +756,17 @@ const handleShowAddProf = () => {
                    <Modal.Body>
                      <Form>
                      <Form.Group className="form-group row">
-                       <Form.Group className="form-group col-md-6" controlId="formFirstNameDoc">
+                       <Form.Group className="form-group col-md-6" controlId="formPrenom">
                          <Form.Label >First name</Form.Label>
-                           <Form.Control className="col-sm-10" type="text" placeholder="Enter first name" value={FirstNameDoc}  onChange={(e) => setFirstNameDoc(e.target.value)} />
+                           <Form.Control className="col-sm-10" type="text" placeholder="Enter first name" value={Prenom}  onChange={(e) => setPrenom(e.target.value)} />
                            <Form.Text className="text-muted">
                               {showAlertFname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter first name</p></Alert>}
                            </Form.Text>
                        </Form.Group>
                       
-                       <Form.Group className="form-group col-md-6" controlId="formLastNameDoc">
+                       <Form.Group className="form-group col-md-6" controlId="formNom">
                          <Form.Label >Last name</Form.Label>
-                            <Form.Control   className="col-sm-10" type="text" placeholder="Enter last name" value={LastNameDoc} onChange={(e) => setLastNameDoc(e.target.value)} /> 
+                            <Form.Control   className="col-sm-10" type="text" placeholder="Enter last name" value={Nom} onChange={(e) => setNom(e.target.value)} /> 
                             <Form.Text className="text-muted">
                               {showAlertLname && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter last name</p></Alert>}
                             </Form.Text>
@@ -697,18 +775,32 @@ const handleShowAddProf = () => {
 
                       <Form.Group controlId="formEmailDoc">
                          <Form.Label >Email</Form.Label>
-                            <Form.Control type="text" className="col-sm-10" placeholder="Enter email" value={EmailDoc} onChange={(e) => setEmailDoc(e.target.value)} />
+                            <Form.Control type="text" className="col-sm-10" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
                        </Form.Group>
                        <Form.Text className="text-muted">
                           {showAlert && <Alert key="danger" variant="danger" className="custom-alert" ><p>Invalid email address</p></Alert>}
                        </Form.Text>
                        <Form.Group className="form-group col-md-6" controlId="formpasswordDoc">
                          <Form.Label >Password</Form.Label>
-                         <Form.Control className="col-sm-10" type="text" placeholder="Enter password" value={PasswordDoc} onChange={(e) => setPasswordDoc(e.target.value)} />
+                         <Form.Control className="col-sm-10" type="text" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
                        </Form.Group>
                        <Form.Text className="text-muted">
                           {showAlertPassword && <Alert key="danger" variant="danger" className="custom-alert" ><p>Enter password</p></Alert>}
                        </Form.Text>
+
+                      {/* ---------------------- derop down list for profs ------------------- */}
+                       <Form.Group controlId="formDropdown">
+                         <Form.Label>Supervised by </Form.Label>
+                           <Form.Control as="select"  className="select-dropdown-adm custom-dropdown-adm" value={ProfId} onChange={(e) => setProfId(e.target.value)} >
+                           <option value="0">Select Professor</option>
+                              {dropdownData.map((item, key) => (
+                           <option key={key} value={item.ProfId}>{item.Prenom}&nbsp;{item.Nom}</option>
+                            ))}
+                           </Form.Control>
+                         <Form.Text className="text-muted">
+                              {showAlertSelectProf && <Alert key="danger" variant="danger" className="custom-alert" ><p>Please enter the supervisor</p></Alert>}
+                         </Form.Text>
+                       </Form.Group>
                        <FormGroup controlId="buttonsdoc">
                        <Modal.Footer>
                        <Button className="button-modif mk-black" onClick={handleCloseDoc}>
@@ -727,21 +819,21 @@ const handleShowAddProf = () => {
                   </Modal>
                  
               
-                  <table className="table200" size="sm">
+                  <table className="table200adm" size="sm">
                    <thead>
                      <tr>
-                       <th className="table200-head">First Name</th>
-                       <th className="table200-head">Last Name</th>
-                       <th className="table200-head">Email</th>
-                       <th className="table200-head">Action</th>
+                       <th className="table200adm-head">First Name</th>
+                       <th className="table200adm-head">Last Name</th>
+                       <th className="table200adm-head">Email</th>
+                       <th className="table200adm-head">Action</th>
                      </tr>
                    </thead>
                    <tbody>
                      {itemDocts && itemDocts.map((itemDoct,key) => (
                        <tr key={key}>
-                         <td>{itemDoct.FirstNameDoc}</td>
-                         <td>{itemDoct.LastNameDoc}</td>
-                         <td>{itemDoct.EmailDoc}</td>
+                         <td>{itemDoct.Prenom}</td>
+                         <td>{itemDoct.Nom}</td>
+                         <td>{itemDoct.email}</td>
                          <td>
                            <Button className="btn btn-info btn-sm" onClick={() => handleShowInfoDoc(itemDoct)}>Info</Button>
                            <Button className="btn btn-secondary btn-sm" onClick={() => handleShowEditDoc(key)}>Edit</Button>{' '}

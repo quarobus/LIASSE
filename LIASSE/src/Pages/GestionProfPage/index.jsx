@@ -1,9 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import { Navbar,Gestionprof,Footer } from '../../components';
+import { Navbar,ProfSidebar,Gestionprof,Footer } from '../../Components';
 import '../../app.scss';
 
-
-function GestionPage() {
+function GestionProfPage() {
     const [isOpen, setIsOpen] = useState(false);
   
     const toggle = () => {
@@ -21,7 +20,7 @@ function GestionPage() {
     }, []);
     return (
         <>
-        {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
+        {isOpen && <ProfSidebar isOpen={isOpen} toggle={toggle} />}
         {/* if there is any problme with footer position add app to make the footer at the bottom */}
         <div className="app">
         <Navbar  toggle={toggle} bgColors={"white"} />
@@ -32,4 +31,4 @@ function GestionPage() {
     )
 }
 
-export default GestionPage
+export default GestionProfPage
