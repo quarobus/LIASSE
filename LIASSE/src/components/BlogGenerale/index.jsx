@@ -1,91 +1,138 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import'./BlogPageGene.css';
+import axios from 'axios';
+import CryptoJS from 'crypto-js';
 
 
 function BlogGenerale() {
 
     const [show, setShow] = useState(true);
-    const [content, setContent] = useState("Make it public");
-  
+    const [content, setContent] = useState("Make it Private");
+    const [selectedButton, setSelectedButton] = useState("all");
+
     
-    function visButtonClicked(index) {
+    function visButtonClicked(index, formId) {
         const buttons = document.querySelectorAll(".visbutton-blog");
         const button = buttons[index];
-        
-        if (button.classList.contains("active")) {
-          button.classList.remove("active");
-          button.style.backgroundColor = "";
-          button.style.border = "";
-          button.style.color = "";
-          button.textContent = "Make it public";
-          
-        } else {
-          button.classList.add("active");
-          button.style.backgroundColor = "red";
-          button.style.border = "1px solid white";
-          button.style.color = "white";
-          button.textContent = "Make it Private";
-          
-        }
+      
+        axios.post('http://localhost:8080/api/Visibility.php', { id: formId })
+          .then(function (response) {
+            if (button.classList.contains("active")) {
+              button.classList.remove("active");
+              button.style.backgroundColor = "";
+              button.style.border = "";
+              button.style.color = "";
+              button.textContent = "Make it Private";
+            } else {
+              button.classList.add("active");
+              button.style.backgroundColor = "red";
+              button.style.border = "1px solid white";
+              button.style.color = "white";
+              button.textContent = "Make it public";
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       }
       
 
-    const typeButtonClicked1 = ()=>{
-        const button = document.querySelector('.typebutton-blog1');
-
-        if(button.style.backgroundColor == 'white'){
+      function typeButtonClicked(value) {
+        const buttons = document.querySelectorAll('.typebutton-blog');
+      
+        buttons.forEach((button) => {
+          if (button.getAttribute("value") === value) {
+            button.classList.add("active");
             button.style.backgroundColor = '#000';
-            button.style.border= 'none';
+            button.style.border = 'none';
             button.style.color = 'white';
-        }
-        else {
-           button.style.backgroundColor = 'white';
-           button.style.border= '1px solid #000';
-           button.style.color = '#000';
-        }
-    }
-    const typeButtonClicked2 = ()=>{
-        const button = document.querySelector('.typebutton-blog2');
+          } else {
+            button.classList.remove("active");
+            button.style.backgroundColor = 'white';
+            button.style.border = '1px solid #000';
+            button.style.color = '#000';
+          }
+        });
+      
+        setSelectedButton(value);
+      };
+      
 
-        if(button.style.backgroundColor == 'white'){
-            button.style.backgroundColor = '#000';
-            button.style.border= 'none';
-            button.style.color = 'white';
-        }
-        else {
-           button.style.backgroundColor = 'white';
-           button.style.border= '1px solid #000';
-           button.style.color = '#000';
-        }
-    }
-    const typeButtonClicked3 = ()=>{
-        const button = document.querySelector('.typebutton-blog3');
+      //typeButtonClicked("all");
+      
+      
+      const [forms, setForms] = useState([]);
+      useEffect(() => {
+        getForms();
+      },[]);
+     
+      function getForms() {
+        axios.get('http://localhost:8080/api/AllForms.php')
+          .then(function(response) {
+            console.log(response.data);
+            setForms(response.data);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+      
+      const [searchInput, setSearchInput] = useState("");
 
-        if(button.style.backgroundColor == 'white'){
-            button.style.backgroundColor = '#000';
-            button.style.border= 'none';
-            button.style.color = 'white';
-        }
-        else {
-           button.style.backgroundColor = 'white';
-           button.style.border= '1px solid #000';
-           button.style.color = '#000';
-        }
-    }
-    const typeButtonClicked4 = ()=>{
-        const button = document.querySelector('.typebutton-blog4');
+        function handleSearchInputChange(event) {
+        setSearchInput(event.target.value);
+        };
 
-        if(button.style.backgroundColor == 'white'){
-            button.style.backgroundColor = '#000';
-            button.style.border= 'none';
-            button.style.color = 'white';
-        }
-        else {
-           button.style.backgroundColor = 'white';
-           button.style.border= '1px solid #000';
-           button.style.color = '#000';
-        }
+        function handleTypeButtonClick(value) {
+            typeButtonClicked(value);
+          }
+      
+    function decryptData(encryptedData, key) {
+      const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
+      const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+      return decryptedText;
+    };
+  
+    function getWithExpiry(key) {
+      const itemString = localStorage.getItem(key);
+      if (!itemString) {
+        return null;
+      }
+      const item = JSON.parse(itemString);
+      if (Date.now() > item.expiry) {
+        localStorage.removeItem(key);
+        return null;
+      }
+      return decryptData(item.value, "LiasseEncryptionKey");
     }
+    //GET email :
+    const IsEmailNull = getWithExpiry("email") === null ;
+    const email = !IsEmailNull ? getWithExpiry("email").replace(/"/g, '') : "";
+    console.log(email);
+
+    //Type
+    const [role, setRole] = useState("");
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8080/api/getRole.php?email=${encodeURIComponent(email)}`);
+          console.log(email);
+          const result = response.data;
+          console.log(result);
+          setRole(result);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchData();
+    }, [email]);
+
+  const truncateText = (text) => {
+    if (text.length > 500) {
+      return text.slice(0, 500) + "...";
+    }
+    return text;
+  };
 
     return(
         <div style={{marginTop:"121px"}}>
@@ -93,70 +140,77 @@ function BlogGenerale() {
         <div class="A-blog">
             <h1><center>ALL POST</center></h1>
             <hr class="hr-myblog"/>
-            <div class="search-container-blog">
-                <form class="form-blog" action="/search">
-                <input class="input-blog" type="text" placeholder="Search..."/>
-                  <button class="button-blog" type="submit">Search</button>
-                </form>
-            </div>
-            <div class="type-container-blog">
-                
-                <div class="buttons-blog">
-                    <label for="Type">Filter by type: </label>
-                    <button class="typebutton-blog1" onClick={typeButtonClicked1}>Artical</button>
-                    <button class="typebutton-blog2" onClick={typeButtonClicked2}>These</button>
-                    <button class="typebutton-blog3" onClick={typeButtonClicked3}>type3</button>
-                    <button class="typebutton-blog4" onClick={typeButtonClicked4}>type4</button>
+           
+            <form action="" method="GET">
+                <div className="input-group mb-3">
+                    <input
+                    type="text"
+                    name="search"
+                    className="form-control"
+                    placeholder="Search For"
+                    value={searchInput}
+                    onChange={handleSearchInputChange}
+                    />
+                    <button type="Submit" className="btn btn-dark">Search</button>
+                </div>
+            </form>
+            <div className="type-container-blog">
+                <br/>
+                <div>
+                    <label htmlFor="Type">Filter by type: </label>
+                    <button value="all" className={`typebutton-blog ${selectedButton === "all" ? "active" : ""}`} onClick={() => handleTypeButtonClick("all")}>All</button>
+                    <button value="article" className={`typebutton-blog ${selectedButton === "article" ? "active" : ""}`} onClick={() => handleTypeButtonClick("article")}>Article</button>
+                    <button value="thesis" className={`typebutton-blog ${selectedButton === "thesis" ? "active" : ""}`} onClick={() => handleTypeButtonClick("thesis")}>Thesis</button>
+                    <button value="conferencepaper" className={`typebutton-blog ${selectedButton === "conferencepaper" ? "active" : ""}`} onClick={() => handleTypeButtonClick("conferencepaper")}>Conference Paper</button>
+                    <button value="project" className={`typebutton-blog ${selectedButton === "project" ? "active" : ""}`} onClick={() => handleTypeButtonClick("project")}>Project</button>
+                    <button value="chapter" className={`typebutton-blog ${selectedButton === "chapter" ? "active" : ""}`} onClick={() => handleTypeButtonClick("chapter")}>Chapter</button>
+                    <button value="book" className={`typebutton-blog ${selectedButton === "book" ? "active" : ""}`} onClick={() => handleTypeButtonClick("book")}>Book</button>
+
                 </div>
                   
             </div>
         </div>
         <hr class="hr-blog"/>
         <div class="B-blog">
-            <div class="BlogBanner-blog">
-                <h3>Blog Title 1</h3>
-                <p>Lorem ipsum dolor sit amet consectetur 
-                    adipisicing elit. Culpa, itaque. Molestias
-                    hic deleniti repellat labore nam assumenda, 
-                    a id officia pariatur vitae odio natus quasi
-                    obcaecati voluptatum consequuntur aperiam sed? <a href="https://www.kooora.com">know more</a>
-                    {show && <div class="buttonContener-blog">
-                    <button className="visbutton-blog"
-                     onClick={() => visButtonClicked(0)}>{content}</button>
+        {Array.isArray(forms) && forms.length > 0 ? (
+            forms
+                .filter((form) => form.title.toLowerCase().includes(searchInput.toLowerCase()))
+                .filter((form) => selectedButton === "all" || selectedButton === form.form_type.toString())
+
+                .map((form, key) => {
+                return (
+                    <div key={key} className="BlogBanner-blog">
+                    <h3>{form.title}</h3>
+                    <p>
+                        {truncateText(form.abstract)} <a href={`http://${form.link}`} target="_blank" rel="noopener noreferrer"> Voir la suite</a>
+                        {role === "Admin" && show && (
+                        <div className="buttonContener-blog">
+                            <button
+                            className={`visbutton-blog ${
+                                form.visibility === 0 ? "active" : ""
+                            }`}
+                            onClick={() => visButtonClicked(key, form.id)}
+                            style={{
+                                backgroundColor: form.visibility === 0 ? "red" : "",
+                                border: form.visibility === 0 ? "1px solid white" : "",
+                                color: form.visibility === 0 ? "white" : "",
+                            }}
+                            >
+                            {form.visibility === 0 ? "Make it Public" : "Make it Private"}
+                            </button>
                         </div>
-                    }
-                 </p>
-            </div>
-            <div class="BlogBanner-blog">
-                <h3>Blog Title 1</h3>
-                <p>Lorem ipsum dolor sit amet consectetur 
-                    adipisicing elit. Culpa, itaque. Molestias
-                    hic deleniti repellat labore nam assumenda, 
-                    a id officia pariatur vitae odio natus quasi
-                    obcaecati voluptatum consequuntur aperiam sed? <a href="https://www.kooora.com">know more</a>
-                    {show && <div class="buttonContener-blog">
-                    <button className="visbutton-blog" onClick={() => visButtonClicked(1)}>{content}</button>
-                        </div>
-                    }
-                 </p>
-            </div>
-            <div class="BlogBanner-blog">
-                <h3>Blog Title 1</h3>
-                <p>Lorem ipsum dolor sit amet consectetur 
-                    adipisicing elit. Culpa, itaque. Molestias
-                    hic deleniti repellat labore nam assumenda, 
-                    a id officia pariatur vitae odio natus quasi
-                    obcaecati voluptatum consequuntur aperiam sed? <a href="https://www.kooora.com">know more</a>
-                    {show && <div class="buttonContener-blog">
-                    <button className="visbutton-blog" onClick={() => visButtonClicked(2)}>{content}</button>
-                        </div>
-                    }
-                 </p>
-            </div>
+                        )}
+                    </p>
+                    </div>
+                );
+                })
+            ) : (
+            <p>No form found</p>
+            )}
         </div>
     </div>
         </div>
     );
   }
   
-  export default BlogGenerale
+  export default BlogGenerale;

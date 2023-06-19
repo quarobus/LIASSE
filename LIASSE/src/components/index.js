@@ -9,9 +9,12 @@ import Services from "./Services/Services";
 import Service2 from "./AcceuilComponent/Service2";
 import BlogGenerale from "./BlogGenerale";
 import MyBlog from "./MyBlog";
-import ProfileAdm from "./ProfileAdm";
-import ProfileDoc from "./ProfileDoc";
-import ProfileProf from "./ProfileProf";
+import ProfileAdmEdit from "./ProfileAdmEdit";
+import ProfileDocEdit from "./ProfileDocEdit";
+import ProfileProfEdit from "./ProfileProfEdit";
+import ProfileAdmShow from "./ProfileAdmShow";
+import ProfileProfShow from "./ProfileProfShow";
+import ProfileDocShow from "./ProfileDocShow";
 import Faculty from "./FacultyComponent/Faculty";
 import Footer from "./FooterComponent/Footer";
 import Gestionadmin from "./GestionAdminComponent/GestionAdmin";
@@ -19,7 +22,7 @@ import FormUser from "./FormComponent/FormUser";
 import CoutainerEvent from "./coutainerEvent/coutainerEvent";
 import Event from "./EventComponent/event";
 import Modal from "./HeaderComponent/Modal";
-
+import CreateEvent from "./CreateEvent/createEvent";
 
 export {
   Home,
@@ -29,9 +32,12 @@ export {
   Feature2,Services,Service2,
   BlogGenerale,
   MyBlog,
-  ProfileAdm,
-  ProfileProf,
-  ProfileDoc,
+  ProfileAdmEdit,
+  ProfileAdmShow,
+  ProfileDocEdit,
+  ProfileDocShow,
+  ProfileProfEdit,
+  ProfileProfShow,
   Faculty,
   Footer,
   Gestionadmin,
@@ -39,4 +45,5 @@ export {
   CoutainerEvent,
   Event,
   Modal,
+  CreateEvent,
 };

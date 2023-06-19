@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import styles from './event.module.scss';
 
 const Event = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/pfa1/my-app/public/getApi.php")
+        fetch("http://localhost:8080/api/getApi.php")
           .then(response => response.json())
           .then(data => setData(data))
           .catch(error => console.log(error));

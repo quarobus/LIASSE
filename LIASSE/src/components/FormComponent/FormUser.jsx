@@ -1,9 +1,13 @@
 import styles from './form.module.scss';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import CryptoJS from 'crypto-js';
+
 
 const FormUser = () => {
-
+    
+    const navigateTo = useNavigate();
     const [nom,setNom] = useState('');
     const [prenom,setPrenom] = useState('');
     const [grade,setGrade] = useState('');
@@ -15,7 +19,89 @@ const FormUser = () => {
     const [siteweb,setSiteweb] = useState('');
     const [image,setPhoto] = useState(null);
     const [cv,setCv] = useState(null);
+    const [pass, setPass] = useState(null);
+    const [ConfirmPass, setConfirmPass] = useState(null);
+    const [showPassAlert, setShowPassAlert] = useState(false);
 
+    useEffect(() => {
+        // Make an API request to check if grade input should be shown
+        const fetchSp = async () => {
+          try {
+            const response = await axios.get(`http://localhost:8080/api/UserCheck.php?email=${encodeURIComponent(email)}`);
+            const result = response.data;
+            if (result === 'not empty' || result === 'You are not Connected') navigateTo('/');
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchSp();
+  }, []);
+
+    // Check if the image is of image type (jpg, jpeg, png, gif)
+    const allowedImageTypes = ["image/jpeg", "image/png", "image/gif", "image/jpg"];
+    if (image && !allowedImageTypes.includes(image.type)) {
+        alert("Please upload an image file (jpg, jpeg, png, gif).");
+    }
+    // Decryption and check expiration from localStorage:
+    function decryptData(encryptedData, key) {
+        const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
+        const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+        return decryptedText;
+      }
+
+    const PassCheck =  pass===ConfirmPass;
+
+    const handleConfirmPassBlur = () => {
+      if (pass && ConfirmPass && !PassCheck) {
+        setShowPassAlert(true);
+        alert("la confirmation du mot de passe est incorrect");
+      }
+      else if(pass && ConfirmPass && PassCheck) setShowPassAlert(false);
+    };
+    function getWithExpiry(key) {
+        const itemString = localStorage.getItem(key);
+        if (!itemString) {
+          return null;
+        }
+        const item = JSON.parse(itemString);
+        if (Date.now() > item.expiry) {
+          localStorage.removeItem(key);
+          return null;
+        }
+        return decryptData(item.value, "LiasseEncryptionKey");
+      }
+      //GET email :
+      const IsEmailNull = getWithExpiry("email") === null ;
+      const email = !IsEmailNull ? getWithExpiry("email").replace(/"/g, '') : "";
+
+    // Check if the CV is of document type (pdf, docx, doc)
+    //const allowedCVTypes = ["application/pdf", "application/docx", "application/doc"];
+    const allowedCVTypes = [
+        "application/pdf",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/doc"
+      ];
+    if (cv && !allowedCVTypes.includes(cv.type)) {
+        alert("Please upload a document file (pdf, docx, doc).");
+    }
+    
+    const [showGradeInput, setShowGradeInput] = useState(false);
+    useEffect(() => {
+        // Make an API request to check if grade input should be shown
+        const fetchData = async () => {
+          try {
+            const response = await axios.get(`http://localhost:8080/api/getRole.php?email=${encodeURIComponent(email)}`);
+            const result = response.data;
+            if (result === 'Prof' || result === 'Admin') setShowGradeInput(true);
+            else if(result === 'Doc') setShowGradeInput(false);
+            else navigateTo('/');
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchData();
+  }, []);
+    
     const handleImageChange = (e) => {
         setPhoto(e.target.files[0]);
       };
@@ -25,7 +111,7 @@ const FormUser = () => {
       };
 
       const handleSubmit = async (event) => {
-        const url = 'http://localhost:8080/pfa1/postApi.php';
+        const url = 'http://localhost:8080/api/postApi.php';
         event.preventDefault();
         const data = new FormData();
         data.append('nom', nom);
@@ -39,15 +125,26 @@ const FormUser = () => {
         data.append('siteweb', siteweb);
         data.append('image', image);
         data.append('cv', cv);
+        data.append('email', email);
+        data.append('pass',pass);
         try {
-            await axios.post(url, Object.fromEntries(data), {
+            const response = await axios.post(url, Object.fromEntries(data), {
               headers: { 'Content-Type': 'multipart/form-data' },
             });
-            alert('Data saved successfully');
-            console.log(Object.fromEntries(data));
+            if(response.data.includes("Person data updated successfully")) {
+                const profln = response.data.split('\n')[1];
+                if(profln.includes("Prof"))
+                {
+                    const isAdmin = profln.split(' ')[1] === 'admin';
+                    const path = isAdmin ? '/PfAdmShow' : '/PfProfShow';
+                    navigateTo(path);
+
+                }
+                else navigateTo('/PfDocShow')
+            }
           } catch (error) {
             console.error(error);
-            alert('Something went wrong');
+            alert('Something went wrong!!!');
           }
         };
 
@@ -123,16 +220,6 @@ const FormUser = () => {
                     <input
                         className={styles.input}
                         type="text"
-                        placeholder="Grade"
-                        autoComplete="on"
-                        maxLength={20}
-                        name="grade"
-                        value={grade} onChange={(e) => setGrade(e.target.value)}
-                        required
-                    />
-                    <input
-                        className={styles.input}
-                        type="text"
                         placeholder="Spécialité"
                         autoComplete="on"
                         maxLength={50}
@@ -149,6 +236,22 @@ const FormUser = () => {
                         value={thematique} onChange={(e) => setThematique(e.target.value)}
                         required
                     />
+
+                    {showGradeInput && (
+                    <input
+                        className={styles.input}
+                        type="text"
+                        placeholder="Grade"
+                        autoComplete="on"
+                        maxLength={20}
+                        name="grade"
+                        value={grade}
+                        onChange={(e) => setGrade(e.target.value)}
+                        required
+                    />
+                    )}
+                    
+                    
                 </div>
             </div>
             <div className={styles.divvForm}>
@@ -222,8 +325,34 @@ const FormUser = () => {
                     />
                 </div>
             </div>
+            <div className={styles.divvForm}>
+                <p className={styles.p1}>Changer votre mot de passe:</p>
+                <div className={styles.upload}>
+                    <input
+                        className={styles.input}
+                        type="password"
+                        placeholder="Mot de Passe"
+                        autoComplete="on"
+                        name="pass"
+                        value={pass} onChange={(e) => setPass(e.target.value)}
+                        onBlur={handleConfirmPassBlur}
+                        required
+                    />
+                    <input
+                        className={styles.input}
+                        type="password"
+                        placeholder="Confirmer votre mot de passe"
+                        autoComplete="on"
+                        name="ConfirmPass"
+                        value={ConfirmPass} onChange={(e) => setConfirmPass(e.target.value)}
+                        onBlur={handleConfirmPassBlur}
+                        required
+                    />
+                    
+                </div>
+            </div>
             <div className={styles.container}>
-                <button className={styles.btnForm} type='submit'>Enregistrer</button>
+                <button className={styles.btnForm} type='submit' disabled={(cv && !allowedCVTypes.includes(cv.type))||(image && !allowedImageTypes.includes(image.type)) || showPassAlert}>Enregistrer</button>
             </div>
             </form>
         </div>

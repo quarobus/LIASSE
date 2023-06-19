@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+
+.userContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+  }
+  .FormUser {
+    max-width: 700px;
+    border: black 1px solid;
+    border-radius: 20px;
+    padding: 20px 10px;
+    grid-auto-flow: column;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 30px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+  
+  
+  .title {
+    font-weight: 700;
+    margin: 0px 10px 5px 0px;
+    font-family: Playfair display;
+    font-size: 30px;
+    line-height: 42px;
+  }
+  .upload {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 15px;
+    align-items: center;
+    border: 0px dashed black;
+    margin: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+
+  .span-img {
+    padding: 10px;
+    background-color: rgba(143, 169, 217, 0.15);
+    border-radius: 10px;
+    border: 0px solid black;
+    margin-left: 0px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .divvForm {
+    margin-bottom: 30px;
+    overflow: visible;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: start;
+  }
+  .p1 {
+    margin: 0;
+    font-family: poppins;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;  //#5e5e5e
+    text-align: start;
+  }
+  .input {
+    padding: 7px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    margin-right: 20px;
+    min-width: 380px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .btnForm {
+    padding: 10px 20px;
+    background-color: #000000;
+    border: #ffff 2px solid;
+    color: #ffffff;
+    font-family: Poppins;
+    font-weight: 500;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-left: 10px;
+    transition: outline 0.2s ease
+  }
+  .btnForm:is(:hover, :focus) {
+    outline: 3px solid #000000;
+    cursor: pointer;
+  }
+
+  .inputDate{
+    margin: auto;
+    max-width: 250px;
+    border: #000000 2px solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.txtSpan{
+    margin-right: 5px;
+}
+  
+.underTitle{
+    font-weight: 500;
+}
+  @media screen and (max-width: 360px) {
+    .FormUser {
+      max-width: 300px;
+    }
+    .input{
+        min-width: 150px;
+      }
+    .upload{
+      padding: 0px;
+    }
+    
+  }
+  
+  @media screen and (min-width: 360px) and (max-width: 500px){
+    .FormUser {
+      max-width: 330px;
+    }
+    .input{
+      min-width: 250px;
+    }
+    .upload{
+      padding: 0px;
+    }
+  }
