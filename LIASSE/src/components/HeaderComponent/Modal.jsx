@@ -30,8 +30,12 @@ const Modal = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+<<<<<<< HEAD
     // modification in localhost port --------------------------------
     const url = "http://localhost/pfa1/YoussefAPI/login.php";
+=======
+    const url = "http://localhost:80/api/login.php";
+>>>>>>> d2768672bbca73c5aa9f7b744dbe3aace83f311a
     const data = new FormData();
     data.append("email", email);
     data.append("password", password);
@@ -50,8 +54,9 @@ const Modal = () => {
         setWithExpiry("email", email, expirationMs);
         // send to page X:
         const nav = response.data.includes("form");
-        const path_1 = nav ? '/CompleteProfil' : '/Blogs';
-        navigateTo(path_1);
+        const path_1 = nav ? '/CompleteProfil' : '/';
+        if(window.location.pathname == '/') window.location.reload();
+        else navigateTo(path_1);
       } else {
         alert(response.data);
       }
@@ -76,6 +81,7 @@ const Modal = () => {
                 maxLength={120}
                 id="email"
                 value={email}
+                required
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
@@ -86,6 +92,7 @@ const Modal = () => {
                 maxLength={50}
                 id="password"
                 value={password}
+                required
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>

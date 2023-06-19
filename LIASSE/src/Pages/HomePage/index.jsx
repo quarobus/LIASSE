@@ -1,5 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
+<<<<<<< HEAD
 import { Navbar, Home, Feature, Sidebar , Feature2 , Services, Service2 , Footer} from '../../Components';
+=======
+import axios from 'axios';
+import CryptoJS from "crypto-js";
+import { Navbar, Home, Feature, Sidebar, Feature2, Services, Service2, Footer, ADMNavbar, ADMSidebar, ProfNavbar, ProfSidebar, DocNavbar, DocSidebar } from '../../Components';
+>>>>>>> d2768672bbca73c5aa9f7b744dbe3aace83f311a
 
 function HomePage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,10 +23,90 @@ function HomePage() {
         document.body.style.backgroundColor = null; 
       };
     }, []);
+    function decryptData(encryptedData, key) {
+      const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
+      const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+      return decryptedText;
+    }
+    function getWithExpiry(key) {
+      const itemString = localStorage.getItem(key);
+      if (!itemString) {
+        return null;
+      }
+      const item = JSON.parse(itemString);
+      if (Date.now() > item.expiry) {
+        localStorage.removeItem(key);
+        return null;
+      }
+      return decryptData(item.value, "LiasseEncryptionKey");
+    }
+    //GET email :
+    const IsEmailNull = getWithExpiry("email") === null ;
+    const email = !IsEmailNull ? getWithExpiry("email").replace(/"/g, '') : "";
+    
+    const [role, setRole] = useState("");
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`http://localhost:80/api/getRole.php?email=${encodeURIComponent(email)}`);
+          console.log(email);
+          if(IsEmailNull){
+            console.log("no email present")
+          }
+          const result = response.data;
+          if(email){
+          setRole(result);
+          }
+          if (IsEmailNull) {
+            setRole(null);
+            console.log("null");
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchData();
+    }, [email]);
+    
+
+    const renderNavbar = () => {
+      if (IsEmailNull) {
+        return <Navbar toggle={toggle} />;
+      } else if (role === "Prof") {
+        return <ProfNavbar toggle={toggle} />;
+      } else if (role === "Doc") {
+        return <DocNavbar toggle={toggle} />;
+      } else if (role === "Admin") {
+        return <ADMNavbar toggle={toggle} />;
+      } else {
+        return null;
+      }
+    };
+  
+    const renderSidebar = () => {
+      if (IsEmailNull) {
+        return isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />; // No sidebar for the default case
+      } else if (role === "Prof") {
+        return isOpen && <ProfSidebar isOpen={isOpen} toggle={toggle} />;
+      } else if (role === "Doc") {
+        return isOpen && <DocSidebar isOpen={isOpen} toggle={toggle} />;
+      } else if (role === "Admin") {
+        return isOpen && <ADMSidebar isOpen={isOpen} toggle={toggle} />;
+      } else {
+        return null;
+      }
+    };
+    
+
     return (
       <>
+<<<<<<< HEAD
       {isOpen && <Sidebar isOpen={isOpen} toggle={toggle} />}
       <Navbar toggle={toggle} />
+=======
+      {renderSidebar()}
+      {renderNavbar()}
+>>>>>>> d2768672bbca73c5aa9f7b744dbe3aace83f311a
       <Home />
       <Feature />
       <Feature2 />

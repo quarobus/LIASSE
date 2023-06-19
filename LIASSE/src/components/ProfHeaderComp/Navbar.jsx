@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { routes } from "../AcceuilComponent/dummy";
 import "./navbar.scss";
 import profil from "../../assets/noprofile.jpg";
-import Sidebar from "../SideBarComponent/sidebar";
+import ProfSidebar from "../ProfSideBar/sidebar";
+import { Link } from "react-router-dom";
 
 function ProfNavbar({ toggle, bgColors }) {
   const [open, setOpen] = useState(false);
@@ -17,8 +18,11 @@ function ProfNavbar({ toggle, bgColors }) {
       setBgColor(false);
     }
   }
-
-
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem("email");
+    window.location.href = "/"; // Replace "/login" with the actual login page URL
+  }, []);
+  
   const handleToggleClick = useCallback(() => {
     setOpen((prevOpen) => !prevOpen);
   }, []);
@@ -56,7 +60,7 @@ function ProfNavbar({ toggle, bgColors }) {
       <ul className="navbar__routes">
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/">Home</Link></li>
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Blogs">Blogs</Link></li>
-        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Events">Events</Link></li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Event">Events</Link></li>
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Faculty">Faculty</Link></li>
       </ul>
       <div className="navbar__buttons">
@@ -72,9 +76,9 @@ function ProfNavbar({ toggle, bgColors }) {
               <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/PfProf">Profile</Link></button>
               <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none"  }} to="/MyBlogs">MyBlogs</Link></button>
               <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/PostForm">PostForm</Link></button>
-              <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/">PostEvent</Link></button>
+              <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/create-event">PostEvent</Link></button>
               <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/GestionAdmin">ManageDocs</Link></button>
-              <button className="dropdown-menu__button">Logout</button>
+              <button className="dropdown-menu__button" onClick={handleLogout}>Logout</button>
             </div>
           )}
         </div>
@@ -88,7 +92,7 @@ function ProfNavbar({ toggle, bgColors }) {
           }}
         ></i>
       </div>
-      {open && <Sidebar isOpen={open} toggle={handleToggleClick} />}
+      {open && <ProfSidebar isOpen={open} toggle={handleToggleClick} />}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./posts.scss";
 import axios from "axios";
 import Validation from "./Validation";
+import CryptoJS from 'crypto-js';
 
 const Layer = () => {
   const [activeForm, setActiveForm] = useState(1);
@@ -73,12 +74,37 @@ const Layer = () => {
     const updatedValues = { ...values, authors: authorNames.join(",") };
     setValues(updatedValues);
   };  
+  function decryptData(encryptedData, key) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
+    const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedText;
+  }
 
+function getWithExpiry(key) {
+    const itemString = localStorage.getItem(key);
+    if (!itemString) {
+      return null;
+    }
+    const item = JSON.parse(itemString);
+    if (Date.now() > item.expiry) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return decryptData(item.value, "LiasseEncryptionKey");
+  }
+  //GET email :
+  const IsEmailNull = getWithExpiry("email") === null ;
+  const email = !IsEmailNull ? getWithExpiry("email").replace(/"/g, '') : "";
+  console.log(email);
 
   function handleInput(event) {
     if (event.target.name === 'image') {
       const file = event.target.files[0];
       setValues({ ...values, [event.target.name]: file });
+    } else if (event.target.name === 'authors') {
+      setInputValue(event.target.value);
+      const authorNames = event.target.value.split(',').map((name) => name.trim());
+      setValues({ ...values, [event.target.name]: authorNames.join(",") });
     } else {
       const newObj = { ...values, [event.target.name]: event.target.value };
       setValues(newObj);

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { routes } from "../AcceuilComponent/dummy";
 import "./navbar.scss";
 import profil from "../../assets/noprofile.jpg";
-import Sidebar from "../SideBarComponent/sidebar";
+import DocSidebar from "../DocSideBar/sidebar";
+import { Link } from "react-router-dom";
 
 function DocNavbar({ toggle, bgColors }) {
   const [open, setOpen] = useState(false);
@@ -17,7 +18,10 @@ function DocNavbar({ toggle, bgColors }) {
       setBgColor(false);
     }
   }
-
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem("email");
+    window.location.href = "/"; // Replace "/login" with the actual login page URL
+  }, []);
 
   const handleToggleClick = useCallback(() => {
     setOpen((prevOpen) => !prevOpen);
@@ -56,7 +60,7 @@ function DocNavbar({ toggle, bgColors }) {
       <ul className="navbar__routes">
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/">Home</Link></li>
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Blogs">Blogs</Link></li>
-        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Events">Events</Link></li>
+        <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Event">Events</Link></li>
         <li><Link style={{ color: bgColor ? "black" : "white" }} to="/Faculty">Faculty</Link></li>
       </ul>
       <div className="navbar__buttons">
@@ -70,7 +74,7 @@ function DocNavbar({ toggle, bgColors }) {
           {dropdownOpen && (
             <div className="dropdown-menu open"> {/* Add the 'open' class */}
               <button className="dropdown-menu__button"><Link style={{ color: "black", textDecoration:"none" }} to="/PfDoc">Profile</Link></button>
-              <button className="dropdown-menu__button">Logout</button>
+              <button className="dropdown-menu__button" onClick={handleLogout}>Logout</button>
             </div>
           )}
         </div>
@@ -84,7 +88,7 @@ function DocNavbar({ toggle, bgColors }) {
           }}
         ></i>
       </div>
-      {open && <Sidebar isOpen={open} toggle={handleToggleClick} />}
+      {open && <DocSidebar isOpen={open} toggle={handleToggleClick} />}
     </div>
   );
 }
